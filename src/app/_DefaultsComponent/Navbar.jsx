@@ -42,7 +42,7 @@ export default function Navbar() {
             alt="logo"
             width={150}
             height={150}
-            className="mx-auto drop-shadow-md shadow-[#fff] order-1 md:order-none"
+            className="mx-auto drop-shadow-md bg-green-600 rounded-2xl shadow-[#fff] order-1 md:order-none"
           />
 
           {/* Right Content */}
@@ -127,6 +127,50 @@ export default function Navbar() {
           </div>
           <div className="relative group">
             <button
+              onClick={() => toggleDropdown("media")}
+              className=" text-sm p-1  px-3  md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
+            >
+              মিডিয়া <MdArrowDropDown />
+            </button>
+            <div
+              className={`dropdown z-[999] bg-white absolute w-[200px] p-2 rounded-md border shadow-md flex flex-col gap-3 ${
+                dropdownOpen === "media" ? "flex" : "hidden"
+              }`}
+            >
+              <Link
+                href="/services/consulting"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                প্রোগ্রাম
+              </Link>
+              <Link
+                href="/services/training"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                ভিডিও
+              </Link>
+              <Link
+                href="/services/training"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                আর্টিকেল
+              </Link>
+              <Link
+                href="/services/training"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                গ্যালারী
+              </Link>
+              <Link
+                href="/services/training"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                ডকুমেন্টস্
+              </Link>
+            </div>
+          </div>
+          <div className="relative group">
+            <button
               onClick={() => toggleDropdown("academics")}
               className=" text-sm p-1 px-3 md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
             >
@@ -174,7 +218,7 @@ export default function Navbar() {
         {/* Login Button */}
         <div>
           <Link
-            href="/login"
+            href="/pages/authcation/login"
             className="px-3 flex justify-center items-center gap-3 p-2 rounded-md bg-primary hover:bg-hover font-medium text-white"
           >
             লগইন <IoLogInOutline className="text-xl" />

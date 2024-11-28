@@ -1,5 +1,10 @@
 import React from "react";
+import CarouselBanner from "./pages/Home/Banner";
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <CarouselBanner />
+    </div>
+  );
 }
