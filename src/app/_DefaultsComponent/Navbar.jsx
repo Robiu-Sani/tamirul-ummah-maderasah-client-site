@@ -88,13 +88,13 @@ export default function Navbar() {
             হোম
           </Link>
           <Link
-            href="/about"
+            href="/pages/about"
             className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
           >
             আমাদের সম্পর্কে
           </Link>
           <Link
-            href="/about"
+            href="/pages/admition"
             className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
           >
             ভর্তি
@@ -112,13 +112,13 @@ export default function Navbar() {
               }`}
             >
               <Link
-                href="/services/consulting"
+                href="/pages/consulting"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 পরামর্শ
               </Link>
               <Link
-                href="/services/training"
+                href="/pages/training"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 প্রশিক্ষণ
@@ -138,31 +138,31 @@ export default function Navbar() {
               }`}
             >
               <Link
-                href="/services/consulting"
+                href="/pages/programm"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 প্রোগ্রাম
               </Link>
               <Link
-                href="/services/training"
+                href="/pages/videos"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ভিডিও
               </Link>
               <Link
-                href="/services/training"
+                href="/pages/articles"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 আর্টিকেল
               </Link>
               <Link
-                href="/services/training"
+                href="/pages/gellary"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 গ্যালারী
               </Link>
               <Link
-                href="/services/training"
+                href="/pages/documents"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ডকুমেন্টস্
@@ -182,25 +182,25 @@ export default function Navbar() {
               }`}
             >
               <Link
-                href="/academics/curriculum"
+                href="/pages/curriculum"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 কারিকুলাম
               </Link>
               <Link
-                href="/academics/departments"
+                href="/pages/departments"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 বিভাগসমূহ
               </Link>
               <Link
-                href="/academics/library"
+                href="/pages/library"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 লাইব্রেরি রিসোর্স
               </Link>
               <Link
-                href="/academics/calendar"
+                href="/pages/calendar"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 একাডেমিক ক্যালেন্ডার
@@ -208,7 +208,7 @@ export default function Navbar() {
             </div>
           </div>
           <Link
-            href="/contact-us"
+            href="/pages/contact-us"
             className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
           >
             যোগাযোগ করুন
