@@ -112,6 +112,18 @@ export default function Navbar() {
               }`}
             >
               <Link
+                href="/pages/services"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                সেবা সমূহ
+              </Link>
+              <Link
+                href="/pages/notice"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                নোটিশ
+              </Link>
+              <Link
                 href="/pages/consulting"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
