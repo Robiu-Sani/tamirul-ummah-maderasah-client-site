@@ -5,6 +5,7 @@
 
 * {
   font-family: "Noto Sans Bengali", sans-serif;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.493),rgba(0, 0, 0, 0.514)); */
 }
 :root {
   --background: #ffffff;

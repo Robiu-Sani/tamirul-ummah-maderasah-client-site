@@ -66,7 +66,9 @@ const CarouselBanner = () => {
             <div
               key={index}
               className="relative flex-[0_0_100%] flex flex-col justify-center items-center bg-cover bg-center text-white h-full"
-              style={{ backgroundImage: `url(${slide.bg})` }}
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.693),rgba(0, 0, 0, 0.614)),url(${slide.bg})`,
+              }}
             >
               <h2 className="text-4xl sm:text-5xl font-bold mb-4">
                 {slide.title}

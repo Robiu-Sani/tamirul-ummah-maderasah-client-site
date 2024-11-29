@@ -42,7 +42,7 @@ export default function Navbar() {
             alt="logo"
             width={150}
             height={150}
-            className="mx-auto drop-shadow-md bg-green-600 rounded-2xl shadow-[#fff] order-1 md:order-none"
+            className="mx-auto "
           />
 
           {/* Right Content */}
