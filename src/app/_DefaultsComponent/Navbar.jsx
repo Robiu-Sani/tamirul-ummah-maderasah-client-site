@@ -88,17 +88,43 @@ export default function Navbar() {
             হোম
           </Link>
           <Link
-            href="/pages/about"
-            className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
-          >
-            আমাদের সম্পর্কে
-          </Link>
-          <Link
             href="/pages/admition"
             className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
           >
             ভর্তি
           </Link>
+          <div className="relative group">
+            <button
+              onClick={() => toggleDropdown("about")}
+              className=" text-sm p-1  px-3  md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
+            >
+              আমাদের সম্পর্কে <MdArrowDropDown />
+            </button>
+            <div
+              className={`dropdown z-[999] bg-white absolute w-[200px] p-2 rounded-md border shadow-md flex flex-col gap-3 ${
+                dropdownOpen === "about" ? "flex" : "hidden"
+              }`}
+            >
+              <Link
+                href="/pages/education-system"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                পাঠ পদ্ধতি
+              </Link>
+              <Link
+                href="/pages/about-campus"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                কেম্পাস
+              </Link>
+              <Link
+                href="/pages/about-history"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                প্রতিষ্ঠার ইতিহাস
+              </Link>
+            </div>
+          </div>
           <div className="relative group">
             <button
               onClick={() => toggleDropdown("services")}
