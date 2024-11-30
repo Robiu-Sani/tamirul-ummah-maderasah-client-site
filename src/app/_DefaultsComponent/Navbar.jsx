@@ -112,6 +112,12 @@ export default function Navbar() {
                 পাঠ পদ্ধতি
               </Link>
               <Link
+                href="/pages/about-gain"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                আমাদের অর্জন
+              </Link>
+              <Link
                 href="/pages/about-campus"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >

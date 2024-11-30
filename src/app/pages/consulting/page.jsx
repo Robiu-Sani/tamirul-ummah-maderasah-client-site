@@ -1,3 +1,11 @@
+import ConsultingForm from "./ConsultingForm";
+import IslamicConsulting from "./IslamicConsulting";
+
 export default function Consulting() {
-  return <div>Consulting</div>;
+  return (
+    <div>
+      <IslamicConsulting />
+      <ConsultingForm />
+    </div>
+  );
 }
