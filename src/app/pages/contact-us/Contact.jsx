@@ -1,9 +1,9 @@
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import { BsFillChatDotsFill } from "react-icons/bs";
+// import { BsFillChatDotsFill } from "react-icons/bs";
 
 export default function Contact() {
   return (
-    <div className="bg-green-100  py-16">
+    <div className="bg-green-100  pt-14">
       <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-8">
         {/* Header */}
         <div className="text-center mb-10">
@@ -38,16 +38,6 @@ export default function Contact() {
         </div>
 
         {/* Live Chat */}
-        <div className="text-center mt-10">
-          <BsFillChatDotsFill className="text-green-600 text-4xl mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-green-700">লাইভ চ্যাট</h2>
-          <p className="text-gray-600 mt-2">
-            আমাদের সাপোর্ট টিম ২৪/৭ লাইভ চ্যাটে আপনাকে সাহায্য করতে প্রস্তুত।
-          </p>
-          <button className="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-            চ্যাট শুরু করুন
-          </button>
-        </div>
       </div>
     </div>
   );

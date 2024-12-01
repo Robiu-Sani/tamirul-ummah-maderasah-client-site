@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {" "}
-        <NextTopLoader color="#FFf" height={4} />
+        <NextTopLoader color="#FFD700" shadow="#FFf" height={4} />
         <Navbar />
         {children}
         <Footer />
