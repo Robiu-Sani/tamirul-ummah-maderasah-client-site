@@ -33,10 +33,10 @@ export default function IslamicStadies() {
               <FaMosque size={40} className="text-green-500" />
               <div>
                 <h3 className="text-2xl font-semibold text-gray-800">
-                  মসজিদভিত্তিক শিক্ষা
+                  ইসলামভিত্তিক শিক্ষা
                 </h3>
                 <p className="text-gray-600">
-                  তামিরুল উম্মাহ মাদরাসার শিক্ষাব্যবস্থা মসজিদভিত্তিক, যেখানে
+                  তামিরুল উম্মাহ মাদরাসার শিক্ষাব্যবস্থা ইসলামভিত্তিক, যেখানে
                   ধর্মীয় মূল্যবোধ এবং প্রাতিষ্ঠানিক শিক্ষার সমন্বয় ঘটে।
                 </p>
               </div>

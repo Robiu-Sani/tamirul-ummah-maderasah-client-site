@@ -10,6 +10,7 @@ import {
   FaRulerVertical,
   FaWeight,
 } from "react-icons/fa";
+import Tabs from "./Tabs";
 
 const StudentProfile = () => {
   const studentData = {
@@ -34,7 +35,7 @@ const StudentProfile = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 relative">
+    <div className="container mx-auto py-6 relative">
       {/* Cover Image */}
       <div
         className="relative h-60 w-full bg-cover bg-center rounded-lg shadow-lg overflow-hidden"
@@ -73,9 +74,8 @@ const StudentProfile = () => {
             </p>
           </div>
         </div>
-
         {/* Additional Details */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="my-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Detail Card */}
           <div className="p-4 bg-gray-50 border rounded-lg shadow-sm">
             <p>
@@ -147,6 +147,10 @@ const StudentProfile = () => {
               {studentData.residentialStatus}
             </p>
           </div>
+        </div>{" "}
+        <hr />
+        <div className="w-full">
+          <Tabs />
         </div>
       </div>
     </div>
