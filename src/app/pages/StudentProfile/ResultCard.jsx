@@ -1,8 +1,17 @@
 "use client";
-import { useState } from "react";
+import Image from "next/image";
+import { FaFileImage, FaFilePdf } from "react-icons/fa";
 
 const ResultCard = () => {
-  // Data for the table and chart
+  const studentDetails = {
+    examName: "1st Semester Examination",
+    studentName: "John Doe",
+    roll: "12345",
+    class: "10th Grade",
+    image:
+      "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202208/Option_1_-_Aryan_JAIN_x.jpeg?VersionId=iT6pvrs3MzZV9itpfqLODfKPS.FvzW58", // Replace with an actual image URL
+  };
+
   const subjects = [
     { name: "Math", score: 85, total: 100 },
     { name: "Science", score: 90, total: 100 },
@@ -16,9 +25,6 @@ const ResultCard = () => {
     { name: "Art", score: 70, total: 100 },
   ];
 
-  const [tooltip, setTooltip] = useState(null);
-
-  // Function to calculate grade
   const calculateGrade = (percentage) => {
     if (percentage >= 80) return "A+";
     if (percentage >= 70) return "A";
@@ -29,31 +35,82 @@ const ResultCard = () => {
     return "F";
   };
 
-  // Chart dimensions
-  const maxScore = 100;
-  const chartWidth = 350;
-  const chartHeight = 200;
-  const barWidth = chartWidth / subjects.length;
-
-  const handleMouseEnter = (subject, x, y) => {
-    setTooltip({ subject, x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setTooltip(null);
-  };
-
   return (
-    <div className="w-full mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
-      {/* Header */}
-      <h2 className="text-2xl font-bold text-center mb-6">
-        1st Semester Result
-      </h2>
+    <div className="">
+      <div className="flex justify-end gap-6 p-4">
+        <div className="group relative cursor-pointer">
+          <FaFilePdf className="text-3xl text-red-600 hover:text-red-800 transition" />
+          <span className="absolute z-[9999] bottom-10 left-1/2 -translate-x-1/2 bg-primary border text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
+            Download as PDF
+          </span>
+        </div>
+        <div className="group relative cursor-pointer">
+          <FaFileImage className="text-3xl text-blue-600 hover:text-blue-800 transition" />
+          <span className="absolute z-[9999] bottom-10 left-1/2 -translate-x-1/2 bg-primary border text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
+            Download as Image
+          </span>
+        </div>
+      </div>
 
-      {/* Content */}
-      <div className="grid  gap-8">
+      <div className="max-w-5xl mx-auto rounded-md border bg-white  mt-3">
+        {/* maderasah name   */}
+        <div className="max-w-5xl bg-primary p-3 rounded-t-md mb-3 mx-auto flex flex-col md:flex-row justify-center items-end gap-7">
+          {/* Left Content */}
+          <div className="text-center w-full md:w-auto justify-center md:justify-end md:text-right flex flex-col gap-2 order-2 md:order-none">
+            <h1 className="text-3xl font-bold text-green-100">
+              তামিরুল উম্মাহ আলিম মাদ্রাসা
+            </h1>
+            <p className="text-green-200">
+              ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা, ০১৬১৭৬৮৮৮০৫
+            </p>
+          </div>
+
+          {/* Image Section */}
+          <Image
+            src="https://i.ibb.co/f25gg33/logo.png"
+            alt="logo"
+            width={150}
+            height={150}
+            className="mx-auto"
+          />
+
+          {/* Right Content */}
+          <div className="text-center md:flex hidden md:text-left flex-col gap-2 order-3 md:order-none">
+            <h1 className="text-3xl font-bold text-green-100">
+              তামিরুল উম্মাহ আলিম মাদ্রাসা
+            </h1>
+            <p className="text-green-200">
+              ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা, ০১৬১৭৬৮৮৮০৫
+            </p>
+          </div>
+        </div>
+        {/* Student Details */}
+        <div className="flex flex-col p-4 md:flex-row justify-between items-center mb-4">
+          <div className="text-gray-800 space-y-2 text-center md:text-left">
+            <h2 className="text-2xl font-bold">{studentDetails.examName}</h2>
+            <p className="text-lg">
+              <span className="font-semibold">Student Name:</span>{" "}
+              {studentDetails.studentName}
+            </p>
+            <p className="text-lg">
+              <span className="font-semibold">Roll:</span> {studentDetails.roll}
+            </p>
+            <p className="text-lg">
+              <span className="font-semibold">Class:</span>{" "}
+              {studentDetails.class}
+            </p>
+          </div>
+          <Image
+            width={150}
+            height={200}
+            src={studentDetails.image}
+            alt="Student"
+            className="rounded-lg border-2 border-gray-300 mt-6 md:mt-0"
+          />
+        </div>
+
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto p-4 mb-4">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr>
@@ -96,74 +153,117 @@ const ResultCard = () => {
           </table>
         </div>
 
-        {/* Chart */}
-        <div className="flex flex-col items-center relative">
-          <h3 className="text-lg font-semibold mb-4">Performance Chart</h3>
-          <svg
-            width={chartWidth}
-            height={chartHeight}
-            className="border rounded-md bg-gray-50"
-          >
+        {/* SVG Bar Chart */}
+        <div className="flex flex-col p-4 items-center">
+          <h3 className="text-lg font-semibold">Performance Bar Chart</h3>
+          <svg viewBox="0 0 550 300" className="w-full h-auto   p-2">
+            {/* Grid Lines */}
+            {[20, 40, 60, 80, 100].map((yValue, index) => (
+              <line
+                key={index}
+                x1="50"
+                y1={250 - (yValue / 100) * 200}
+                x2="500"
+                y2={250 - (yValue / 100) * 200}
+                stroke="#E2E8F0"
+                strokeWidth="0.5"
+              />
+            ))}
+
+            {/* Y-Axis Labels */}
+            {[20, 40, 60, 80, 100].map((yValue, index) => (
+              <text
+                key={index}
+                x="30"
+                y={250 - (yValue / 100) * 200 + 5}
+                fontSize="11"
+                fill="#64748B"
+              >
+                {yValue}
+              </text>
+            ))}
+
+            {/* Chart Border */}
+            <rect
+              x="50"
+              y="50"
+              width="450"
+              height="200"
+              fill="none"
+              stroke="#CBD5E1"
+              strokeWidth="1"
+            />
+
+            {/* Bars */}
             {subjects.map((subject, index) => {
-              const barHeight = (subject.score / maxScore) * chartHeight;
-              const barX = index * barWidth + 5;
-              const barY = chartHeight - barHeight;
+              const xStep = 400 / subjects.length;
+              const barWidth = 30;
+              const x = 50 + index * xStep + (xStep - barWidth) / 2;
+              const barHeight = (subject.score / 100) * 200;
+              const y = 250 - barHeight;
 
               return (
                 <g key={index}>
                   <rect
-                    x={barX}
-                    y={barY}
-                    width={barWidth - 10}
+                    x={x}
+                    y={y}
+                    width={barWidth}
                     height={barHeight}
-                    fill="#34D399"
-                    className="transition-all duration-300 hover:fill-green-600"
-                    onMouseEnter={() =>
-                      handleMouseEnter(
-                        `${subject.name}: ${subject.score}`,
-                        barX + (barWidth - 10) / 2,
-                        barY - 10
-                      )
-                    }
-                    onMouseLeave={handleMouseLeave}
+                    fill="url(#barGradient)"
+                    className="hover:opacity-80 cursor-pointer transition-opacity duration-200"
                   />
-                  {/* Bar Value */}
                   <text
-                    x={barX + (barWidth - 10) / 2}
-                    y={barY - 5}
+                    x={x + barWidth / 2}
+                    y={y - 5}
+                    fontSize="12"
+                    fill="#1E293B"
                     textAnchor="middle"
-                    fontSize="10"
-                    fill="#333"
                   >
                     {subject.score}
                   </text>
                 </g>
               );
             })}
-            {/* X-axis Labels */}
-            {subjects.map((subject, index) => (
-              <text
-                key={index}
-                x={index * barWidth + barWidth / 2}
-                y={chartHeight + 15}
-                fontSize="10"
-                textAnchor="middle"
-                fill="#333"
-              >
-                {subject.name}
-              </text>
-            ))}
-          </svg>
 
-          {/* Tooltip */}
-          {tooltip && (
-            <div
-              className="absolute bg-gray-800 text-white text-sm px-2 py-1 rounded shadow-lg"
-              style={{ left: tooltip.x, top: tooltip.y }}
-            >
-              {tooltip.subject}
-            </div>
-          )}
+            {/* X-Axis Labels */}
+            {subjects.map((subject, index) => {
+              const xStep = 400 / subjects.length;
+              const x = 50 + index * xStep + xStep / 2;
+              return (
+                <text
+                  key={index}
+                  x={x}
+                  y="270"
+                  fontSize="12"
+                  fill="#64748B"
+                  textAnchor="middle"
+                  transform={`rotate(45, ${x}, 270)`}
+                >
+                  {subject.name}
+                </text>
+              );
+            })}
+
+            {/* Gradient for Bars */}
+            <defs>
+              <linearGradient
+                id="barGradient"
+                x1="0%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop
+                  offset="0%"
+                  style={{ stopColor: "#34D399", stopOpacity: 1 }}
+                />
+                <stop
+                  offset="100%"
+                  style={{ stopColor: "#6366F1", stopOpacity: 1 }}
+                />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
       </div>
     </div>

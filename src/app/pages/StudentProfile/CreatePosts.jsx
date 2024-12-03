@@ -1,7 +1,12 @@
 "use client";
+import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { IoCloudUploadOutline } from "react-icons/io5";
 
 export default function CreatePosts() {
+  const [image, setImage] = useState(null);
   const {
     register,
     handleSubmit,
@@ -12,10 +17,15 @@ export default function CreatePosts() {
   const onSubmit = (data) => {
     const postData = {
       ...data,
+      image,
       date: new Date().toLocaleString(), // Automatically add current date and time
     };
     alert(JSON.stringify(postData, null, 2));
     reset(); // Reset the form after submission
+  };
+
+  const handleImageUpload = (url) => {
+    setImage(url);
   };
 
   return (
@@ -59,6 +69,32 @@ export default function CreatePosts() {
           {errors.description && (
             <p className="text-red-500 text-sm">{errors.description.message}</p>
           )}
+        </div>
+
+        {/* image  */}
+        <div className="my-4 max-w-sm">
+          <div className="w-full flex flex-col gap-3">
+            <label className="block text-sm text-green-600 mb-2">
+              Upload Image
+            </label>
+            <div className="w-full relative flex-col cursor-pointer h-auto min-h-[150px] rounded-md overflow-hidden border flex justify-center items-center">
+              {image ? (
+                <Image
+                  width={100}
+                  height={100}
+                  src={image}
+                  alt="Uploaded Preview"
+                  className="w-full h-auto min-h-[150px] rounded-md border"
+                />
+              ) : (
+                <div className="w-full max-h-[100px] min-h-[150px] flex flex-col justify-center items-center h-full">
+                  <IoCloudUploadOutline className="text-2xl" />
+                  <small>Upload Student Image</small>
+                </div>
+              )}
+              <ImageUpload onUpload={handleImageUpload} />
+            </div>
+          </div>
         </div>
 
         {/* Submit Button */}
