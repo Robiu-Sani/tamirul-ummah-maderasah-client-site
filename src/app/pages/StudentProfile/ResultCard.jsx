@@ -4,19 +4,30 @@ import { useState } from "react";
 const ResultCard = () => {
   // Data for the table and chart
   const subjects = [
-    { name: "Math", score: 85 },
-    { name: "Science", score: 90 },
-    { name: "English", score: 78 },
-    { name: "History", score: 88 },
-    { name: "Geography", score: 75 },
-    { name: "Physics", score: 92 },
-    { name: "Chemistry", score: 89 },
-    { name: "Biology", score: 80 },
-    { name: "Computer", score: 95 },
-    { name: "Art", score: 70 },
+    { name: "Math", score: 85, total: 100 },
+    { name: "Science", score: 90, total: 100 },
+    { name: "English", score: 78, total: 100 },
+    { name: "History", score: 88, total: 100 },
+    { name: "Geography", score: 75, total: 100 },
+    { name: "Physics", score: 92, total: 100 },
+    { name: "Chemistry", score: 89, total: 100 },
+    { name: "Biology", score: 80, total: 100 },
+    { name: "Computer", score: 95, total: 100 },
+    { name: "Art", score: 70, total: 100 },
   ];
 
   const [tooltip, setTooltip] = useState(null);
+
+  // Function to calculate grade
+  const calculateGrade = (percentage) => {
+    if (percentage >= 80) return "A+";
+    if (percentage >= 70) return "A";
+    if (percentage >= 60) return "A-";
+    if (percentage >= 50) return "B";
+    if (percentage >= 40) return "C";
+    if (percentage >= 33) return "D";
+    return "F";
+  };
 
   // Chart dimensions
   const maxScore = 100;
@@ -36,11 +47,11 @@ const ResultCard = () => {
     <div className="w-full mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
       {/* Header */}
       <h2 className="text-2xl font-bold text-center mb-6">
-        1st semester result
+        1st Semester Result
       </h2>
 
       {/* Content */}
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid  gap-8">
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -50,17 +61,37 @@ const ResultCard = () => {
                   Subject
                 </th>
                 <th className="border-b-2 py-2 px-4 text-lg font-semibold">
-                  Marks
+                  Marks Obtained
+                </th>
+                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
+                  Total Marks
+                </th>
+                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
+                  Percentage
+                </th>
+                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
+                  Grade
                 </th>
               </tr>
             </thead>
             <tbody>
-              {subjects.map((subject, index) => (
-                <tr key={index} className="even:bg-gray-100">
-                  <td className="py-2 px-4 border-b">{subject.name}</td>
-                  <td className="py-2 px-4 border-b">{subject.score}</td>
-                </tr>
-              ))}
+              {subjects.map((subject, index) => {
+                const percentage = (
+                  (subject.score / subject.total) *
+                  100
+                ).toFixed(2);
+                const grade = calculateGrade(percentage);
+
+                return (
+                  <tr key={index} className="even:bg-gray-100">
+                    <td className="py-2 px-4 border-b">{subject.name}</td>
+                    <td className="py-2 px-4 border-b">{subject.score}</td>
+                    <td className="py-2 px-4 border-b">{subject.total}</td>
+                    <td className="py-2 px-4 border-b">{percentage}%</td>
+                    <td className="py-2 px-4 border-b">{grade}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

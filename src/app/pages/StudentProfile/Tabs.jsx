@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ResultContant from "./ResultContant";
 import PostContant from "./PostContant";
+import CreatePosts from "./CreatePosts";
 
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState("result"); // Default active tab
@@ -9,7 +10,7 @@ export default function Tabs() {
   return (
     <div className="mt-5 w-full mx-auto">
       {/* Tab Buttons */}
-      <div className="w-full rounded-md grid grid-cols-2 bg-gray-200 shadow-md overflow-hidden">
+      <div className="w-full rounded-md grid grid-cols-3 bg-gray-200 shadow-md overflow-hidden">
         <button
           onClick={() => setActiveTab("result")}
           className={`w-full p-1 text-lg font-medium ${
@@ -30,12 +31,23 @@ export default function Tabs() {
         >
           Posts
         </button>
+        <button
+          onClick={() => setActiveTab("create-post")}
+          className={`w-full p-1 text-lg font-medium ${
+            activeTab === "create-post"
+              ? "bg-green-500 text-white shadow-md"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-300"
+          } transition-all`}
+        >
+          Create Posts
+        </button>
       </div>
 
       {/* Tab Content */}
       <div className="mt-6 bg-white rounded-md">
         {activeTab === "result" && <ResultContant />}
         {activeTab === "post" && <PostContant />}
+        {activeTab === "create-post" && <CreatePosts />}
       </div>
     </div>
   );
