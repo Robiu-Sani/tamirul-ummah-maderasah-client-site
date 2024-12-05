@@ -1,17 +1,26 @@
 "use client";
 import Image from "next/image";
+import { useRef } from "react";
 import { FaFileImage, FaFilePdf } from "react-icons/fa";
+import { toPng } from "html-to-image";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import ResultChart from "./ResultChart";
 
 const ResultCard = () => {
+  const noticeRef = useRef();
+
+  // Mock student details
   const studentDetails = {
     examName: "1st Semester Examination",
     studentName: "John Doe",
     roll: "12345",
     class: "10th Grade",
     image:
-      "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202208/Option_1_-_Aryan_JAIN_x.jpeg?VersionId=iT6pvrs3MzZV9itpfqLODfKPS.FvzW58", // Replace with an actual image URL
+      "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202208/Option_1_-_Aryan_JAIN_x.jpeg?VersionId=iT6pvrs3MzZV9itpfqLODfKPS.FvzW58",
   };
 
+  // Mock subjects data
   const subjects = [
     { name: "Math", score: 85, total: 100 },
     { name: "Science", score: 90, total: 100 },
@@ -25,6 +34,7 @@ const ResultCard = () => {
     { name: "Art", score: 70, total: 100 },
   ];
 
+  // Calculate grade based on percentage
   const calculateGrade = (percentage) => {
     if (percentage >= 80) return "A+";
     if (percentage >= 70) return "A";
@@ -35,235 +45,153 @@ const ResultCard = () => {
     return "F";
   };
 
+  // Download as image
+  const downloadAsImage = async () => {
+    if (noticeRef.current) {
+      const dataUrl = await toPng(noticeRef.current, { cacheBust: true });
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "result.png";
+      link.click();
+    }
+  };
+
+  // Download as PDF with proper height management
+
+  const downloadAsPDF = async () => {
+    if (noticeRef.current) {
+      const element = noticeRef.current;
+
+      // Create a canvas from the element
+      const canvas = await html2canvas(element, { scale: 2 }); // High resolution for better quality
+      const imageData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      const imageWidth = canvas.width;
+      const imageHeight = canvas.height;
+
+      const aspectRatio = imageWidth / imageHeight;
+      const scaledHeight = pdfWidth / aspectRatio;
+
+      let yPosition = 0;
+
+      // Split content into multiple pages if necessary
+      while (yPosition < scaledHeight) {
+        pdf.addImage(imageData, "PNG", 0, -yPosition, pdfWidth, scaledHeight);
+        yPosition += pdfHeight;
+
+        // Add a new page unless it's the last portion
+        if (yPosition < scaledHeight) {
+          pdf.addPage();
+        }
+      }
+
+      pdf.save("result.pdf");
+    }
+  };
+
   return (
-    <div className="">
+    <div className="px-0 md:px-6 md:p-6">
+      {/* Download Buttons */}
       <div className="flex justify-end gap-6 p-4">
-        <div className="group relative cursor-pointer">
+        <div className="group relative cursor-pointer" onClick={downloadAsPDF}>
           <FaFilePdf className="text-3xl text-red-600 hover:text-red-800 transition" />
-          <span className="absolute z-[9999] bottom-10 left-1/2 -translate-x-1/2 bg-primary border text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
+          <span className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
             Download as PDF
           </span>
         </div>
-        <div className="group relative cursor-pointer">
+        <div
+          className="group relative cursor-pointer"
+          onClick={downloadAsImage}
+        >
           <FaFileImage className="text-3xl text-blue-600 hover:text-blue-800 transition" />
-          <span className="absolute z-[9999] bottom-10 left-1/2 -translate-x-1/2 bg-primary border text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
+          <span className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
             Download as Image
           </span>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto rounded-md border bg-white  mt-3">
-        {/* maderasah name   */}
-        <div className="max-w-5xl bg-primary p-3 rounded-t-md mb-3 mx-auto flex flex-col md:flex-row justify-center items-end gap-7">
-          {/* Left Content */}
-          <div className="text-center w-full md:w-auto justify-center md:justify-end md:text-right flex flex-col gap-2 order-2 md:order-none">
-            <h1 className="text-3xl font-bold text-green-100">
-              তামিরুল উম্মাহ আলিম মাদ্রাসা
-            </h1>
-            <p className="text-green-200">
-              ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা, ০১৬১৭৬৮৮৮০৫
-            </p>
-          </div>
-
-          {/* Image Section */}
-          <Image
-            src="https://i.ibb.co/f25gg33/logo.png"
-            alt="logo"
-            width={150}
-            height={150}
-            className="mx-auto"
-          />
-
-          {/* Right Content */}
-          <div className="text-center md:flex hidden md:text-left flex-col gap-2 order-3 md:order-none">
-            <h1 className="text-3xl font-bold text-green-100">
-              তামিরুল উম্মাহ আলিম মাদ্রাসা
-            </h1>
-            <p className="text-green-200">
-              ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা, ০১৬১৭৬৮৮৮০৫
-            </p>
-          </div>
-        </div>
-        {/* Student Details */}
-        <div className="flex flex-col p-4 md:flex-row justify-between items-center mb-4">
-          <div className="text-gray-800 space-y-2 text-center md:text-left">
-            <h2 className="text-2xl font-bold">{studentDetails.examName}</h2>
-            <p className="text-lg">
-              <span className="font-semibold">Student Name:</span>{" "}
-              {studentDetails.studentName}
-            </p>
-            <p className="text-lg">
-              <span className="font-semibold">Roll:</span> {studentDetails.roll}
-            </p>
-            <p className="text-lg">
-              <span className="font-semibold">Class:</span>{" "}
-              {studentDetails.class}
-            </p>
-          </div>
-          <Image
-            width={150}
-            height={200}
-            src={studentDetails.image}
-            alt="Student"
-            className="rounded-lg border-2 border-gray-300 mt-6 md:mt-0"
-          />
-        </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto p-4 mb-4">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr>
-                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
-                  Subject
-                </th>
-                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
-                  Marks Obtained
-                </th>
-                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
-                  Total Marks
-                </th>
-                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
-                  Percentage
-                </th>
-                <th className="border-b-2 py-2 px-4 text-lg font-semibold">
-                  Grade
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {subjects.map((subject, index) => {
-                const percentage = (
-                  (subject.score / subject.total) *
-                  100
-                ).toFixed(2);
-                const grade = calculateGrade(percentage);
-
-                return (
-                  <tr key={index} className="even:bg-gray-100">
-                    <td className="py-2 px-4 border-b">{subject.name}</td>
-                    <td className="py-2 px-4 border-b">{subject.score}</td>
-                    <td className="py-2 px-4 border-b">{subject.total}</td>
-                    <td className="py-2 px-4 border-b">{percentage}%</td>
-                    <td className="py-2 px-4 border-b">{grade}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-
-        {/* SVG Bar Chart */}
-        <div className="flex flex-col p-4 items-center">
-          <h3 className="text-lg font-semibold">Performance Bar Chart</h3>
-          <svg viewBox="0 0 550 300" className="w-full h-auto   p-2">
-            {/* Grid Lines */}
-            {[20, 40, 60, 80, 100].map((yValue, index) => (
-              <line
-                key={index}
-                x1="50"
-                y1={250 - (yValue / 100) * 200}
-                x2="500"
-                y2={250 - (yValue / 100) * 200}
-                stroke="#E2E8F0"
-                strokeWidth="0.5"
-              />
-            ))}
-
-            {/* Y-Axis Labels */}
-            {[20, 40, 60, 80, 100].map((yValue, index) => (
-              <text
-                key={index}
-                x="30"
-                y={250 - (yValue / 100) * 200 + 5}
-                fontSize="11"
-                fill="#64748B"
-              >
-                {yValue}
-              </text>
-            ))}
-
-            {/* Chart Border */}
-            <rect
-              x="50"
-              y="50"
-              width="450"
-              height="200"
-              fill="none"
-              stroke="#CBD5E1"
-              strokeWidth="1"
+      {/* Result Card */}
+      <div className="max-w-5xl mx-auto rounded-md border shadow-lg">
+        <div className="bg-white" ref={noticeRef}>
+          {/* Madrasa Header */}
+          <div className="bg-green-600 text-white p-4 rounded-t-md flex flex-col items-center md:flex-row justify-center">
+            <Image
+              src="https://i.ibb.co/f25gg33/logo.png"
+              alt="Madrasa Logo"
+              width={100}
+              height={100}
             />
+            <div className="text-center md:text-left">
+              <h1 className="text-3xl font-bold">
+                তামিরুল উম্মাহ আলিম মাদ্রাসা
+              </h1>
+              <p className="w-full">ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা</p>
+            </div>
+          </div>
 
-            {/* Bars */}
-            {subjects.map((subject, index) => {
-              const xStep = 400 / subjects.length;
-              const barWidth = 30;
-              const x = 50 + index * xStep + (xStep - barWidth) / 2;
-              const barHeight = (subject.score / 100) * 200;
-              const y = 250 - barHeight;
+          {/* Student Details */}
+          <div className="p-4 flex flex-col md:flex-row justify-between items-center">
+            <div>
+              <h2 className="text-2xl font-bold">{studentDetails.examName}</h2>
+              <p>
+                <strong>Student Name:</strong> {studentDetails.studentName}
+              </p>
+              <p>
+                <strong>Roll:</strong> {studentDetails.roll}
+              </p>
+              <p>
+                <strong>Class:</strong> {studentDetails.class}
+              </p>
+            </div>
+            <Image
+              src={studentDetails.image}
+              alt="Student"
+              width={120}
+              height={150}
+              className="border-2 border-gray-300 rounded-md"
+            />
+          </div>
 
-              return (
-                <g key={index}>
-                  <rect
-                    x={x}
-                    y={y}
-                    width={barWidth}
-                    height={barHeight}
-                    fill="url(#barGradient)"
-                    className="hover:opacity-80 cursor-pointer transition-opacity duration-200"
-                  />
-                  <text
-                    x={x + barWidth / 2}
-                    y={y - 5}
-                    fontSize="12"
-                    fill="#1E293B"
-                    textAnchor="middle"
-                  >
-                    {subject.score}
-                  </text>
-                </g>
-              );
-            })}
+          {/* Subjects Table */}
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full border-collapse border">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="border px-4 py-2">Subject</th>
+                  <th className="border px-4 py-2">Marks Obtained</th>
+                  <th className="border px-4 py-2">Total Marks</th>
+                  <th className="border px-4 py-2">Percentage</th>
+                  <th className="border px-4 py-2">Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {subjects.map((subject, index) => {
+                  const percentage = (
+                    (subject.score / subject.total) *
+                    100
+                  ).toFixed(2);
+                  const grade = calculateGrade(percentage);
 
-            {/* X-Axis Labels */}
-            {subjects.map((subject, index) => {
-              const xStep = 400 / subjects.length;
-              const x = 50 + index * xStep + xStep / 2;
-              return (
-                <text
-                  key={index}
-                  x={x}
-                  y="270"
-                  fontSize="12"
-                  fill="#64748B"
-                  textAnchor="middle"
-                  transform={`rotate(45, ${x}, 270)`}
-                >
-                  {subject.name}
-                </text>
-              );
-            })}
+                  return (
+                    <tr key={index} className="even:bg-gray-50">
+                      <td className="border px-4 py-2">{subject.name}</td>
+                      <td className="border px-4 py-2">{subject.score}</td>
+                      <td className="border px-4 py-2">{subject.total}</td>
+                      <td className="border px-4 py-2">{percentage}%</td>
+                      <td className="border px-4 py-2">{grade}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
-            {/* Gradient for Bars */}
-            <defs>
-              <linearGradient
-                id="barGradient"
-                x1="0%"
-                y1="0%"
-                x2="0%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#34D399", stopOpacity: 1 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#6366F1", stopOpacity: 1 }}
-                />
-              </linearGradient>
-            </defs>
-          </svg>
+          {/* Chart Section */}
+          <ResultChart subjects={subjects} />
         </div>
       </div>
     </div>
