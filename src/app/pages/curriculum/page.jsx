@@ -1,3 +1,9 @@
+import ComingSoon from "@/app/_DefaultsComponent/ComingSoon";
+
 export default function Curriculum() {
-  return <div>curriculum</div>;
+  return (
+    <div>
+      <ComingSoon />
+    </div>
+  );
 }
