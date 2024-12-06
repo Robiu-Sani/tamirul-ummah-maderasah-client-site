@@ -1,4 +1,9 @@
 import { SiProtractor } from "react-icons/si";
+import IslamicCourses from "./IslamicCourses";
+import HifzDetails from "./HifzDetails";
+import AliaDetails from "./AliaDetails";
+import TakcisiDetails from "./TakcisiDetails";
+import KowmiDetails from "./KowmiDetails";
 
 export default function Departments() {
   return (
@@ -9,6 +14,11 @@ export default function Departments() {
           <SiProtractor className="text-2xl animate-bounce" />
           <h1 className="ml-4 text-lg md:text-2xl font-bold">বিভাগসমূহ</h1>
         </div>
+        <IslamicCourses />
+        <AliaDetails />
+        <HifzDetails />
+        <TakcisiDetails />
+        <KowmiDetails />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { SiProteus } from "react-icons/si";
+import ArticleCard from "./ArticleCard";
 
 export default function Articles() {
   return (
@@ -10,6 +11,18 @@ export default function Articles() {
           <h1 className="ml-4 text-lg md:text-2xl font-bold">
             আমাদের আর্টিকেল পেইজ
           </h1>
+        </div>
+        <div className="w-full mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
         </div>
       </div>
     </div>
