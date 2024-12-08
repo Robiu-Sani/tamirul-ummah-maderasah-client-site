@@ -87,12 +87,45 @@ export default function Navbar() {
           >
             হোম
           </Link>
-          <Link
-            href="/pages/admition"
-            className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
-          >
-            ভর্তি
-          </Link>
+
+          <div className="relative group">
+            <button
+              onClick={() => toggleDropdown("admitions")}
+              className=" text-sm p-1  px-3  md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
+            >
+              ভর্তি <MdArrowDropDown />
+            </button>
+            <div
+              className={`dropdown z-[999] bg-white absolute w-[200px] p-2 rounded-md border shadow-md flex flex-col gap-3 ${
+                dropdownOpen === "admitions" ? "flex" : "hidden"
+              }`}
+            >
+              <Link
+                href="/pages/informetion-about-admition"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                ভর্তি সম্পর্কিত তথ্য
+              </Link>
+              <Link
+                href="/pages/admition"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                ভর্তি ফরম
+              </Link>
+              <Link
+                href="/pages/about-campus"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                কেম্পাস
+              </Link>
+              <Link
+                href="/pages/about-history"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                প্রতিষ্ঠার ইতিহাস
+              </Link>
+            </div>
+          </div>
           <div className="relative group">
             <button
               onClick={() => toggleDropdown("about")}
@@ -110,6 +143,12 @@ export default function Navbar() {
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 পাঠ পদ্ধতি
+              </Link>
+              <Link
+                href="/pages/all-stafe-and-teachers"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                আমাদের শিক্ষক ও স্টাফ মন্ডলী
               </Link>
               <Link
                 href="/pages/about-gain"
