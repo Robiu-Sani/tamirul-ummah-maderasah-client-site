@@ -27,7 +27,7 @@ export default function MotherInfo() {
   } = useForm();
 
   const onSubmit = (data) => {
-    const newData = { ...data, image };
+    const newData = { ...data, motherImage: image };
     console.log("Mother Info Submitted:", newData);
     alert("Mother's Information Saved Successfully!");
   };
@@ -54,10 +54,10 @@ export default function MotherInfo() {
           </label>
           <input
             type="text"
-            {...register("MotherNameBn", {
-              required: "পিতার নাম (বাংলা) আবশ্যক",
+            {...register("motherNameBn", {
+              required: "নাম (বাংলা) আবশ্যক",
             })}
-            placeholder="পিতার নাম লিখুন"
+            placeholder="নাম লিখুন"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.MotherNameBn && (
@@ -75,7 +75,7 @@ export default function MotherInfo() {
           </label>
           <input
             type="text"
-            {...register("MotherNameEn", {
+            {...register("motherNameEn", {
               required: "Mother's name is required",
             })}
             placeholder="Enter Mother's name"
@@ -216,7 +216,7 @@ export default function MotherInfo() {
           </label>
           <input
             type="email"
-            {...register("email")}
+            {...register("email", { required: false })}
             placeholder="Enter email address"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

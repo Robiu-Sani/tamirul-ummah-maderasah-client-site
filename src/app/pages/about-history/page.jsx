@@ -1,9 +1,9 @@
-import ComingSoon from "@/app/_DefaultsComponent/ComingSoon";
+import ArticleComponent from "./ArticleComponent";
 
 export default function page() {
   return (
     <div>
-      <ComingSoon />
+      <ArticleComponent />
     </div>
   );
 }

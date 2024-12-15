@@ -28,7 +28,7 @@ export default function LibraryAndOnlineLearningSection() {
           {/* Library Section */}
           <div className="p-6 gap-8 grid grid-cols-1 md:grid-cols-2 items-center justify-between">
             <Image
-              src="https://via.placeholder.com/600x400" // Replace with actual image URL
+              src="https://i.postimg.cc/Kzb6zR28/1.webp" // Replace with actual image URL
               alt="গ্রন্থাগার"
               width={600}
               height={400}
@@ -41,9 +41,9 @@ export default function LibraryAndOnlineLearningSection() {
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4">
                 আমাদের মাদ্রাসা গ্রন্থাগারে ইসলামিক সাহিত্য, পাঠ্যপুস্তক,
-                রেফারেন্স বই এবং জার্নালের বিশাল সংগ্রহ রয়েছে। শিক্ষার্থীরা
-                ধর্মীয় এবং একাডেমিক ক্ষেত্রে তাদের জ্ঞান বাড়াতে এগুলি ব্যবহার
-                করতে পারে।
+                রেফারেন্স বই এবং জার্নালের বিশাল সংগ্রহের পরিকল্পনা রয়েছে।
+                শিক্ষার্থীরা ধর্মীয় এবং একাডেমিক ক্ষেত্রে তাদের জ্ঞান বাড়াতে
+                এগুলি ব্যবহার করতে পারে।
               </p>
               <ul className="list-disc list-inside text-gray-600 mb-4">
                 <li>৫,০০০-এরও বেশি ইসলামিক বই এবং সম্পদ।</li>
@@ -52,13 +52,13 @@ export default function LibraryAndOnlineLearningSection() {
                 <li>সাপ্তাহিক বই আলোচনা এবং অধ্যয়ন চক্র।</li>
               </ul>
               <div className="">
-                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+                {/* <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
                   <AiOutlineFileSearch
                     size={20}
                     className="inline-block mr-2"
                   />
                   গ্রন্থাগার অন্বেষণ করুন
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -72,9 +72,9 @@ export default function LibraryAndOnlineLearningSection() {
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4">
                 আমাদের অনলাইন শিক্ষা প্ল্যাটফর্মে ইসলামিক স্টাডিজ, কোরআন
-                মুখস্থকরণ এবং একাডেমিক বিষয়গুলির উপর বিভিন্ন কোর্স রয়েছে। এটি
-                শিক্ষার্থীদের অভিজ্ঞ শিক্ষকদের সমর্থনে তাদের নিজস্ব গতিতে শিখতে
-                সক্ষম করে।
+                মুখস্থকরণ এবং একাডেমিক বিষয়গুলির উপর বিভিন্ন কোর্সর পরিকল্পনা
+                রয়েছে। এটি শিক্ষার্থীদের অভিজ্ঞ শিক্ষকদের সমর্থনে তাদের নিজস্ব
+                গতিতে শিখতে সক্ষম করে।
               </p>
               <ul className="list-disc list-inside text-gray-600 mb-4">
                 <li>ইন্টারেক্টিভ কোরআন আবৃত্তি এবং মুখস্থকরণ সেশন।</li>
@@ -91,14 +91,14 @@ export default function LibraryAndOnlineLearningSection() {
                 <span>পাঠ্য উপকরণ ডাউনলোড করুন</span>
               </div>
               <div className="">
-                <button className="px-4 py-2 mt-6 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300">
+                {/* <button className="px-4 py-2 mt-6 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300">
                   <FaCloudDownloadAlt size={20} className="inline-block mr-2" />
                   অনলাইন শেখা শুরু করুন
-                </button>
+                </button> */}
               </div>
             </div>
             <Image
-              src="https://via.placeholder.com/600x400" // Replace with actual image URL
+              src="https://i.postimg.cc/0yJF0p5N/Getty-Images-1174366520-1024x594.jpg" // Replace with actual image URL
               alt="অনলাইন শিক্ষা"
               width={600}
               height={400}

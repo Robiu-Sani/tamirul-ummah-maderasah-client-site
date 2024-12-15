@@ -1,3 +1,4 @@
+import CurriculumInformation from "./CurriculumInformation";
 import GraduationProgram from "./GraduationProgram";
 import IslamicStadies from "./IslamicStadies";
 import QualifiedTeachers from "./QualifiedTeachers";
@@ -7,6 +8,7 @@ import ScienceEducation from "./ScienceEducation";
 export default function page() {
   return (
     <div>
+      <CurriculumInformation />
       <IslamicStadies />
       <ScienceEducation />
       <QualifiedTeachers />

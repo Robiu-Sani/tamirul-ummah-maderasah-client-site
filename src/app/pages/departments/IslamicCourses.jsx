@@ -8,17 +8,18 @@ import {
 export default function IslamicCourses() {
   const courses = [
     {
-      id: 1,
-      title: "হিফজ",
-      description: "কুরআন মুখস্থ করার জন্য বিশেষ প্রোগ্রাম।",
-      icon: <FaBookOpen size={40} className="text-green-500" />,
-    },
-    {
       id: 2,
       title: "আলিয়া",
       description: "ইসলামী শিক্ষা অর্জনের জন্য একটি সুনির্দিষ্ট কোর্স।",
       icon: <FaSchool size={40} className="text-blue-500" />,
     },
+    {
+      id: 1,
+      title: "হিফজ",
+      description: "কুরআন মুখস্থ করার জন্য বিশেষ প্রোগ্রাম।",
+      icon: <FaBookOpen size={40} className="text-green-500" />,
+    },
+
     {
       id: 3,
       title: "তাকসিসি",

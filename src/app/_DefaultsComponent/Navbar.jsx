@@ -112,18 +112,6 @@ export default function Navbar() {
               >
                 ভর্তি ফরম
               </Link>
-              <Link
-                href="/pages/about-campus"
-                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
-              >
-                কেম্পাস
-              </Link>
-              <Link
-                href="/pages/about-history"
-                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
-              >
-                প্রতিষ্ঠার ইতিহাস
-              </Link>
             </div>
           </div>
           <div className="relative group">
@@ -160,7 +148,7 @@ export default function Navbar() {
                 href="/pages/about-campus"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
-                কেম্পাস
+                ক্যাম্পাস
               </Link>
               <Link
                 href="/pages/about-history"

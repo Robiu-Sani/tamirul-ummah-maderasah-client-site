@@ -27,7 +27,7 @@ export default function FatherInfo() {
   } = useForm();
 
   const onSubmit = (data) => {
-    const newData = { ...data, image };
+    const newData = { ...data, fatherImage: image };
     console.log("Father Info Submitted:", newData);
     alert("Father's Information Saved Successfully!");
   };
@@ -230,7 +230,7 @@ export default function FatherInfo() {
           </label>
           <input
             type="text"
-            {...register("facebook")}
+            {...register("facebook", { required: false })}
             placeholder="Enter Facebook profile link"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -244,7 +244,7 @@ export default function FatherInfo() {
           </label>
           <input
             type="text"
-            {...register("Whatsapp")}
+            {...register("Whatsapp", { required: false })}
             placeholder="Enter Facebook profile link"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -258,7 +258,7 @@ export default function FatherInfo() {
           </label>
           <input
             type="text"
-            {...register("deathYear")}
+            {...register("deathYear", { required: false })}
             placeholder="Enter death year"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

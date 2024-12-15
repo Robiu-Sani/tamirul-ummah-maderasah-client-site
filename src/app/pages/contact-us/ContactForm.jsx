@@ -51,29 +51,6 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* ইমেইল ফিল্ড */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              ইমেইল
-            </label>
-            <div className="relative">
-              <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
-              <input
-                type="email"
-                {...register("email", { required: "ইমেইল আবশ্যক" })}
-                placeholder="আপনার ইমেইল লিখুন"
-                className={`w-full pl-10 pr-4 py-2 border ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                } rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500`}
-              />
-            </div>
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message}
-              </p>
-            )}
-          </div>
-
           {/* মোবাইল নম্বর ফিল্ড */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -111,7 +88,7 @@ export default function ContactForm() {
             <div className="relative">
               <FaCommentDots className="absolute left-3 top-3 text-gray-400" />
               <textarea
-                {...register("message", {
+                {...register("description", {
                   required: "আপনার বার্তা লিখুন",
                   minLength: {
                     value: 20,
@@ -125,9 +102,9 @@ export default function ContactForm() {
                 } rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500`}
               />
             </div>
-            {errors.message && (
+            {errors.description && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.message.message}
+                {errors.description.message}
               </p>
             )}
           </div>

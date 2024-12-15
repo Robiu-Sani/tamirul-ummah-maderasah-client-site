@@ -27,7 +27,7 @@ export default function GairdeanInfo() {
   } = useForm();
 
   const onSubmit = (data) => {
-    const newData = { ...data, image };
+    const newData = { ...data, gairdeanImage: image };
     console.log("Gairdean Info Submitted:", newData);
     alert("Gairdean's Information Saved Successfully!");
   };
@@ -54,10 +54,10 @@ export default function GairdeanInfo() {
           </label>
           <input
             type="text"
-            {...register("GairdeanNameBn", {
-              required: "পিতার নাম (বাংলা) আবশ্যক",
+            {...register("gairdeanNameBn", {
+              required: " নাম (বাংলা) আবশ্যক",
             })}
-            placeholder="পিতার নাম লিখুন"
+            placeholder=" নাম লিখুন"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.GairdeanNameBn && (
@@ -75,7 +75,7 @@ export default function GairdeanInfo() {
           </label>
           <input
             type="text"
-            {...register("GairdeanNameEn", {
+            {...register("gairdeanNameEn", {
               required: "Gairdean's name is required",
             })}
             placeholder="Enter Gairdean's name"
@@ -216,7 +216,7 @@ export default function GairdeanInfo() {
           </label>
           <input
             type="email"
-            {...register("email")}
+            {...register("email", { required: false })}
             placeholder="Enter email address"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
