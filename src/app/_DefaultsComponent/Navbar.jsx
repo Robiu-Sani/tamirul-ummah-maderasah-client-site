@@ -144,12 +144,12 @@ export default function Navbar() {
               >
                 আমাদের অর্জন
               </Link>
-              <Link
+              {/* <Link
                 href="/pages/about-campus"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ক্যাম্পাস
-              </Link>
+              </Link> */}
               <Link
                 href="/pages/about-history"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
@@ -208,12 +208,12 @@ export default function Navbar() {
                 dropdownOpen === "media" ? "flex" : "hidden"
               }`}
             >
-              <Link
+              {/* <Link
                 href="/pages/programm"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 প্রোগ্রাম
-              </Link>
+              </Link> */}
               <Link
                 href="/pages/videos"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
@@ -232,12 +232,12 @@ export default function Navbar() {
               >
                 গ্যালারী
               </Link>
-              <Link
+              {/* <Link
                 href="/pages/documents"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ডকুমেন্টস্
-              </Link>
+              </Link> */}
             </div>
           </div>
           <div className="relative group">
@@ -264,18 +264,18 @@ export default function Navbar() {
               >
                 বিভাগসমূহ
               </Link>
-              <Link
+              {/* <Link
                 href="/pages/library"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 লাইব্রেরি রিসোর্স
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 href="/pages/calendar"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 একাডেমিক ক্যালেন্ডার
-              </Link>
+              </Link> */}
             </div>
           </div>
           <Link

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   AiOutlineFileText,
   AiOutlineUserAdd,
@@ -47,9 +48,12 @@ export default function AdmissionsSection() {
                 ৫-৭ কার্যদিবসের মধ্যে ভর্তি সিদ্ধান্ত গ্রহণ করুন।
               </li>
             </ul>
-            <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300">
+            <Link
+              href={"/pages/admition"}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+            >
               এখনই আবেদন করুন
-            </button>
+            </Link>
           </div>
 
           {/* যোগ্যতা */}

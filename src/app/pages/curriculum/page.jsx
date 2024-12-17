@@ -1,9 +1,14 @@
-import ComingSoon from "@/app/_DefaultsComponent/ComingSoon";
+import React from "react";
+import AliaCurriculum from "./AliaCurriculum";
+import HifzCurriculum from "./HifzCurriculum";
+import KowmiCurriculum from "./KowmiCurriculum";
 
-export default function Curriculum() {
+export default function page() {
   return (
     <div>
-      <ComingSoon />
+      <AliaCurriculum />
+      <HifzCurriculum />
+      <KowmiCurriculum />
     </div>
   );
 }
