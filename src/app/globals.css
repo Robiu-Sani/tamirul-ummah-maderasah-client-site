@@ -8,6 +8,7 @@
   /* background: linear-gradient(rgba(0, 0, 0, 0.493),rgba(0, 0, 0, 0.514)); */
 }
 body {
+  color-scheme: light !important;
   background: white;
 }
 :root {
