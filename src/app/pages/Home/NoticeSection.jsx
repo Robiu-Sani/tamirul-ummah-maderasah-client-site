@@ -1,13 +1,27 @@
 "use client";
+import useAxiousSource from "@/app/_DefaultsComponent/useAxiousSource";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { MdEditNotifications, MdOutlineReadMore } from "react-icons/md";
 
 export default function NoticeSection() {
   const router = useRouter();
+  const [notices, setNotices] = useState();
+
+  const axiosSource = useAxiousSource();
+
+  useEffect(() => {
+    // Fetch data on mount
+    axiosSource
+      .get(`/notice`)
+      .then((response) => setNotices(response.data.data))
+      .catch((err) => console.error(err));
+  }, [axiosSource]);
+
   return (
-    <div className="w-full mx-auto py-10 container px-3 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+    <div className="w-full mx-auto py-10 container bg-green-50 px-3 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       <div className="w-full col-span-1 md:col-span-2 flex justify-end relative">
         <div className="w-[90%] md:w-[60%] p-3 mt-7 rounded-md border border-primary bg-white z-20">
           <h2 className="font-semibold text-xl mb-3">তামিরুল উম্মাহ মাদরাসা</h2>
@@ -23,7 +37,7 @@ export default function NoticeSection() {
           </p>
           <div className="w-full mt-3">
             <Link
-              href="/pages/about"
+              href="/pages/about-history"
               className="px-3 flex justify-center items-center w-[150px] gap-3 p-1 rounded-md bg-primary hover:bg-hover font-medium text-white"
             >
               আরও <MdOutlineReadMore className="text-xl" />
@@ -45,66 +59,31 @@ export default function NoticeSection() {
           নোটিশ বক্স
         </div>
         <div className="w-full  max-h-[300px] flex flex-col gap-2 overflow-y-auto p-2">
-          <div
-            onClick={() => router.push(`/pages/notice/${12}`)}
-            className="w-full cursor-pointer flex p-1 shadow-primary shadow rounded-md"
-          >
-            <div className="flex min-w-[40px] justify-center items-center p-2">
-              <MdEditNotifications className="text-xl text-primary" />
-            </div>
-            <div className="w-full flex flex-col justify-start items-start">
-              <p>জ্ঞানের গভীরতা এবং আধুনিক শিক্ষার ...</p>
-              <small>Date : 10-10-24</small>
-            </div>
-          </div>
-          <div
-            onClick={() => router.push(`/pages/notice/${12}`)}
-            className="w-full cursor-pointer flex p-1 shadow-primary shadow rounded-md"
-          >
-            <div className="flex min-w-[40px] justify-center items-center p-2">
-              <MdEditNotifications className="text-xl text-primary" />
-            </div>
-            <div className="w-full flex flex-col justify-start items-start">
-              <p>জ্ঞানের গভীরতা এবং আধুনিক শিক্ষার ...</p>
-              <small>Date : 10-10-24</small>
-            </div>
-          </div>
-          <div
-            onClick={() => router.push(`/pages/notice/${12}`)}
-            className="w-full cursor-pointer flex p-1 shadow-primary shadow rounded-md"
-          >
-            <div className="flex min-w-[40px] justify-center items-center p-2">
-              <MdEditNotifications className="text-xl text-primary" />
-            </div>
-            <div className="w-full flex flex-col justify-start items-start">
-              <p>জ্ঞানের গভীরতা এবং আধুনিক শিক্ষার ...</p>
-              <small>Date : 10-10-24</small>
-            </div>
-          </div>
-          <div
-            onClick={() => router.push(`/pages/notice/${12}`)}
-            className="w-full cursor-pointer flex p-1 shadow-primary shadow rounded-md"
-          >
-            <div className="flex min-w-[40px] justify-center items-center p-2">
-              <MdEditNotifications className="text-xl text-primary" />
-            </div>
-            <div className="w-full flex flex-col justify-start items-start">
-              <p>জ্ঞানের গভীরতা এবং আধুনিক শিক্ষার ...</p>
-              <small>Date : 10-10-24</small>
-            </div>
-          </div>
-          <div
-            onClick={() => router.push(`/pages/notice/${12}`)}
-            className="w-full cursor-pointer flex p-1 shadow-primary shadow rounded-md"
-          >
-            <div className="flex min-w-[40px] justify-center items-center p-2">
-              <MdEditNotifications className="text-xl text-primary" />
-            </div>
-            <div className="w-full flex flex-col justify-start items-start">
-              <p>জ্ঞানের গভীরতা এবং আধুনিক শিক্ষার ...</p>
-              <small>Date : 10-10-24</small>
-            </div>
-          </div>
+          {(notices || [])
+            .slice(0)
+            .reverse()
+            .slice(0, 5)
+            .map((item, idx) => (
+              <div
+                key={idx}
+                onClick={() => router.push(`/pages/notice/${item._id}`)}
+                className="w-full cursor-pointer flex p-1 shadow-primary shadow rounded-md"
+              >
+                <div className="flex min-w-[40px] justify-center items-center p-2">
+                  <MdEditNotifications className="text-xl text-primary" />
+                </div>
+                <div className="w-full flex flex-col justify-start items-start">
+                  <p>{item.title}</p>
+                  <small>{item.submissionDate}</small>
+                </div>
+              </div>
+            ))}
+        </div>
+        <div
+          onClick={() => router.push(`/pages/notice/`)}
+          className="w-full bg-primary cursor-pointer text-white font-semibold  p-1 text-center"
+        >
+          সব নোটিশ
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import "tailwindcss/tailwind.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import useAxiousSource from "@/app/_DefaultsComponent/useAxiousSource";
+// import Link from "next/link";
 
 const CarouselBanner = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -38,7 +39,7 @@ const CarouselBanner = () => {
   const handlePrev = () => emblaApi?.scrollPrev();
   const handleNext = () => emblaApi?.scrollNext();
 
-  if (!carousel) return <p>Loading carousel...</p>;
+  if (!carousel) return <p></p>;
 
   const slides = [
     {
@@ -85,9 +86,12 @@ const CarouselBanner = () => {
               <p className="text-lg sm:text-xl mb-6 text-center max-w-2xl">
                 {slide.description}
               </p>
-              <button className="px-6 py-2 bg-blue-600 hover:bg-blue-800 rounded text-white">
-                Learn More
-              </button>
+              {/* <Link
+                href={`/pages/admition`}
+                className="px-6 py-2 bg-green-500  z-[99999999] hover:bg-green-600 rounded text-white"
+              >
+                ভর্তি ফরম
+              </Link> */}
             </div>
           ))}
         </div>

@@ -9,7 +9,7 @@ import VideoGallery from "./pages/Home/VideoGallery";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-green-50">
       <CarouselBanner />
       <NoticeSection />
       <ServicesSection />
