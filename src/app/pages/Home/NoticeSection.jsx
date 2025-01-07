@@ -49,7 +49,7 @@ export default function NoticeSection() {
             height={200}
             width={200}
             className="w-full rounded-md"
-            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPFQDx5aLbax_VLnsOHVDfDvugr16ORxhWTg&s`}
+            src={`https://i.postimg.cc/2yPQcYYZ/1.jpg`}
             alt="maderasah campus"
           />
         </div>
@@ -58,7 +58,7 @@ export default function NoticeSection() {
         <div className="w-full bg-primary text-xl text-white font-semibold border-b p-2 text-center">
           নোটিশ বক্স
         </div>
-        <div className="w-full  max-h-[300px] flex flex-col gap-2 overflow-y-auto p-2">
+        <div className="w-full  max-h-[270px] flex flex-col gap-2 overflow-y-auto p-2">
           {(notices || [])
             .slice(0)
             .reverse()

@@ -35,7 +35,7 @@ export default function StudentLifeSection() {
             <Image
               width={300}
               height={200}
-              src="https://via.placeholder.com/300x200?text=Spiritual+Development"
+              src="https://i.postimg.cc/V5Qt9F99/10b928a5-1d0a-4784-88de-aed72a984e81.jpg"
               alt="ছাত্ররা নামাজ পড়ছে"
               className="w-full h-40 object-cover rounded-md"
             />
@@ -54,8 +54,8 @@ export default function StudentLifeSection() {
             </p>
             <Image
               width={300}
-              height={200}
-              src="https://via.placeholder.com/300x200?text=Academic+Excellence"
+              height={400}
+              src="https://i.postimg.cc/t4d358Ms/7b5b2e4e-bff8-4a9e-b443-86a68c00a99a.jpg"
               alt="ছাত্ররা পড়াশোনা করছে"
               className="w-full h-40 object-cover rounded-md"
             />
@@ -75,7 +75,7 @@ export default function StudentLifeSection() {
             <Image
               width={300}
               height={200}
-              src="https://via.placeholder.com/300x200?text=Extracurricular+Activities"
+              src="https://i.postimg.cc/DZNL0h8M/abab9783-993d-4611-9b57-9be3969df789.jpg"
               alt="ছাত্ররা খেলাধুলা করছে"
               className="w-full h-40 object-cover rounded-md"
             />
@@ -95,11 +95,11 @@ export default function StudentLifeSection() {
               বরাদ্দ থাকে। এটি শৃঙ্খলা ও আধ্যাত্মিক সমৃদ্ধি বাড়ায়।
             </p>
             <Image
-              width={300}
-              height={200}
-              src="https://via.placeholder.com/300x200?text=Daily+Routine"
+              width={800}
+              height={250}
+              src="https://i.postimg.cc/k5XTtngJ/28ab6bef-ca8b-4878-8480-78b5465f1f89.jpg"
               alt="দৈনন্দিন রুটিন"
-              className="w-full h-40 object-cover rounded-md"
+              className="w-full max-h-[250] object-cover rounded-md"
             />
           </div>
         </div>
