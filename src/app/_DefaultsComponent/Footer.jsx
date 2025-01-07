@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
@@ -17,9 +18,9 @@ export default function Footer() {
             <Image
               width={100}
               height={100}
-              src="https://via.placeholder.com/150x100.png?text=Madrasah+Logo"
+              src="https://i.postimg.cc/66HFxrZQ/Whats-App-Image-2024-12-12-at-8-45-34-AM-removebg-preview.png"
               alt="Madrasah Logo"
-              className="w-32 mt-4 rounded-md shadow-md"
+              className="w-32 mt-4 rounded-full bg-green-300"
             />
           </div>
 
@@ -28,82 +29,124 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">শর্টকাট</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#admission"
+                <Link
+                  href="/pages/informetion-about-admition"
+                  className="hover:text-gray-300 transition duration-200"
+                >
+                  ভর্তি সম্পর্কিত তথ্য
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pages/admition"
                   className="hover:text-gray-300 transition duration-200"
                 >
                   ভর্তি
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#programs"
+                <Link
+                  href="/pages/education-system"
                   className="hover:text-gray-300 transition duration-200"
                 >
-                  প্রোগ্রাম
-                </a>
+                  পাঠ পদ্ধতি
+                </Link>
               </li>
               <li>
-                <a
-                  href="#events"
+                <Link
+                  href="/pages/all-stafe-and-teachers"
                   className="hover:text-gray-300 transition duration-200"
                 >
-                  ইভেন্ট ও কার্যক্রম
-                </a>
+                  আমাদের শিক্ষক ও স্টাফ মন্ডলী
+                </Link>
               </li>
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  href="/pages/contact-us"
                   className="hover:text-gray-300 transition duration-200"
                 >
                   আমাদের সাথে যোগাযোগ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* গুরুত্বপূর্ণ লিঙ্ক */}
           <div className="col-span-1">
-            <h3 className="text-xl font-bold mb-4">গুরুত্বপূর্ণ লিঙ্ক</h3>
+            <h3 className="text-xl font-bold mb-4">গুরুত্বপূর্ণ শর্টকাট</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#about"
+                <Link
+                  href="/pages/about-history"
                   className="hover:text-gray-300 transition duration-200"
                 >
-                  আমাদের সম্পর্কে
-                </a>
+                  প্রতিষ্টার ইতিহাস
+                </Link>
               </li>
               <li>
-                <a
-                  href="#library"
+                <Link
+                  href="/pages/services"
                   className="hover:text-gray-300 transition duration-200"
                 >
-                  লাইব্রেরি
-                </a>
+                  সেবা সমূহ
+                </Link>
               </li>
               <li>
-                <a
-                  href="#online-learning"
+                <Link
+                  href="/pages/notice"
                   className="hover:text-gray-300 transition duration-200"
                 >
-                  অনলাইন লার্নিং
-                </a>
+                  নোটিশ
+                </Link>
               </li>
               <li>
-                <a
-                  href="#faqs"
+                <Link
+                  href="/pages/consulting"
                   className="hover:text-gray-300 transition duration-200"
                 >
-                  FAQs
-                </a>
+                  পরামর্শ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pages/curriculum"
+                  className="hover:text-gray-300 transition duration-200"
+                >
+                  কারিকুলাম
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pages/departments"
+                  className="hover:text-gray-300 transition duration-200"
+                >
+                  বিভাগসমূহ
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* সোশ্যাল মিডিয়া লিঙ্ক */}
           <div className="col-span-1">
-            <h3 className="text-xl font-bold mb-4">আমাদের অনুসরণ করুন</h3>
+            <h3 className="text-xl font-bold mb-4">গুরুত্বপূর্ণ লিঙ্ক</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/footer_path/ssl-site"
+                  className="hover:text-gray-300 transition duration-200"
+                >
+                  আপনার নিরাপত্তা
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/footer_path/cooki-policy"
+                  className="hover:text-gray-300 mb-5 transition duration-200"
+                >
+                  কুকি পলিসি
+                </Link>
+              </li>
+            </ul>
             <div className="flex space-x-4">
               <a
                 href="https://facebook.com"
