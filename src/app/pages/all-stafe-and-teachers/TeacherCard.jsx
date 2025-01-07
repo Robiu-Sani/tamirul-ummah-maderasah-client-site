@@ -9,7 +9,7 @@ export default function TeacherCard({ teacher }) {
   }
 
   return (
-    <div className="w-full border rounded-md bg-white shadow-md border-green-100 p-3">
+    <div className="w-full border rounded-md bg-white shadow-md border-green-100 p-2">
       {/* Render teacher image */}
       <Image
         src={teacherImage}
@@ -21,10 +21,8 @@ export default function TeacherCard({ teacher }) {
       {/* Render teacher name */}
       <div className="mt-2 text-center font-semibold">{teacherName}</div>
       <div className="w-full flex flex-col justify-center items-center">
-        <small className="text-center">
-          My current position is as a {teacher?.subject} teacher
-        </small>
-        <small className="text-center">Mobile {teacher?.phone}</small>
+        <small className="text-center">{teacher?.subject}</small>
+        <small className="text-center">Mobile : {teacher?.phone}</small>
       </div>
     </div>
   );
