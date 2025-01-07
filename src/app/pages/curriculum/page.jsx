@@ -5,7 +5,7 @@ import KowmiCurriculum from "./KowmiCurriculum";
 
 export default function page() {
   return (
-    <div>
+    <div className="bg-green-50">
       <AliaCurriculum />
       <HifzCurriculum />
       <KowmiCurriculum />
