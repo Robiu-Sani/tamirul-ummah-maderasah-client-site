@@ -1,4 +1,13 @@
-const FeeStructureCard = () => {
+const FeeStructureCard = ({ data }) => {
+  const convertToBanglaNumbers = (number) => {
+    const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return number
+      .toString()
+      .split("")
+      .map((digit) => banglaNumbers[digit] || digit)
+      .join("");
+  };
+
   return (
     <div className="bg-white border my-10 rounded-lg shadow-lg p-4 container mx-auto">
       {/* Title Section */}
@@ -10,9 +19,19 @@ const FeeStructureCard = () => {
       <div className="bg-gray-100 py-2 px-4 text-center">
         <p className="text-sm font-semibold">
           নাসারী-দ্বিতীয় শ্রেণি পর্যন্ত -{" "}
-          <span className="text-green-600">২০০ টাকা</span> | তৃতীয়-৫ম শ্রেণি
-          পর্যন্ত - <span className="text-green-600">২৫০ টাকা</span> | ষষ্ঠ-আলিম
-          শ্রেণি পর্যন্ত - <span className="text-green-600">৩০০ টাকা</span>
+          <span len="bg" className="text-green-600">
+            {convertToBanglaNumbers(data.nasaariToSecondGrade)} টাকা
+          </span>{" "}
+          | তৃতীয়-৫ম শ্রেণি পর্যন্ত -{" "}
+          <span className="text-green-600">
+            {" "}
+            {convertToBanglaNumbers(data.thirdToFifthGrade)} টাকা
+          </span>{" "}
+          | ষষ্ঠ-আলিম শ্রেণি পর্যন্ত -{" "}
+          <span className="text-green-600">
+            {" "}
+            {convertToBanglaNumbers(data.sixthToAlimGrade)} টাকা
+          </span>
         </p>
       </div>
 
@@ -27,15 +46,24 @@ const FeeStructureCard = () => {
             <tbody>
               <tr>
                 <td className="py-1">ভর্তি ফি বাবদ</td>
-                <td className="text-right font-semibold">১,৫০০/-</td>
+                <td className="text-right font-semibold">
+                  {convertToBanglaNumbers(data.admissionFee)}/-
+                </td>
               </tr>
               <tr>
                 <td className="py-1">সংস্থাপন (খাট+টেবিল)</td>
-                <td className="text-right font-semibold">২,০০০/-</td>
+                <td className="text-right font-semibold">
+                  {convertToBanglaNumbers(data.establishmentFee)}/-
+                </td>
               </tr>
               <tr className="font-bold text-green-600">
                 <td className="py-1">মোট</td>
-                <td className="text-right">৩,৫০০/-</td>
+                <td className="text-right">
+                  {convertToBanglaNumbers(
+                    data.establishmentFee + data.admissionFee
+                  )}
+                  /-
+                </td>
               </tr>
             </tbody>
           </table>
@@ -48,23 +76,39 @@ const FeeStructureCard = () => {
             <tbody>
               <tr>
                 <td className="py-1">টিউশন ফি</td>
-                <td className="text-right">১,৫০০/-</td>
+                <td className="text-right">
+                  {convertToBanglaNumbers(data.aliaTuitionFee)}/-
+                </td>
               </tr>
               <tr>
                 <td className="py-1">আবাসন ফি</td>
-                <td className="text-right">১,০০০/-</td>
+                <td className="text-right">
+                  {convertToBanglaNumbers(data.aliaAccommodationFee)}/-
+                </td>
               </tr>
               <tr>
                 <td className="py-1">মাসিক খাবার</td>
-                <td className="text-right">৩,৫০০/-</td>
+                <td className="text-right">
+                  {convertToBanglaNumbers(data.aliaMonthlyFoodFee)}/-
+                </td>
               </tr>
               <tr>
                 <td className="py-1">অন্যান্য ফি</td>
-                <td className="text-right">৫০০/-</td>
+                <td className="text-right">
+                  {convertToBanglaNumbers(data.aliaOtherFees)}/-
+                </td>
               </tr>
               <tr className="font-bold text-green-600">
                 <td className="py-1">মোট</td>
-                <td className="text-right">৬,৫০০/-</td>
+                <td className="text-right">
+                  {convertToBanglaNumbers(
+                    data.aliaTuitionFee +
+                      data.aliaAccommodationFee +
+                      data.aliaMonthlyFoodFee +
+                      data.aliaOtherFees
+                  )}
+                  /-
+                </td>
               </tr>
             </tbody>
           </table>
