@@ -3,37 +3,21 @@ import React, { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import "tailwindcss/tailwind.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
-const slides = [
-  {
-    bg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKNIzsa6dGOfAWIsMh-QhYq80_BDwnYHqQZA&s",
-    title: "Explore the World",
-    description: "Discover new places and unique experiences.",
-    buttonText: "Learn More",
-  },
-  {
-    bg: "https://picsum.photos/1024/480/?image=54",
-    title: "Adventure Awaits",
-    description: "Step out and embark on exciting journeys.",
-    buttonText: "Start Now",
-  },
-  {
-    bg: "https://wowslider.com/sliders/demo-93/data1/images/landscape.jpg",
-    title: "Nature's Beauty",
-    description: "Embrace the breathtaking views and serenity.",
-    buttonText: "View More",
-  },
-  {
-    bg: "https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190207/examples/carousel/carousel-1/images/lands-endslide__800x600.jpg",
-    title: "Urban Wonders",
-    description: "Dive into the vibrant energy of cityscapes.",
-    buttonText: "Explore",
-  },
-];
+import useAxiousSource from "@/app/_DefaultsComponent/useAxiousSource";
 
 const CarouselBanner = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [carousel, setCarousel] = useState(null);
+  const axiosSource = useAxiousSource();
+
+  useEffect(() => {
+    // Fetch data on mount
+    axiosSource
+      .get(`/slide`)
+      .then((response) => setCarousel(response.data.data[0]))
+      .catch((err) => console.error(err));
+  }, [axiosSource]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -54,6 +38,31 @@ const CarouselBanner = () => {
   const handlePrev = () => emblaApi?.scrollPrev();
   const handleNext = () => emblaApi?.scrollNext();
 
+  if (!carousel) return <p>Loading carousel...</p>;
+
+  const slides = [
+    {
+      bg: carousel.images.slide1,
+      title: carousel.slide1Title,
+      description: carousel.slide1Description,
+    },
+    {
+      bg: carousel.images.slide2,
+      title: carousel.slide2Title,
+      description: carousel.slide2Description,
+    },
+    {
+      bg: carousel.images.slide3,
+      title: carousel.slide3Title,
+      description: carousel.slide3Description,
+    },
+    {
+      bg: carousel.images.slide4,
+      title: carousel.slide4Title,
+      description: carousel.slide4Description,
+    },
+  ];
+
   return (
     <div className="relative w-full">
       {/* Embla Carousel Container */}
@@ -67,15 +76,17 @@ const CarouselBanner = () => {
               key={index}
               className="relative flex-[0_0_100%] flex flex-col justify-center items-center bg-cover bg-center text-white h-full"
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.693),rgba(0, 0, 0, 0.614)),url(${slide.bg})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.6)),url(${slide.bg})`,
               }}
             >
               <h2 className="text-4xl sm:text-5xl font-bold mb-4">
                 {slide.title}
               </h2>
-              <p className="text-lg sm:text-xl mb-6">{slide.description}</p>
+              <p className="text-lg sm:text-xl mb-6 text-center max-w-2xl">
+                {slide.description}
+              </p>
               <button className="px-6 py-2 bg-blue-600 hover:bg-blue-800 rounded text-white">
-                {slide.buttonText}
+                Learn More
               </button>
             </div>
           ))}
