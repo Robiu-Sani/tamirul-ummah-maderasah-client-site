@@ -3,7 +3,7 @@ import OurAchievements from "./OurAchievements";
 
 export default function page() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-green-50">
       <div className="container mx-auto py-10 px-3">
         {/* banner */}
         <div className="w-full h-[100px] md:h-[150px] shadow-md flex justify-center items-center bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white rounded-lg">

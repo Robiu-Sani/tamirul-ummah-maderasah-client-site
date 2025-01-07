@@ -4,7 +4,7 @@ import OurLegacy from "./OurLegacy";
 
 export default function page() {
   return (
-    <div>
+    <div className="bg-green-50">
       <OurLegacy />
       <NurturingScholars />
       <LibraryAndOnlineLearningSection />

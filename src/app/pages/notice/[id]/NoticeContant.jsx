@@ -3,51 +3,77 @@ import Image from "next/image";
 import { FaFilePdf, FaFileImage } from "react-icons/fa";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
+import axios from "axios";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import toast, { Toaster } from "react-hot-toast";
+import { ImSpinner9 } from "react-icons/im";
 
 export default function NoticeContant() {
+  const [notice, setNotice] = useState();
+  const [isDownloadPdf, setIsDownloadPdf] = useState(false);
+  const [isDownloadImg, setIsDownloadImg] = useState(false);
   const noticeRef = useRef();
+  const { id } = useParams();
 
-  const notice = {
-    title: "Admission Notice for 2024",
-    description:
-      "Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.Admission for the 2024 session is now open. Please check the requirements and submit your application online. Admission for the 2024 session is now open. Please check the requirements and submit your application online.",
-    place: "Insaaf Gardens, Daulatpur, Comilla",
-    startDate: "2024-12-05",
-    startTime: "10:00 AM",
-    endDate: "2024-12-10",
-    endTime: "4:00 PM",
-    publishingDate: "2024-12-01",
-  };
+  useEffect(() => {
+    axios
+      .get(`${url}/notice/single-notice/${id}`)
+      .then((res) => setNotice(res.data.data))
+      .catch((err) => console.log(err));
+  }, [id]);
 
   const downloadAsImage = async () => {
-    if (noticeRef.current) {
-      const dataUrl = await toPng(noticeRef.current, { cacheBust: true });
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "notice.png";
-      link.click();
+    try {
+      setIsDownloadImg(true);
+      if (noticeRef.current) {
+        const dataUrl = await toPng(noticeRef.current, { cacheBust: true });
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "notice.png";
+        link.click();
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Try Again!! Download faield!");
+    } finally {
+      setIsDownloadImg(false);
     }
   };
 
   const downloadAsPDF = async () => {
-    if (noticeRef.current) {
-      const doc = new jsPDF();
-      const dataUrl = await toPng(noticeRef.current, { cacheBust: true });
-      const imgProps = doc.getImageProperties(dataUrl);
-      const pdfWidth = doc.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      doc.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-      doc.save("notice.pdf");
+    try {
+      setIsDownloadPdf(true);
+      if (noticeRef.current) {
+        const doc = new jsPDF();
+        const dataUrl = await toPng(noticeRef.current, { cacheBust: true });
+        const imgProps = doc.getImageProperties(dataUrl);
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        doc.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+        doc.save("notice.pdf");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Try Again!! Download faield!");
+    } finally {
+      setIsDownloadPdf(false);
     }
   };
 
   return (
     <div className="max-w-6xl mx-auto py-14 px-2 rounded-md">
       {/* Icons */}
+      <Toaster />
       <div className="flex justify-end gap-6 p-4">
         <div className="group relative cursor-pointer" onClick={downloadAsPDF}>
-          <FaFilePdf className="text-3xl text-red-600 hover:text-red-800 transition" />
+          {isDownloadPdf ? (
+            <ImSpinner9 className="animate-spin" />
+          ) : (
+            <FaFilePdf className="text-3xl text-red-600 hover:text-red-800 transition" />
+          )}
+
           <span className="absolute z-[9999] bottom-10 left-1/2 -translate-x-1/2 bg-primary border text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
             Download as PDF
           </span>
@@ -56,7 +82,12 @@ export default function NoticeContant() {
           className="group relative cursor-pointer"
           onClick={downloadAsImage}
         >
-          <FaFileImage className="text-3xl text-blue-600 hover:text-blue-800 transition" />
+          {isDownloadImg ? (
+            <ImSpinner9 className="animate-spin" />
+          ) : (
+            <FaFileImage className="text-3xl text-blue-600 hover:text-blue-800 transition" />
+          )}
+
           <span className="absolute z-[9999] bottom-10 left-1/2 -translate-x-1/2 bg-primary border text-white text-sm py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition">
             Download as Image
           </span>
@@ -98,23 +129,23 @@ export default function NoticeContant() {
 
         {/* Notice Details */}
         <div className="mt-8 p-5 bg-white rounded-md shadow-md">
-          <h2 className="text-xl font-bold text-gray-800">{notice.title}</h2>
-          <p className="text-gray-600 mt-2">{notice.description}</p>
-          {notice.place && (
+          <h2 className="text-xl font-bold text-gray-800">{notice?.title}</h2>
+          <p className="text-gray-600 mt-2">{notice?.description}</p>
+          {notice?.place && (
             <p className="text-gray-600 mt-2">
-              <strong>Place:</strong> {notice.place}
+              <strong>Place:</strong> {notice?.place}
             </p>
           )}
           <p className="text-gray-600 mt-2">
-            <strong>Start Date:</strong> {notice.startDate}{" "}
-            {notice.startTime && `at ${notice.startTime}`}
+            <strong>Start Date:</strong> {notice?.startDate}{" "}
+            {notice?.startTime && `at ${notice?.startTime}`}
           </p>
           <p className="text-gray-600 mt-2">
-            <strong>End Date:</strong> {notice.endDate}{" "}
-            {notice.endTime && `at ${notice.endTime}`}
+            <strong>End Date:</strong> {notice?.endDate}{" "}
+            {notice?.endTime && `at ${notice?.endTime}`}
           </p>
           <p className="text-gray-500 text-sm text-right mt-4">
-            Published on: {notice.publishingDate}
+            Published on: {notice?.submissionDate}
           </p>
         </div>
       </div>

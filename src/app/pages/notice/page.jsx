@@ -1,7 +1,12 @@
 import { FaBell } from "react-icons/fa";
 import NoticeCard from "./NoticeCard";
+import axios from "axios";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 
-export default function Page() {
+export default async function Page() {
+  const response = await axios.get(`${url}/notice`);
+  const notices = response.data.data || [];
+
   return (
     <div className="w-full">
       <div className="container mx-auto py-14 px-3">
@@ -14,15 +19,9 @@ export default function Page() {
         </div>
         {/* all notice here */}
         <div className="w-full mt-5 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
-          <NoticeCard />
+          {notices.map((notice, idx) => (
+            <NoticeCard key={idx} notice={notice} />
+          ))}
         </div>
       </div>
     </div>
