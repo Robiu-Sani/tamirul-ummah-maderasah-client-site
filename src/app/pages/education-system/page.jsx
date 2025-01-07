@@ -7,7 +7,7 @@ import ScienceEducation from "./ScienceEducation";
 
 export default function page() {
   return (
-    <div>
+    <div className="bg-green-50 -mt-8 pt-8">
       <CurriculumInformation />
       <IslamicStadies />
       <ScienceEducation />
