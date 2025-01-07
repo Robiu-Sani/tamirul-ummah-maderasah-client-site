@@ -8,7 +8,7 @@ export default async function page() {
   const response = await axios.get(`${url}/feesStructure`);
 
   return (
-    <div>
+    <div className="bg-green-50">
       <FeeStructureCard data={response.data.data[0]} />
       <FeeStructure data={response.data.data[0]} />
       <HifzInfo />

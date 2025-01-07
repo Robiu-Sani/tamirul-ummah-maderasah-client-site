@@ -1,4 +1,12 @@
-const FeeStructure = () => {
+const FeeStructure = ({ data }) => {
+  const convertToBanglaNumbers = (number) => {
+    const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return number
+      .toString()
+      .split("")
+      .map((digit) => banglaNumbers[digit] || digit)
+      .join("");
+  };
   return (
     <div className="bg-gradient-to-b from-green-50 to-white py-10 px-5">
       <div className="container mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
@@ -24,15 +32,21 @@ const FeeStructure = () => {
               <tbody>
                 <tr>
                   <td className="p-2 border">ভর্তি ফরম ফি</td>
-                  <td className="p-2 border text-center">২০০/-</td>
+                  <td className="p-2 border text-center">
+                    {convertToBanglaNumbers(data.hifzAdmissionFormFee)}/-
+                  </td>
                 </tr>
                 <tr>
                   <td className="p-2 border">নতুন ভর্তি ফি</td>
-                  <td className="p-2 border text-center">৩৫০০/-</td>
+                  <td className="p-2 border text-center">
+                    {convertToBanglaNumbers(data.hifzNewAdmissionFee)}/-
+                  </td>
                 </tr>
                 <tr>
                   <td className="p-2 border">ভর্তি নবায়ন ফি (আবাসিক)</td>
-                  <td className="p-2 border text-center">৩০০০/-</td>
+                  <td className="p-2 border text-center">
+                    {convertToBanglaNumbers(data.hifzRenewalAdmissionFee)}/-
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -48,19 +62,35 @@ const FeeStructure = () => {
                 <tbody>
                   <tr>
                     <td className="p-2 border">টিউশন ফি</td>
-                    <td className="p-2 border text-center">২২০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzTuitionFee)}/-
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-2 border">মাসিক খাবার</td>
-                    <td className="p-2 border text-center">৩৬০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzMonthlyFoodFee)}/-
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-2 border">আবাসন ও সংরক্ষণ ফি</td>
-                    <td className="p-2 border text-center">৮০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(
+                        data.hifzAccommodationAndPreservationFee
+                      )}
+                      /-
+                    </td>
                   </tr>
                   <tr className="font-bold">
                     <td className="p-2 border">মোট</td>
-                    <td className="p-2 border text-center">৬৬০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(
+                        data.hifzTuitionFee +
+                          data.hifzMonthlyFoodFee +
+                          data.hifzAccommodationAndPreservationFee
+                      )}
+                      /-
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -74,23 +104,33 @@ const FeeStructure = () => {
                 <tbody>
                   <tr>
                     <td className="p-2 border">শিশু</td>
-                    <td className="p-2 border text-center">৬০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzChild)}/-
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-2 border">প্রথম-দ্বিতীয়</td>
-                    <td className="p-2 border text-center">৭০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzFirstToSecondGrade)}/-
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-2 border">তৃতীয়-ষষ্ঠ</td>
-                    <td className="p-2 border text-center">৮০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzThirdToSixthGrade)}/-
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-2 border">সেমিস্টার পরীক্ষার ফি</td>
-                    <td className="p-2 border text-center">৮০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzSemesterExamFee)}/-
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-2 border">ডিজিটালিয়ার পরীক্ষার ফি</td>
-                    <td className="p-2 border text-center">৫০০/-</td>
+                    <td className="p-2 border text-center">
+                      {convertToBanglaNumbers(data.hifzDigitalExamFee)}/-
+                    </td>
                   </tr>
                 </tbody>
               </table>
