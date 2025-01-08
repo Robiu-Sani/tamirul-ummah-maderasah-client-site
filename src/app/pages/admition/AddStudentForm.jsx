@@ -17,10 +17,12 @@ import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import toast, { Toaster } from "react-hot-toast";
 import { GiOilySpiral } from "react-icons/gi";
+import AlertBox from "./AlertBox";
 
 export default function AddStudentForm() {
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [image, setImage] = useState(null);
+  const [alert, setAlert] = useState(false);
   const {
     register,
     handleSubmit,
@@ -49,6 +51,10 @@ export default function AddStudentForm() {
         reset();
         toast.success(response.data.data.message || "Submit successful");
         localStorage.setItem("student", JSON.stringify(newData));
+        setAlert(true);
+        setTimeout(() => {
+          setAlert(false);
+        }, 4000);
       }
     } catch (err) {
       console.log(err);
@@ -67,6 +73,7 @@ export default function AddStudentForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full  mx-auto bg-white p-8 rounded-md shadow-lg border"
     >
+      {alert ? <AlertBox /> : null}
       <Toaster />
       <h2 className="text-2xl font-bold text-center text-green-600 mb-6">
         Add Student Information
