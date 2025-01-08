@@ -9,7 +9,8 @@ export default function ConsultingForm() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Form Submitted:", data);
+    const newData = { type: "consulting", ...data };
+    console.log("Form Submitted:", newData);
   };
 
   return (
@@ -49,15 +50,15 @@ export default function ConsultingForm() {
         {/* Subject Input */}
         <div className="mb-4">
           <label
-            htmlFor="subject"
+            htmlFor="contactNumber"
             className="block text-sm font-medium text-gray-700"
           >
-            বিষয়
+            নাম্বার
           </label>
           <input
-            type="text"
-            id="subject"
-            {...register("subject", {
+            type="number"
+            id="contactNumber"
+            {...register("contactNumber", {
               required: "বিষয়টি অবশ্যই প্রয়োজন",
             })}
             placeholder="আপনার বিষয় লিখুন"
@@ -65,9 +66,9 @@ export default function ConsultingForm() {
               errors.subject ? "border-red-500" : "border-gray-300"
             } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
           />
-          {errors.subject && (
+          {errors.contactNumber && (
             <span className="text-red-500 text-sm">
-              {errors.subject.message}
+              {errors.contactNumber.message}
             </span>
           )}
         </div>

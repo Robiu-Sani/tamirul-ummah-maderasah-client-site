@@ -25,7 +25,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* লোগো এবং মাদ্রাসার নাম */}
           <div className="col-span-1">
-            <h2 className="text-2xl font-bold mb-2">তামিরুল উম্মাহ মাদ্রাসা</h2>
+            <h2 className="text-2xl font-bold mb-2">
+              তা‘মীরুল উম্মাহ মাদ্রাসা
+            </h2>
             <p className="text-gray-200 text-sm">
               এক প্রখ্যাত ইসলামিক প্রতিষ্ঠান যা একাডেমিক এবং ধর্মীয় উৎকর্ষতার
               উপর গুরুত্ব দেয়।
@@ -201,7 +203,7 @@ export default function Footer() {
 
         {/* ফুডারের নিচের অংশ */}
         <div className="mt-8 border-t border-gray-600 pt-4 text-center text-sm text-gray-400">
-          <p>&copy; {year} তামিরুল উম্মাহ মাদ্রাসা। সব অধিকার সংরক্ষিত।</p>
+          <p>&copy; {year} তা‘মীরুল উম্মাহ মাদ্রাসা। সব অধিকার সংরক্ষিত।</p>
         </div>
       </div>
     </footer>

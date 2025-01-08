@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { FaUser, FaEnvelope, FaPhoneAlt, FaCommentDots } from "react-icons/fa";
 
 export default function ContactForm() {
   const {
@@ -11,8 +10,8 @@ export default function ContactForm() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("তথ্য জমা হয়েছে:", data);
-    alert("আপনার তথ্য সফলভাবে জমা হয়েছে!");
+    const newData = { type: "consulting", ...data };
+    console.log("Form Submitted:", newData);
   };
 
   return (
@@ -29,90 +28,99 @@ export default function ContactForm() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* নাম ফিল্ড */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              আপনার নাম
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white p-8 rounded-lg shadow-lg w-full max-w-xl"
+        >
+          <h2 className="text-2xl font-bold text-green-600 text-center mb-6">
+            যোগাযোগ ফর্ম
+          </h2>
+
+          {/* Subject Input */}
+          <div className="mb-4">
+            <label
+              htmlFor="subject"
+              className="block text-sm font-medium text-gray-700"
+            >
+              নাম
             </label>
-            <div className="relative">
-              <FaUser className="absolute left-3 top-3 text-gray-400" />
-              <input
-                type="text"
-                {...register("name", { required: "আপনার নাম আবশ্যক" })}
-                placeholder="আপনার নাম লিখুন"
-                className={`w-full pl-10 pr-4 py-2 border ${
-                  errors.name ? "border-red-500" : "border-gray-300"
-                } rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500`}
-              />
-            </div>
+            <input
+              type="text"
+              id="name"
+              {...register("name", {
+                required: "বিষয়টি অবশ্যই প্রয়োজন",
+              })}
+              placeholder="আপনার নাম লিখুন"
+              className={`mt-1 block w-full px-4 py-2 border ${
+                errors.subject ? "border-red-500" : "border-gray-300"
+              } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+            />
             {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+              <span className="text-red-500 text-sm">
+                {errors.name.message}
+              </span>
             )}
           </div>
 
-          {/* মোবাইল নম্বর ফিল্ড */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              মোবাইল নম্বর
+          {/* Subject Input */}
+          <div className="mb-4">
+            <label
+              htmlFor="contactNumber"
+              className="block text-sm font-medium text-gray-700"
+            >
+              নাম্বার
             </label>
-            <div className="relative">
-              <FaPhoneAlt className="absolute left-3 top-3 text-gray-400" />
-              <input
-                type="text"
-                {...register("phone", {
-                  required: "মোবাইল নম্বর আবশ্যক",
-                  pattern: {
-                    value: /^[0-9]{10,15}$/,
-                    message: "সঠিক মোবাইল নম্বর প্রদান করুন",
-                  },
-                })}
-                placeholder="আপনার মোবাইল নম্বর লিখুন"
-                className={`w-full pl-10 pr-4 py-2 border ${
-                  errors.phone ? "border-red-500" : "border-gray-300"
-                } rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500`}
-              />
-            </div>
-            {errors.phone && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.phone.message}
-              </p>
+            <input
+              type="number"
+              id="contactNumber"
+              {...register("contactNumber", {
+                required: "বিষয়টি অবশ্যই প্রয়োজন",
+              })}
+              placeholder="আপনার বিষয় লিখুন"
+              className={`mt-1 block w-full px-4 py-2 border ${
+                errors.subject ? "border-red-500" : "border-gray-300"
+              } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+            />
+            {errors.contactNumber && (
+              <span className="text-red-500 text-sm">
+                {errors.contactNumber.message}
+              </span>
             )}
           </div>
 
-          {/* বার্তা ফিল্ড */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              আপনার বার্তা
+          {/* Description Input */}
+          <div className="mb-4">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700"
+            >
+              বিবরণ
             </label>
-            <div className="relative">
-              <FaCommentDots className="absolute left-3 top-3 text-gray-400" />
-              <textarea
-                {...register("description", {
-                  required: "আপনার বার্তা লিখুন",
-                  minLength: {
-                    value: 20,
-                    message: "বার্তা অন্তত ২০ অক্ষরের হতে হবে",
-                  },
-                })}
-                placeholder="আপনার বার্তা লিখুন"
-                rows={5}
-                className={`w-full pl-10 pr-4 py-2 border ${
-                  errors.message ? "border-red-500" : "border-gray-300"
-                } rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500`}
-              />
-            </div>
+            <textarea
+              id="description"
+              {...register("description", {
+                required: "বিবরণ অবশ্যই প্রয়োজন",
+                minLength: {
+                  value: 10,
+                  message: "বিবরণ অন্তত ১০ অক্ষরের হতে হবে",
+                },
+              })}
+              placeholder="আপনার বিবরণ লিখুন"
+              className={`mt-1 block w-full px-4 py-2 border ${
+                errors.description ? "border-red-500" : "border-gray-300"
+              } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+            />
             {errors.description && (
-              <p className="text-red-500 text-sm mt-1">
+              <span className="text-red-500 text-sm">
                 {errors.description.message}
-              </p>
+              </span>
             )}
           </div>
 
-          {/* জমা দিন */}
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 shadow-lg transition duration-300"
+            className="w-full bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
           >
             জমা দিন
           </button>
