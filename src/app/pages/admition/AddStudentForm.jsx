@@ -48,6 +48,7 @@ export default function AddStudentForm() {
       if (response?.data?.status === true) {
         reset();
         toast.success(response.data.data.message || "Submit successful");
+        localStorage.setItem("student", JSON.stringify(newData));
       }
     } catch (err) {
       console.log(err);
