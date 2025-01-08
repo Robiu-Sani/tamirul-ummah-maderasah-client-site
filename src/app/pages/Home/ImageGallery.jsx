@@ -47,19 +47,19 @@ export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Function to download an image
-  const downloadImage = async (url, fileName) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = fileName;
-      link.click();
-      URL.revokeObjectURL(link.href); // Clean up the URL object
-    } catch (error) {
-      console.error("Image download failed:", error);
-    }
-  };
+  // const downloadImage = async (url, fileName) => {
+  //   try {
+  //     const response = await fetch(url);
+  //     const blob = await response.blob();
+  //     const link = document.createElement("a");
+  //     link.href = URL.createObjectURL(blob);
+  //     link.download = fileName;
+  //     link.click();
+  //     URL.revokeObjectURL(link.href); // Clean up the URL object
+  //   } catch (error) {
+  //     console.error("Image download failed:", error);
+  //   }
+  // };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -103,7 +103,7 @@ export default function ImageGallery() {
                 </button>
                 <button
                   className="text-white text-2xl p-4 bg-green-500 rounded-full hover:bg-green-600"
-                  onClick={() => downloadImage(image.src, `${image.title}.jpg`)}
+                  // onClick={() => downloadImage(image.src, `${image.title}.jpg`)}
                 >
                   <FaDownload />
                 </button>
@@ -146,12 +146,12 @@ export default function ImageGallery() {
                 <p className="text-gray-600">{selectedImage.description}</p>
                 <button
                   className="mt-4 text-white text-xl p-3 bg-green-500 rounded-full hover:bg-green-600"
-                  onClick={() =>
-                    downloadImage(
-                      selectedImage.src,
-                      `${selectedImage.title}.jpg`
-                    )
-                  }
+                  // onClick={() =>
+                  //   downloadImage(
+                  //     selectedImage.src,
+                  //     `${selectedImage.title}.jpg`
+                  //   )
+                  // }
                 >
                   <FaDownload className="inline-block mr-2" />
                   ডাউনলোড করুন
