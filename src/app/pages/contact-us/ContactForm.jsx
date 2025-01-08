@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 import { GiOilySpiral } from "react-icons/gi";
 
 export default function ContactForm() {
@@ -34,6 +35,7 @@ export default function ContactForm() {
 
   return (
     <div className="w-full py-16 px-4 bg-green-100 flex justify-center items-center">
+      <Toaster />
       <div className="bg-white  max-w-2xl w-full">
         {/* Header */}
         <div className="text-center mb-8">
