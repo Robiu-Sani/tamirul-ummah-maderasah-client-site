@@ -12,7 +12,7 @@ export default function Articles() {
             আমাদের আর্টিকেল পেইজ
           </h1>
         </div>
-        <div className="w-full mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full " style={{ columns: "350px" }}>
           <ArticleCard />
           <ArticleCard />
           <ArticleCard />

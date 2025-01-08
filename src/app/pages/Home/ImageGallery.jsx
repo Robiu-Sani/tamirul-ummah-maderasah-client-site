@@ -43,23 +43,23 @@ const images = [
   },
 ];
 
-// Function to download an image
-const downloadImage = async (url, fileName) => {
-  try {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(link.href); // Clean up the URL object
-  } catch (error) {
-    console.error("Image download failed:", error);
-  }
-};
-
 export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+
+  // Function to download an image
+  const downloadImage = async (url, fileName) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(link.href); // Clean up the URL object
+    } catch (error) {
+      console.error("Image download failed:", error);
+    }
+  };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);

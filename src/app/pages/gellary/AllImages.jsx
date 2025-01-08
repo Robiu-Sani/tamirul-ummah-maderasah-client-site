@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { FaSearchPlus, FaTimes, FaDownload } from "react-icons/fa";
 
@@ -26,8 +25,8 @@ const images = [
   {
     id: 4,
     src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhjmOPekQuvCQDiyFt9q7NmMIQygYz7D3rpiRE_4HTUCdRJR2SblQVHM1mEty7tYu1Yos&usqp=CAU",
-    title: "ইসলামী ইভেন্ট ৪",
-    description: "ইসলামী ইভেন্ট ৪ এর বিবরণ।",
+    title: "ইসলামী ইভেন্ট ",
+    description: "ইসলামী ইভেন্ট  এর বিবরণ।",
   },
   {
     id: 5,
