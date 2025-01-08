@@ -13,7 +13,7 @@ export default function KowmiDetails() {
         </div> */}
 
         {/* Content Section */}
-        <div className="bg-white  p-8">
+        <div className="bg-white rounded-md  p-8">
           <h2 className="text-xl font-bold text-gray-800 mb-4">
             কওমি শিক্ষা কী?
           </h2>

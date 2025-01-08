@@ -13,21 +13,48 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { useState } from "react";
 import Image from "next/image";
 import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import axios from "axios";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import toast, { Toaster } from "react-hot-toast";
+import { GiOilySpiral } from "react-icons/gi";
 
 export default function AddStudentForm() {
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const [image, setImage] = useState(null);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const email =
       data.studentNameEnglish.toLowerCase().replace(/\s+/g, "") + "@tum.com";
     const newData = { image, email, ...data };
-    console.log("Form Data Submitted:", newData);
-    alert("Student Information Saved Successfully!");
+    const submitedData = {
+      name: "Admition Notice",
+      messages: `${data.studentNameEnglish} want a admition on class ${data.class}`,
+      info: newData,
+      path: "/notifictions/admition-Student",
+      isClick: false,
+    };
+    try {
+      setIsSubmiting(true);
+      const response = await axios.post(
+        `${url}/notifection/create-notifection`,
+        submitedData
+      );
+      if (response?.data?.status === true) {
+        reset();
+        toast.success(response.data.data.message || "Submit successful");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something is worng!");
+    } finally {
+      setIsSubmiting(false);
+    }
   };
 
   const handleImageUpload = (url) => {
@@ -39,6 +66,7 @@ export default function AddStudentForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full  mx-auto bg-white p-8 rounded-md shadow-lg border"
     >
+      <Toaster />
       <h2 className="text-2xl font-bold text-center text-green-600 mb-6">
         Add Student Information
       </h2>
@@ -106,22 +134,6 @@ export default function AddStudentForm() {
             className="w-full p-1 px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           {errors.mothersName && (
-            <span className="text-red-500 text-sm">This field is required</span>
-          )}
-        </div>
-
-        {/* Identity Email */}
-        <div className="w-full">
-          <label className="block font-medium text-gray-700 mb-2">
-            Identity Email
-          </label>
-          <input
-            type="email"
-            {...register("identityEmail", { required: true })}
-            placeholder="Enter a active email"
-            className="w-full p-1 px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
-          />
-          {errors.identityEmail && (
             <span className="text-red-500 text-sm">This field is required</span>
           )}
         </div>
@@ -253,13 +265,32 @@ export default function AddStudentForm() {
 
         {/* Class */}
         <div className="w-full">
-          <label className="block font-medium text-green-700 mb-2">Class</label>
-          <input
-            type="text"
+          <label className="block font-medium text-gray-700 mb-2">Class</label>
+          <select
             {...register("class", { required: true })}
-            placeholder="Enter class"
             className="w-full p-1 px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
+          >
+            <option value="" disabled selected>
+              Select a class
+            </option>
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+            <option value="four">Four</option>
+            <option value="five">Five</option>
+            <option value="six">Six</option>
+            <option value="seven">Seven</option>
+            <option value="eight">Eight</option>
+            <option value="nine">Nine</option>
+            <option value="ten">Ten</option>
+            <option value="eleven">Eleven</option>
+            <option value="twelve">Twelve</option>
+            <option value="hifz">Hifz</option>
+            <option value="norani">Norani</option>
+            <option value="fazil">Fazil</option>
+            <option value="Thaksisi">Thaksisi</option>
+            <option value="kamil">Kamil</option>
+          </select>
           {errors.class && (
             <span className="text-red-500 text-sm">This field is required</span>
           )}
@@ -350,8 +381,9 @@ export default function AddStudentForm() {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full mt-3 bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition"
+        className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
       >
+        {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
         Submit
       </button>
     </form>

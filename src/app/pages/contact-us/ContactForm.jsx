@@ -36,7 +36,7 @@ export default function ContactForm() {
   return (
     <div className="w-full py-16 px-4 bg-green-100 flex justify-center items-center">
       <Toaster />
-      <div className="bg-white  max-w-2xl w-full">
+      <div className="flex justify-center items-center  max-w-2xl w-full">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-green-700 mb-2">
