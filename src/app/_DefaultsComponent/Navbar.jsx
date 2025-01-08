@@ -112,6 +112,12 @@ export default function Navbar() {
               >
                 ভর্তি ফরম
               </Link>
+              <Link
+                href="/pages/SubmitedInfo"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                Submited Data
+              </Link>
             </div>
           </div>
           <div className="relative group">
