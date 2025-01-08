@@ -1,20 +1,44 @@
 "use client";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+import { GiOilySpiral } from "react-icons/gi";
 
 export default function ConsultingForm() {
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const newData = { type: "consulting", ...data };
-    console.log("Form Submitted:", newData);
+
+    try {
+      setIsSubmiting(true);
+      const response = await axios.post(
+        `${url}/consult/create-consulting`,
+        newData
+      );
+      if (response?.data?.status === true) {
+        reset();
+        toast.success(response.data.data.message || "Submit successful");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something is worng!");
+    } finally {
+      setIsSubmiting(false);
+    }
   };
 
   return (
     <div className="w-full px-4 py-14 bg-green-100 flex justify-center items-center">
+      <Toaster />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-8 rounded-lg shadow-lg w-full max-w-xl"
@@ -105,8 +129,9 @@ export default function ConsultingForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
+          className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
         >
+          {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
           জমা দিন
         </button>
       </form>
