@@ -116,7 +116,7 @@ export default function Navbar() {
                 href="/pages/SubmitedInfo"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
-                Submited Data
+                জমাকৃত তথ্য
               </Link>
             </div>
           </div>
