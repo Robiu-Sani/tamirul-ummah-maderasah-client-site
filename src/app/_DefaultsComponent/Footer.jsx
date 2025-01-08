@@ -3,6 +3,14 @@ import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
+  const convertToBanglaNumbers = (number) => {
+    const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return number
+      .toString()
+      .split("")
+      .map((digit) => banglaNumbers[digit] || digit)
+      .join("");
+  };
   return (
     <footer className="bg-green-700 text-white py-12">
       <div className="container mx-auto px-4">
@@ -147,7 +155,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-            <div className="flex space-x-4">
+            <div className="flex mt-4 space-x-4">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -186,7 +194,10 @@ export default function Footer() {
 
         {/* ফুডারের নিচের অংশ */}
         <div className="mt-8 border-t border-gray-600 pt-4 text-center text-sm text-gray-400">
-          <p>&copy; ২০২৪ তামিরুল উম্মাহ মাদ্রাসা। সব অধিকার সংরক্ষিত।</p>
+          <p>
+            &copy; {convertToBanglaNumbers(new Date().getFullYear())} তামিরুল
+            উম্মাহ মাদ্রাসা। সব অধিকার সংরক্ষিত।
+          </p>
         </div>
       </div>
     </footer>
