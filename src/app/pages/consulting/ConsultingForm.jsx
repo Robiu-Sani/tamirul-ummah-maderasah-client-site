@@ -117,7 +117,7 @@ export default function ConsultingForm() {
             placeholder="আপনার বিবরণ লিখুন"
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.description ? "border-red-500" : "border-gray-300"
-            } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+            } rounded-lg h-32 shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
           />
           {errors.description && (
             <span className="text-red-500 text-sm">

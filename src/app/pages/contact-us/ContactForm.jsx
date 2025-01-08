@@ -36,7 +36,7 @@ export default function ContactForm() {
   return (
     <div className="w-full py-16 px-4 bg-green-100 flex justify-center items-center">
       <Toaster />
-      <div className="flex justify-center items-center  max-w-2xl w-full">
+      <div className="flex flex-col justify-center items-center  max-w-2xl w-full">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-green-700 mb-2">
@@ -126,7 +126,7 @@ export default function ContactForm() {
                 },
               })}
               placeholder="আপনার বিবরণ লিখুন"
-              className={`mt-1 block w-full px-4 py-2 border ${
+              className={`mt-1 block h-32 w-full px-4 py-2 border ${
                 errors.description ? "border-red-500" : "border-gray-300"
               } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
             />
@@ -140,7 +140,7 @@ export default function ContactForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
+            className="w-full  flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
           >
             {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
             জমা দিন
