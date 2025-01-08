@@ -1,5 +1,5 @@
 import { SiTheodinproject } from "react-icons/si";
-import AllImages from "./AllImages";
+// import AllImages from "./AllImages";
 
 export default function Gellary() {
   return (
@@ -13,7 +13,7 @@ export default function Gellary() {
           </h1>
         </div>
       </div>
-      <AllImages />
+      {/* <AllImages /> */}
     </div>
   );
 }
