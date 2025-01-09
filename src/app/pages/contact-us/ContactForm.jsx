@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { GiOilySpiral } from "react-icons/gi";
-
-const url = "YOUR_API_URL_HERE"; // Replace with your actual API URL
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 
 export default function ContactForm() {
   const [isSubmiting, setIsSubmiting] = useState(false);
@@ -18,7 +17,7 @@ export default function ContactForm() {
 
   const onSubmit = async (data) => {
     const newData = { type: "contact", ...data };
-
+    console.log(newData);
     try {
       setIsSubmiting(true);
       const response = await axios.post(

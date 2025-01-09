@@ -1,20 +1,49 @@
 "use client";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { GiOilySpiral } from "react-icons/gi";
 
 export default function Login() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmiting, setIsSubmiting] = useState(false);
+  const [isWorng, setIsWorng] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const onSubmit = (data) => {
-    console.log("Form Submitted:", data);
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      setIsSubmiting(true);
+      const response = await axios.post(`${url}/auth/student`, data);
+      console.log(response.data.message);
+
+      if (response.data.message === "Login Successful") {
+        reset();
+        setIsWorng(false);
+        toast.success(response.data.message || "Submit successful");
+        localStorage.setItem("student", JSON.stringify(response.data.data));
+      } else {
+        setIsWorng(true);
+        // Show the error message from the backend
+        toast.error(response.data.error || "Something something is wrong");
+      }
+    } catch (err) {
+      console.error(err);
+      setIsWorng(true);
+      toast.error("Something went wrong!");
+    } finally {
+      setIsSubmiting(false);
+    }
   };
 
   return (
@@ -23,9 +52,15 @@ export default function Login() {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
       >
+        <Toaster />
         <h2 className="text-2xl font-bold text-green-600 text-center mb-6">
           Login
         </h2>
+        {isWorng ? (
+          <div className="w-full rounded-md p-2 bg-red-100 my-3 text-center text-red-500 border border-red-600 flex justify-center items-center">
+            Loging is not successful! something is worng in there.
+          </div>
+        ) : null}
 
         {/* Email Input */}
         <div className="mb-4">
@@ -91,8 +126,9 @@ export default function Login() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
+          className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
         >
+          {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
           Login
         </button>
       </form>
