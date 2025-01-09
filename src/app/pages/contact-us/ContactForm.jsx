@@ -1,9 +1,11 @@
 "use client";
-import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 import { GiOilySpiral } from "react-icons/gi";
+
+const url = "YOUR_API_URL_HERE"; // Replace with your actual API URL
 
 export default function ContactForm() {
   const [isSubmiting, setIsSubmiting] = useState(false);
@@ -28,8 +30,8 @@ export default function ContactForm() {
         toast.success(response.data.data.message || "Submit successful");
       }
     } catch (err) {
-      console.log(err);
-      toast.error("Something is worng!");
+      console.error(err);
+      toast.error("Something went wrong!");
     } finally {
       setIsSubmiting(false);
     }
@@ -38,7 +40,7 @@ export default function ContactForm() {
   return (
     <div className="w-full py-16 px-4 bg-green-100 flex justify-center items-center">
       <Toaster />
-      <div className="flex flex-col justify-center items-center  max-w-2xl w-full">
+      <div className="flex flex-col justify-center items-center max-w-2xl w-full">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-green-700 mb-2">
@@ -58,10 +60,10 @@ export default function ContactForm() {
             যোগাযোগ ফর্ম
           </h2>
 
-          {/* Subject Input */}
+          {/* Name Input */}
           <div className="mb-4">
             <label
-              htmlFor="subject"
+              htmlFor="name"
               className="block text-sm font-medium text-gray-700"
             >
               নাম
@@ -70,11 +72,11 @@ export default function ContactForm() {
               type="text"
               id="name"
               {...register("name", {
-                required: "বিষয়টি অবশ্যই প্রয়োজন",
+                required: "নাম অবশ্যই প্রয়োজন",
               })}
               placeholder="আপনার নাম লিখুন"
               className={`mt-1 block w-full px-4 py-2 border ${
-                errors.subject ? "border-red-500" : "border-gray-300"
+                errors.name ? "border-red-500" : "border-gray-300"
               } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
             />
             {errors.name && (
@@ -84,7 +86,7 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* Subject Input */}
+          {/* Contact Number Input */}
           <div className="mb-4">
             <label
               htmlFor="contactNumber"
@@ -96,11 +98,11 @@ export default function ContactForm() {
               type="number"
               id="contactNumber"
               {...register("contactNumber", {
-                required: "বিষয়টি অবশ্যই প্রয়োজন",
+                required: "নাম্বার অবশ্যই প্রয়োজন",
               })}
-              placeholder="আপনার বিষয় লিখুন"
+              placeholder="আপনার নাম্বার লিখুন"
               className={`mt-1 block w-full px-4 py-2 border ${
-                errors.subject ? "border-red-500" : "border-gray-300"
+                errors.contactNumber ? "border-red-500" : "border-gray-300"
               } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
             />
             {errors.contactNumber && (
