@@ -18,18 +18,23 @@ export default function ContactForm() {
   const onSubmit = async (data) => {
     const newData = { type: "contact", ...data };
     console.log(newData);
+
     try {
       setIsSubmiting(true);
+
       const response = await axios.post(
         `${url}/consult/create-consulting`,
         newData
       );
-      if (response?.data?.status === true) {
+
+      if (response?.data?.status) {
         reset();
-        toast.success(response.data.data.message || "Submit successful");
+        toast.success(response.data.message || "Submit successful");
+      } else {
+        toast.error("Unexpected API response");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Error submitting contact form:", err);
       toast.error("Something went wrong!");
     } finally {
       setIsSubmiting(false);
