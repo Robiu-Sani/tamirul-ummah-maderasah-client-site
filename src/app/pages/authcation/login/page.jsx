@@ -1,13 +1,15 @@
 "use client";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GiOilySpiral } from "react-icons/gi";
 
 export default function Login() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -17,8 +19,19 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [isWorng, setIsWorng] = useState(false);
+  const [errMessage, setErrMessage] = useState();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+  useEffect(() => {
+    const student = JSON.parse(localStorage.getItem("student"));
+    if (student && student?.type == "student") {
+      router.push(`/pages/StudentProfile`);
+    } else if (student && student?.type !== "student") {
+      localStorage.removeItem("student");
+      localStorage.removeItem("id");
+    }
+  }, [router]);
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -32,13 +45,16 @@ export default function Login() {
         setIsWorng(false);
         toast.success(response.data.message || "Submit successful");
         localStorage.setItem("student", JSON.stringify(response.data.data));
+        localStorage.setItem("id", response.data.data._id);
       } else {
         setIsWorng(true);
         // Show the error message from the backend
         toast.error(response.data.error || "Something something is wrong");
+        setErrMessage(response.data.error);
       }
     } catch (err) {
       console.error(err);
+      setErrMessage(err.message);
       setIsWorng(true);
       toast.error("Something went wrong!");
     } finally {
@@ -58,7 +74,8 @@ export default function Login() {
         </h2>
         {isWorng ? (
           <div className="w-full rounded-md p-2 bg-red-100 my-3 text-center text-red-500 border border-red-600 flex justify-center items-center">
-            Loging is not successful! something is worng in there.
+            Loging is not successful!{" "}
+            {errMessage ? errMessage : "something is worng in there"}.
           </div>
         ) : null}
 
