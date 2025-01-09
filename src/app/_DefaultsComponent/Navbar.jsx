@@ -10,7 +10,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const axiosSource = useAxiousSource();
-  const [studentInfo, setStudentInfo] = useState();
   const [info, setInfo] = useState();
 
   useEffect(() => {
@@ -20,17 +19,6 @@ export default function Navbar() {
       .then((response) => setInfo(response.data.data[0]))
       .catch((err) => console.error(err));
   }, [axiosSource]);
-
-  useEffect(() => {
-    try {
-      const student = JSON.parse(localStorage.getItem("student"));
-      if (student?.type === "student") {
-        setStudentInfo(student);
-      }
-    } catch (error) {
-      console.error("Error reading student data from localStorage:", error);
-    }
-  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -103,11 +91,7 @@ export default function Navbar() {
           </button>
           {/* Logo */}
           <Image
-            src={
-              info?.logo
-                ? info?.logo
-                : "http://res.cloudinary.com/duegkjfvf/image/upload/v1736431614/f0clqiynnor6tavnuonl.png"
-            }
+            src="https://i.ibb.co/f25gg33/logo.png"
             alt="logo"
             width={50}
             height={50}
@@ -333,22 +317,12 @@ export default function Navbar() {
 
         {/* Login Button */}
         <div>
-          {studentInfo ? (
-            <Image
-              src={studentInfo?.image}
-              width={50}
-              height={50}
-              alt={studentInfo?.studentNameEnglish}
-              className="w-[50px] h-[50px] rounded-full border border-primary cursor-pointer"
-            />
-          ) : (
-            <Link
-              href="/pages/authcation/login"
-              className="px-3 flex justify-center items-center gap-3 p-2 rounded-md bg-primary hover:bg-hover font-medium text-white"
-            >
-              লগইন <IoLogInOutline className="text-xl" />
-            </Link>
-          )}
+          <Link
+            href="/pages/authcation/login"
+            className="px-3 flex justify-center items-center gap-3 p-2 rounded-md bg-primary hover:bg-hover font-medium text-white"
+          >
+            লগইন <IoLogInOutline className="text-xl" />
+          </Link>
         </div>
       </div>
     </div>
