@@ -24,39 +24,40 @@ export default function Login() {
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   useEffect(() => {
-    const student = JSON.parse(localStorage.getItem("student"));
-    if (student && student?.type == "student") {
-      router.push(`/pages/StudentProfile`);
-    } else if (student && student?.type !== "student") {
-      localStorage.removeItem("student");
-      localStorage.removeItem("id");
+    try {
+      const student = JSON.parse(localStorage.getItem("student"));
+      if (student?.type === "student") {
+        router.push("/StudentProfile");
+      } else {
+        localStorage.removeItem("student");
+        localStorage.removeItem("id");
+      }
+    } catch (error) {
+      console.error("Error parsing student data from localStorage:", error);
     }
   }, [router]);
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       setIsSubmiting(true);
       const response = await axios.post(`${url}/auth/student`, data);
-      console.log(response.data.message);
-
       if (response.data.message === "Login Successful") {
         reset();
         setIsWorng(false);
         toast.success(response.data.message || "Submit successful");
         localStorage.setItem("student", JSON.stringify(response.data.data));
         localStorage.setItem("id", response.data.data._id);
+        router.push("/StudentProfile");
       } else {
         setIsWorng(true);
-        // Show the error message from the backend
-        toast.error(response.data.error || "Something something is wrong");
-        setErrMessage(response.data.error);
+        setErrMessage(response.data.error || "Invalid login credentials");
+        toast.error(response.data.error || "Something went wrong!");
       }
     } catch (err) {
       console.error(err);
-      setErrMessage(err.message);
       setIsWorng(true);
-      toast.error("Something went wrong!");
+      setErrMessage(err.response?.data?.error || "Server error");
+      toast.error(err.response?.data?.error || "Server error!");
     } finally {
       setIsSubmiting(false);
     }
@@ -72,12 +73,11 @@ export default function Login() {
         <h2 className="text-2xl font-bold text-green-600 text-center mb-6">
           Login
         </h2>
-        {isWorng ? (
+        {isWorng && (
           <div className="w-full rounded-md p-2 bg-red-100 my-3 text-center text-red-500 border border-red-600 flex justify-center items-center">
-            Loging is not successful!{" "}
-            {errMessage ? errMessage : "something is worng in there"}.
+            {errMessage || "Login is not successful!"}
           </div>
-        ) : null}
+        )}
 
         {/* Email Input */}
         <div className="mb-4">
@@ -144,6 +144,7 @@ export default function Login() {
         <button
           type="submit"
           className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
+          disabled={isSubmiting}
         >
           {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
           Login

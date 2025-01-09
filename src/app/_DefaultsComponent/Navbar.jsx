@@ -22,9 +22,13 @@ export default function Navbar() {
   }, [axiosSource]);
 
   useEffect(() => {
-    const student = JSON.parse(localStorage.getItem("student"));
-    if (student && student?.type == "student") {
-      setStudentInfo(student);
+    try {
+      const student = JSON.parse(localStorage.getItem("student"));
+      if (student?.type === "student") {
+        setStudentInfo(student);
+      }
+    } catch (error) {
+      console.error("Error reading student data from localStorage:", error);
     }
   }, []);
 
