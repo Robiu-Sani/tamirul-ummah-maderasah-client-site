@@ -2,12 +2,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IoLogInOutline, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
+import useAxiousSource from "./useAxiousSource";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
+  const axiosSource = useAxiousSource();
+  const [info, setInfo] = useState();
+
+  useEffect(() => {
+    // Fetch data on mount
+    axiosSource
+      .get(`/institution`)
+      .then((response) => setInfo(response.data.data[0]))
+      .catch((err) => console.error(err));
+  }, [axiosSource]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -24,34 +35,46 @@ export default function Navbar() {
 
   return (
     <div className="w-full bg-primary relative px-2 pt-5 pb-10">
-      <div className="max-w-5xl mx-auto px-3">
+      <div className="max-w-6xl mx-auto px-3">
         <div className="w-full flex flex-col md:flex-row justify-center items-end gap-7">
           {/* Left Content */}
           <div className="text-center w-full md:w-auto justify-center md:justify-end md:text-right flex flex-col gap-2 order-2 md:order-none">
             <h1 className="text-3xl font-bold text-green-100">
-              তামিরুল উম্মাহ আলিম মাদ্রাসা
+              {info?.institutionNameEnglish
+                ? info?.institutionNameEnglish
+                : "Tamirul Ummah Maderasah"}
             </h1>
             <p className="text-green-200">
-              ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা, ০১৬১৭৬৮৮৮০৫
+              {info?.institutionAddressEnglish
+                ? info?.institutionAddressEnglish
+                : "Insaf garden city , daulatpur , kotbari road, cumilla"}
             </p>
           </div>
 
           {/* Image Section */}
           <Image
-            src="https://i.ibb.co/f25gg33/logo.png"
+            src={
+              info?.logo
+                ? info?.logo
+                : "http://res.cloudinary.com/duegkjfvf/image/upload/v1736431614/f0clqiynnor6tavnuonl.png"
+            }
             alt="logo"
             width={150}
             height={150}
-            className="mx-auto "
+            className="mx-auto bg-green-300 rounded-full "
           />
 
           {/* Right Content */}
           <div className="text-center md:flex  hidden  md:text-left  flex-col gap-2 order-3 md:order-none">
             <h1 className="text-3xl font-bold text-green-100">
-              তামিরুল উম্মাহ আলিম মাদ্রাসা
+              {info?.institutionNameBanglaArabic
+                ? info?.institutionNameBanglaArabic
+                : "তা’মীরুল উম্মাহ মাদ্রাসা"}
             </h1>
             <p className="text-green-200">
-              ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা, ০১৬১৭৬৮৮৮০৫
+              {info?.institutionAddressBanglaArabic
+                ? info?.institutionAddressBanglaArabic
+                : "ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা"}
             </p>
           </div>
         </div>

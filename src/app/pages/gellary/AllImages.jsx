@@ -123,8 +123,8 @@ export default function AllImages() {
           {images.map((image) => (
             <div key={image.id} className="relative m-1 group duration-300">
               <Image
-                width={200}
-                height={200}
+                width={400}
+                height={400}
                 src={image.src}
                 alt={image.title}
                 className="w-full object-cover"
@@ -153,8 +153,8 @@ export default function AllImages() {
             <div className="bg-white rounded-lg overflow-hidden max-w-3xl w-full shadow-lg">
               <div className="relative">
                 <Image
-                  width={700}
-                  height={500}
+                  width={800}
+                  height={600}
                   src={selectedImage.src}
                   alt={selectedImage.title}
                   className="w-full h-96 object-cover"
