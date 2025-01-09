@@ -39,7 +39,7 @@ export default function Navbar() {
         <div className="w-full flex flex-col md:flex-row justify-center items-end gap-7">
           {/* Left Content */}
           <div className="text-center w-full md:w-auto justify-center md:justify-end md:text-right flex flex-col gap-2 order-2 md:order-none">
-            <h1 className="text-3xl font-bold text-green-100">
+            <h1 className="text-3xl font font-bold text-green-100">
               {info?.institutionNameEnglish
                 ? info?.institutionNameEnglish
                 : "Tamirul Ummah Maderasah"}

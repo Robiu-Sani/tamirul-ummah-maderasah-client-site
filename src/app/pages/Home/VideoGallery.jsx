@@ -4,23 +4,25 @@ import { FaYoutube } from "react-icons/fa";
 const videos = [
   {
     id: 1,
-    src: "https://www.youtube.com/embed/-EE_0qtBXps?si=yIiiBhK9862Gc8kg",
-    title: "ইসলামিক লেকচার ১",
-    speaker: "স্পিকার ১",
+    src: "https://www.youtube.com/embed/wOICupV9IcM?si=zqXKDxFOmr53at28",
+    title: "Tamirul ummah madrasha song",
+    speaker:
+      "MD NAIMUL ISLAM NIHAN,SAYMA ISLAM TONNI,SUMAIYA ISLAM TANHA,SAIDA SULTANA NAFISA.",
     date: "১ সেপ্টেম্বর, ২০২৪",
   },
   {
     id: 2,
-    src: "https://www.youtube.com/embed/example_video_2",
-    title: "ইসলামিক লেকচার ২",
-    speaker: "স্পিকার ২",
+    src: "https://www.youtube.com/embed/sQbK9I_X0xY?si=wGgQ1qDc2UtolHUy",
+    title: "বিজ্ঞান মেলা",
+    speaker: "TamirulUmmahMadrsha Science Fair",
     date: "১৫ আগস্ট, ২০২৪",
   },
   {
     id: 3,
-    src: "https://www.youtube.com/embed/example_video_3",
-    title: "ইসলামিক লেকচার ৩",
-    speaker: "স্পিকার ৩",
+    src: "https://www.youtube.com/embed/-DtawBC6SgA?si=lY2CSlJXrEj__XQ3",
+    title: "Our Student Naimul Islam Nihan",
+    speaker:
+      "সবার সেরা শিল্পী তুমি রাব্বুল আলামীন | Sobar Sera Shilpi | Naimul Islam Nihan | Hamd",
     date: "২০ জুলাই, ২০২৪",
   },
 ];
@@ -63,10 +65,10 @@ export default function VideoGallery() {
                   <FaYoutube className="text-red-600" /> {video.title}
                 </h3>
                 <p className="text-gray-500">
-                  <strong>স্পিকার:</strong> {video.speaker}
+                  <strong>পরিবেশনায়:</strong> {video.speaker}
                 </p>
                 <p className="text-gray-500">
-                  <strong>তারিখ:</strong> {video.date}
+                  {/* <strong>তারিখ:</strong> {video.date} */}
                 </p>
               </div>
             </div>
