@@ -9,7 +9,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-const SocialContact = () => {
+const SocialContact = ({ addressinfo }) => {
   return (
     <section className="bg-green-100 py-5">
       <div className="max-w-5xl mx-auto text-center">
@@ -18,7 +18,7 @@ const SocialContact = () => {
         </p>
         <div className="flex justify-center flex-wrap gap-6">
           <a
-            href="https://facebook.com"
+            href={addressinfo?.facebook || "https://facebook.com"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-blue-600 p-4 rounded-full shadow-md hover:scale-110 transform transition-all duration-300"
@@ -26,7 +26,7 @@ const SocialContact = () => {
             <FaFacebookF size={24} />
           </a>
           <a
-            href="https://twitter.com"
+            href={addressinfo?.twitter || "https://twitter.com"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-blue-400 p-4 rounded-full shadow-md hover:scale-110 transform transition-all duration-300"
@@ -34,23 +34,23 @@ const SocialContact = () => {
             <FaTwitter size={24} />
           </a>
           <a
-            href="https://linkedin.com"
+            href={addressinfo?.linkedin || "https://linkedin.com"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-blue-700 p-4 rounded-full shadow-md hover:scale-110 transform transition-all duration-300"
           >
             <FaLinkedinIn size={24} />
           </a>
-          <a
+          {/* <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-gray-800 p-4 rounded-full shadow-md hover:scale-110 transform transition-all duration-300"
           >
             <FaGithub size={24} />
-          </a>
+          </a> */}
           <a
-            href="https://instagram.com"
+            href={addressinfo?.instagram || "https://instagram.com"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-pink-500 p-4 rounded-full shadow-md hover:scale-110 transform transition-all duration-300"
@@ -58,7 +58,7 @@ const SocialContact = () => {
             <FaInstagram size={24} />
           </a>
           <a
-            href="https://youtube.com"
+            href={addressinfo?.youtube || "https://youtube.com"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-red-600 p-4 rounded-full shadow-md hover:scale-110 transform transition-all duration-300"

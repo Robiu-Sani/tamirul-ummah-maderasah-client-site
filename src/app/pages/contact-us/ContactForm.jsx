@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
@@ -15,6 +16,7 @@ export default function ContactForm() {
 
   const onSubmit = async (data) => {
     const newData = { type: "contact", ...data };
+
     try {
       setIsSubmiting(true);
       const response = await axios.post(
@@ -126,9 +128,9 @@ export default function ContactForm() {
                 },
               })}
               placeholder="আপনার বিবরণ লিখুন"
-              className={`mt-1 block h-32 w-full px-4 py-2 border ${
+              className={`mt-1 block w-full px-4 py-2 border ${
                 errors.description ? "border-red-500" : "border-gray-300"
-              } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+              } rounded-lg h-32 shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
             />
             {errors.description && (
               <span className="text-red-500 text-sm">
@@ -140,7 +142,7 @@ export default function ContactForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full  flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
+            className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
           >
             {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
             জমা দিন

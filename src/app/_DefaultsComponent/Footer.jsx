@@ -1,6 +1,8 @@
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { url } from "./DefaultsFunctions/Config";
 
 export default function Footer() {
   const convertToBanglaNumbers = (number) => {
@@ -11,6 +13,7 @@ export default function Footer() {
       .map((digit) => banglaNumbers[digit] || digit)
       .join("");
   };
+  const addressinfo = axios.get(`${url}/institution`);
 
   // Safely get the year on the client side only
   const year =
@@ -35,7 +38,11 @@ export default function Footer() {
             <Image
               width={100}
               height={100}
-              src="https://i.postimg.cc/66HFxrZQ/Whats-App-Image-2024-12-12-at-8-45-34-AM-removebg-preview.png"
+              src={
+                addressinfo?.logo
+                  ? addressinfo.logo
+                  : `https://i.postimg.cc/66HFxrZQ/Whats-App-Image-2024-12-12-at-8-45-34-AM-removebg-preview.png`
+              }
               alt="Madrasah Logo"
               className="w-32 mt-4 rounded-full bg-green-300"
             />
@@ -166,38 +173,42 @@ export default function Footer() {
             </ul>
             <div className="flex mt-4 space-x-4">
               <a
-                href="https://facebook.com"
+                href={addressinfo?.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-green-800 rounded-full hover:bg-green-900 transition duration-300"
+                className="p-2 bg-green-800 cursor-pointer rounded-full hover:bg-green-900 transition duration-300"
               >
                 <FaFacebookF size={20} />
               </a>
               <a
-                href="https://twitter.com"
+                href={addressinfo?.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-green-800 rounded-full hover:bg-green-900 transition duration-300"
+                className="p-2 bg-green-800 cursor-pointer rounded-full hover:bg-green-900 transition duration-300"
               >
                 <FaTwitter size={20} />
               </a>
               <a
-                href="https://instagram.com"
+                href={addressinfo?.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-green-800 rounded-full hover:bg-green-900 transition duration-300"
+                className="p-2 bg-green-800 cursor-pointer rounded-full hover:bg-green-900 transition duration-300"
               >
                 <FaInstagram size={20} />
               </a>
-              <a
-                href="https://youtube.com"
+              <Link
+                href={addressinfo?.youtube || "www.youtube.com"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-green-800 rounded-full hover:bg-green-900 transition duration-300"
+                className="p-2 bg-green-800 cursor-pointer rounded-full hover:bg-green-900 transition duration-300"
               >
                 <FaYoutube size={20} />
-              </a>
+              </Link>
             </div>
+            <p className="text-gray-200 mt-5 text-sm">
+              {addressinfo?.address ||
+                "ইনসাফ গার্ডেন সিটি , দৌলতপুর , কোটবাড়ি রোড, কুমিল্লা"}
+            </p>
           </div>
         </div>
 
