@@ -1,7 +1,8 @@
 import axios from "axios";
+import { url } from "./DefaultsFunctions/Config";
 
 const axiosSource = axios.create({
-  baseURL: "https://tum-server.vercel.app/api/v1",
+  baseURL: url,
 });
 
 export default function useAxiousSource() {
