@@ -45,7 +45,7 @@ export default function StudentPage() {
   return (
     <div className="w-full bg-gray-100 py-4">
       {studentInfo ? (
-        <StudentProfile student={studentInfo.student} />
+        <StudentProfile student={studentInfo} />
       ) : (
         <div className="h-[200px] flex justify-center items-center">
           <ImSpinner5 className="animate-spin" size={50} />

@@ -5,8 +5,8 @@ import PostContant from "./PostContant";
 import CreatePosts from "./CreatePosts";
 import AddInfo from "./add-info/AddInfo";
 
-export default function Tabs() {
-  const [activeTab, setActiveTab] = useState("result"); // Default active tab
+export default function Tabs({ student }) {
+  const [activeTab, setActiveTab] = useState("result");
 
   return (
     <div className="mt-5 w-full mx-auto">
@@ -56,10 +56,10 @@ export default function Tabs() {
 
       {/* Tab Content */}
       <div className="mt-6 bg-white rounded-md">
-        {activeTab === "result" && <ResultContant />}
-        {activeTab === "post" && <PostContant />}
+        {activeTab === "result" && <ResultContant student={student?.results} />}
+        {activeTab === "post" && <PostContant student={student?.posts} />}
         {activeTab === "create-post" && <CreatePosts />}
-        {activeTab === "add-info" && <AddInfo />}
+        {activeTab === "add-info" && <AddInfo student={student} />}
       </div>
     </div>
   );
