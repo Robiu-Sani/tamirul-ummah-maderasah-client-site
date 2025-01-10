@@ -109,11 +109,11 @@ export default function NoticeContant() {
 
           {/* Image Section */}
           <Image
-            src="https://i.ibb.co/f25gg33/logo.png"
+            src="http://res.cloudinary.com/duegkjfvf/image/upload/v1736431614/f0clqiynnor6tavnuonl.png"
             alt="logo"
             width={150}
             height={150}
-            className="mx-auto"
+            className="mx-auto bg-green-300 rounded-full"
           />
 
           {/* Right Content */}

@@ -26,7 +26,6 @@ export default function CreatePosts({ student }) {
       isSelected: false,
       postImage: image,
     };
-    console.log(postData);
     try {
       setIsSubmiting(true);
 

@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const PostCard = ({ post }) => {
-  console.log(post);
   return (
     <div className="w-full  p-2 my-4 bg-white rounded-lg shadow-lg">
       {/* Header Section */}

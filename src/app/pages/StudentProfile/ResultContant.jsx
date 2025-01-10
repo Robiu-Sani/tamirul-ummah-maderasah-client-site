@@ -1,12 +1,11 @@
 import ResultCard from "./ResultCard";
 
-export default function ResultContant() {
+export default function ResultContant({ results, image }) {
   return (
     <div>
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
+      {results?.map((result, idx) => (
+        <ResultCard result={result} key={idx} image={image} />
+      ))}
     </div>
   );
 }

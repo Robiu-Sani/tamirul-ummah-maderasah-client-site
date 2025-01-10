@@ -1,24 +1,16 @@
 "use client";
-import Image from "next/image";
 import { useRef } from "react";
 import { FaFileImage, FaFilePdf } from "react-icons/fa";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import ResultChart from "./ResultChart";
+// import ResultChart from "./ResultChart";
+import ResultHeader from "./result-header/ResultHeader";
+import StudentDetails from "./result-header/StudentDetails";
+import ResultTable from "./result-header/ResultTable";
 
-const ResultCard = () => {
+const ResultCard = ({ result, image }) => {
   const noticeRef = useRef();
-
-  // Mock student details
-  const studentDetails = {
-    examName: "1st Semester Examination",
-    studentName: "John Doe",
-    roll: "12345",
-    class: "10th Grade",
-    image:
-      "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202208/Option_1_-_Aryan_JAIN_x.jpeg?VersionId=iT6pvrs3MzZV9itpfqLODfKPS.FvzW58",
-  };
 
   // Mock subjects data
   const subjects = [
@@ -93,6 +85,8 @@ const ResultCard = () => {
     }
   };
 
+  console.log(result._id);
+
   return (
     <div className="px-0 md:px-6 md:p-6">
       {/* Download Buttons */}
@@ -118,80 +112,13 @@ const ResultCard = () => {
       <div className="max-w-5xl mx-auto rounded-md border shadow-lg">
         <div className="bg-white" ref={noticeRef}>
           {/* Madrasa Header */}
-          <div className="bg-green-600 text-white p-4 rounded-t-md flex flex-col items-center md:flex-row justify-center">
-            <Image
-              src="https://i.ibb.co/f25gg33/logo.png"
-              alt="Madrasa Logo"
-              width={100}
-              height={100}
-            />
-            <div className="text-center md:text-left">
-              <h1 className="text-3xl font-bold">
-                তামিরুল উম্মাহ আলিম মাদ্রাসা
-              </h1>
-              <p className="w-full">ইনসাফ গার্ডেনসিটি, দৌলতপুর, কুমিল্লা</p>
-            </div>
-          </div>
+          <ResultHeader />
 
           {/* Student Details */}
-          <div className="p-4 flex flex-col md:flex-row justify-between items-center">
-            <div>
-              <h2 className="text-2xl font-bold">{studentDetails.examName}</h2>
-              <p>
-                <strong>Student Name:</strong> {studentDetails.studentName}
-              </p>
-              <p>
-                <strong>Roll:</strong> {studentDetails.roll}
-              </p>
-              <p>
-                <strong>Class:</strong> {studentDetails.class}
-              </p>
-            </div>
-            <Image
-              src={studentDetails.image}
-              alt="Student"
-              width={120}
-              height={150}
-              className="border-2 border-gray-300 rounded-md"
-            />
-          </div>
+          <StudentDetails image={image} result={result} />
 
           {/* Subjects Table */}
-          <div className="overflow-x-auto">
-            <table className="table-auto w-full border-collapse border">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="border px-4 py-2">Subject</th>
-                  <th className="border px-4 py-2">Marks Obtained</th>
-                  <th className="border px-4 py-2">Total Marks</th>
-                  <th className="border px-4 py-2">Percentage</th>
-                  <th className="border px-4 py-2">Grade</th>
-                </tr>
-              </thead>
-              <tbody>
-                {subjects.map((subject, index) => {
-                  const percentage = (
-                    (subject.score / subject.total) *
-                    100
-                  ).toFixed(2);
-                  const grade = calculateGrade(percentage);
-
-                  return (
-                    <tr key={index} className="even:bg-gray-50">
-                      <td className="border px-4 py-2">{subject.name}</td>
-                      <td className="border px-4 py-2">{subject.score}</td>
-                      <td className="border px-4 py-2">{subject.total}</td>
-                      <td className="border px-4 py-2">{percentage}%</td>
-                      <td className="border px-4 py-2">{grade}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Chart Section */}
-          <ResultChart subjects={subjects} />
+          <ResultTable id={result._id} />
         </div>
       </div>
     </div>
