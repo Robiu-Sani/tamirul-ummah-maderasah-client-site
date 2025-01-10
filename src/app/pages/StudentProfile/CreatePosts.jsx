@@ -20,7 +20,7 @@ export default function CreatePosts() {
       image,
       date: new Date().toLocaleString(), // Automatically add current date and time
     };
-    alert(JSON.stringify(postData, null, 2));
+    console.log(postData);
     reset(); // Reset the form after submission
   };
 
