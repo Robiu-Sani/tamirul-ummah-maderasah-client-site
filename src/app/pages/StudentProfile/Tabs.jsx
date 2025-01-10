@@ -58,7 +58,9 @@ export default function Tabs({ student }) {
       <div className="mt-6 bg-white rounded-md">
         {activeTab === "result" && <ResultContant results={student?.results} />}
         {activeTab === "post" && <PostContant posts={student?.posts} />}
-        {activeTab === "create-post" && <CreatePosts />}
+        {activeTab === "create-post" && (
+          <CreatePosts student={student?.student} />
+        )}
         {activeTab === "add-info" && <AddInfo student={student} />}
       </div>
     </div>
