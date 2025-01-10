@@ -5,6 +5,9 @@ import { IoLogInOutline, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import useAxiousSource from "./useAxiousSource";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,6 +15,7 @@ export default function Navbar() {
   const axiosSource = useAxiousSource();
   const [studentInfo, setStudentInfo] = useState();
   const [info, setInfo] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     // Fetch data on mount
@@ -45,8 +49,28 @@ export default function Navbar() {
     setDropdownOpen(null);
   };
 
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "If you want to  logout then click on yes",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log-out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("student");
+        localStorage.removeItem("id");
+        router.push("/");
+        toast.success("You successfully log-out");
+      }
+    });
+  };
+
   return (
     <div className="w-full bg-primary relative px-2 pt-5 pb-10">
+      <Toaster />
       <div className="max-w-6xl mx-auto px-3">
         <div className="w-full flex flex-col md:flex-row justify-center items-end gap-7">
           {/* Left Content */}
@@ -334,13 +358,48 @@ export default function Navbar() {
         {/* Login Button */}
         <div>
           {studentInfo ? (
-            <Image
-              src={studentInfo?.image}
-              width={50}
-              height={50}
-              alt={studentInfo?.studentNameEnglish}
-              className="w-[50px] h-[50px] rounded-full border border-primary cursor-pointer"
-            />
+            <div className="relative group">
+              <button
+                onClick={() => toggleDropdown("profile")}
+                className=" text-sm  md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
+              >
+                <Image
+                  src={studentInfo?.image}
+                  width={50}
+                  height={50}
+                  alt={studentInfo?.studentNameEnglish}
+                  className="w-[50px] h-[50px] rounded-full border border-primary cursor-pointer"
+                />
+              </button>
+              <div
+                className={`dropdown z-[999] bg-white right-0 absolute w-[200px] p-2 rounded-md border shadow-md flex flex-col gap-3 ${
+                  dropdownOpen === "profile" ? "flex" : "hidden"
+                }`}
+              >
+                <p className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md ">
+                  {studentInfo?.studentNameBangla}
+                </p>
+                <Link
+                  href="/pages/StudentProfile"
+                  className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+                >
+                  প্রফাইল
+                </Link>
+                <Link
+                  href="/pages/education-fee"
+                  className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+                >
+                  বেতন পরিশোধ করুন
+                </Link>
+
+                <button
+                  onClick={handleLogOut}
+                  className="text-sm text-center p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+                >
+                  Log-out
+                </button>
+              </div>
+            </div>
           ) : (
             <Link
               href="/pages/authcation/login"
