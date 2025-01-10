@@ -48,7 +48,7 @@ export default function StudentPage() {
         <StudentProfile student={studentInfo.student} />
       ) : (
         <div className="h-[200px] flex justify-center items-center">
-          <ImSpinner5 className="animate-none" size={50} />
+          <ImSpinner5 className="animate-spin" size={50} />
         </div>
       )}
     </div>

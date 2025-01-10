@@ -14,6 +14,7 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const axiosSource = useAxiousSource();
   const [studentInfo, setStudentInfo] = useState();
+  const [islogout, setIslogput] = useState(false);
   const [info, setInfo] = useState();
   const router = useRouter();
 
@@ -30,11 +31,12 @@ export default function Navbar() {
       const student = JSON.parse(localStorage.getItem("student"));
       if (student?.type === "student") {
         setStudentInfo(student);
+        setIslogput(true);
       }
     } catch (error) {
       console.error("Error reading student data from localStorage:", error);
     }
-  }, []);
+  }, [router.pathname]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -63,6 +65,7 @@ export default function Navbar() {
         localStorage.removeItem("student");
         localStorage.removeItem("id");
         router.push("/");
+        setIslogput(false);
         toast.success("You successfully log-out");
       }
     });
@@ -357,7 +360,7 @@ export default function Navbar() {
 
         {/* Login Button */}
         <div>
-          {studentInfo ? (
+          {studentInfo && islogout ? (
             <div className="relative group">
               <button
                 onClick={() => toggleDropdown("profile")}
