@@ -73,10 +73,7 @@ export default function Navbar() {
   };
 
   return (
-    <div
-      onClick={closeMenu}
-      className="w-full bg-primary relative px-2 pt-5 pb-10"
-    >
+    <div className="w-full bg-primary relative px-2 pt-5 pb-10">
       <Toaster />
       <div className="max-w-6xl mx-auto px-3">
         <div className="w-full flex flex-col md:flex-row justify-center items-end gap-7">
@@ -153,6 +150,7 @@ export default function Navbar() {
         >
           <Link
             href="/"
+            onClick={closeMenu}
             className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
           >
             হোম
@@ -171,18 +169,21 @@ export default function Navbar() {
               }`}
             >
               <Link
+                onClick={closeMenu}
                 href="/pages/informetion-about-admition"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ভর্তি সম্পর্কিত তথ্য
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/admition"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ভর্তি ফরম
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/SubmitedInfo"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
@@ -203,18 +204,21 @@ export default function Navbar() {
               }`}
             >
               <Link
+                onClick={closeMenu}
                 href="/pages/education-system"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 পাঠ পদ্ধতি
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/all-stafe-and-teachers"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 আমাদের শিক্ষক ও স্টাফ মন্ডলী
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/about-gain"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
@@ -227,6 +231,7 @@ export default function Navbar() {
                 ক্যাম্পাস
               </Link> */}
               <Link
+                onClick={closeMenu}
                 href="/pages/about-history"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
@@ -247,24 +252,28 @@ export default function Navbar() {
               }`}
             >
               <Link
+                onClick={closeMenu}
                 href="/pages/services"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 সেবা সমূহ
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/notice"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 নোটিশ
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/consulting"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 পরামর্শ
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/training"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
@@ -291,18 +300,21 @@ export default function Navbar() {
                 প্রোগ্রাম
               </Link> */}
               <Link
+                onClick={closeMenu}
                 href="/pages/videos"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 ভিডিও
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/articles"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 আর্টিকেল
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/gellary"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
@@ -329,12 +341,14 @@ export default function Navbar() {
               }`}
             >
               <Link
+                onClick={closeMenu}
                 href="/pages/curriculum"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
                 কারিকুলাম
               </Link>
               <Link
+                onClick={closeMenu}
                 href="/pages/departments"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
@@ -355,6 +369,7 @@ export default function Navbar() {
             </div>
           </div>
           <Link
+            onClick={closeMenu}
             href="/pages/contact-us"
             className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
           >
@@ -387,12 +402,14 @@ export default function Navbar() {
                   {studentInfo?.studentNameBangla}
                 </p>
                 <Link
+                  onClick={closeMenu}
                   href="/pages/StudentProfile"
                   className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
                 >
                   প্রফাইল
                 </Link>
                 <Link
+                  onClick={closeMenu}
                   href="/pages/education-fee"
                   className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
                 >
@@ -409,6 +426,7 @@ export default function Navbar() {
             </div>
           ) : (
             <Link
+              onClick={closeMenu}
               href="/pages/authcation/login"
               className="px-3 flex justify-center items-center gap-3 p-2 rounded-md bg-primary hover:bg-hover font-medium text-white"
             >

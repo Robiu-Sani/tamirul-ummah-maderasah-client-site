@@ -1,16 +1,14 @@
+import axios from "axios";
 import OurAchievementCard from "./OurAchievementCard";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 
-export default function OurAchievements() {
+export default async function OurAchievements() {
+  const gains = await axios.get(`${url}/gain`);
   return (
-    <div className="pt-5 grid grid-cols-1 md:grid-cols-2 gap-3">
-      <OurAchievementCard />
-      <OurAchievementCard />
-      <OurAchievementCard />
-      <OurAchievementCard />
-      <OurAchievementCard />
-      <OurAchievementCard />
-      <OurAchievementCard />
-      <OurAchievementCard />
+    <div className="pt-5 " style={{ columns: "350px" }}>
+      {gains?.data?.data.map((gain, idx) => (
+        <OurAchievementCard key={idx} gain={gain} />
+      ))}
     </div>
   );
 }
