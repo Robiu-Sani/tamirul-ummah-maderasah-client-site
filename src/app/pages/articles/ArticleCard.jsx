@@ -1,8 +1,10 @@
 import Image from "next/image";
+import { FaShareAlt } from "react-icons/fa";
+import { SiTicktick } from "react-icons/si";
 
 export default function ArticleCard({ post }) {
   return (
-    <div className="w-full  p-2 my-4 bg-white rounded-lg shadow-lg">
+    <div className="w-full border  p-2 bg-white rounded-lg shadow-lg">
       {/* Header Section */}
       <div className="flex items-center justify-between space-x-4 mb-4">
         <div className="flex items-center gap-4">
@@ -38,7 +40,7 @@ export default function ArticleCard({ post }) {
       <p className="text-gray-600 mb-4">{post?.postDescription}</p>
 
       {/* Post Image */}
-      <div className="rounded-lg overflow-hidden p-2">
+      <div className="border-b overflow-hidden p-2">
         {post?.postImage ? (
           <Image
             width={300}
@@ -48,6 +50,23 @@ export default function ArticleCard({ post }) {
             className="w-full "
           />
         ) : null}
+      </div>
+      <div className="grid grid-cols-2">
+        <div className="flex justify-center items-center p-2">
+          {post.isSelected ? (
+            <p className="flex justify-center items-center gap-2">
+              <SiTicktick className="text-green-600" /> Selected
+            </p>
+          ) : (
+            <p className="flex justify-center items-center gap-2">
+              <SiTicktick className="text-yellow-600" />
+              Not Yet
+            </p>
+          )}
+        </div>
+        <div className="flex justify-center items-center p-2">
+          <FaShareAlt />
+        </div>
       </div>
     </div>
   );

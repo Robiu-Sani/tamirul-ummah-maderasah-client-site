@@ -11,7 +11,7 @@ export default function FatherData({ father }) {
   }
 
   return (
-    <div className="w-full mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-200">
+    <div className="w-full max-w-4xl mx-auto  p-6 bg-white rounded-xl shadow-md border border-gray-200">
       <div className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-6">
         {/* Left Section: Image */}
         <div className="flex-shrink-0">
