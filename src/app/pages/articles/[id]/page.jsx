@@ -58,36 +58,13 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Student Info
-      <div className="p-4 bg-gray-50 rounded-lg mb-4">
-        <p>
-          <strong>Father`s Name:</strong> {post.studentID.fathersName}
-        </p>
-        <p>
-          <strong>Mother's Name:</strong> {post.studentID.mothersName}
-        </p>
-        <p>
-          <strong>Address:</strong> {post.studentID.address}
-        </p>
-        <p>
-          <strong>Blood Group:</strong> {post.studentID.bloodGroup}
-        </p>
-        <p>
-          <strong>Date of Birth:</strong>{" "}
-          {new Date(post.studentID.dateOfBirth).toLocaleDateString()}
-        </p>
-        <p>
-          <strong>Residential Status:</strong> {post.studentID.residentialStatus}
-        </p>
-      </div> */}
-
         {/* Post Title */}
         <h2 className="text-2xl p-2 font-bold mb-4 text-gray-800">
-          {post.postTitle}
+          {post?.postTitle}
         </h2>
 
         {/* Post Description */}
-        <p className="text-gray-600 p-2 mb-4">{post.postDescription}</p>
+        <p className="text-gray-600 p-2 mb-4">{post?.postDescription}</p>
 
         {/* Post Image */}
         <div className="border-b overflow-hidden p-2">
@@ -95,7 +72,7 @@ export default function Page() {
             <Image
               width={300}
               height={200}
-              src={post.postImage}
+              src={post?.postImage}
               alt="Post"
               className="w-full rounded-md"
             />
