@@ -13,18 +13,17 @@ export default function ResultTable({ id }) {
       .catch((err) => console.error(err));
   }, [id]);
 
-  // Ensure data is valid before destructuring
   const examData = data?.data || {};
   const { examName, subjects = {} } = examData;
-  const { tutiral = {}, halfYearly = {}, firstTutiral = {} } = data;
-  console.log(data);
+  const { tutiral = {}, halfYearly = {}, firstTutiral = {} } = data || {};
 
   const calculateGrade = (percentage) => {
-    if (percentage >= 90) return "A+";
-    if (percentage >= 80) return "A";
-    if (percentage >= 70) return "B";
-    if (percentage >= 60) return "C";
-    if (percentage >= 50) return "D";
+    if (percentage >= 80) return "A+";
+    if (percentage >= 70) return "A";
+    if (percentage >= 60) return "A-";
+    if (percentage >= 50) return "B";
+    if (percentage >= 40) return "C";
+    if (percentage >= 33) return "D";
     return "F";
   };
 
@@ -47,18 +46,35 @@ export default function ResultTable({ id }) {
     return { total, obtained, grade, tutiralgrade, tutiralTotal };
   };
 
+  const mergeSubjects = () => {
+    const allSubjects = new Set([
+      ...Object.keys(subjects),
+      ...Object.keys(tutiral),
+      ...Object.keys(halfYearly),
+      ...Object.keys(firstTutiral),
+    ]);
+    return Array.from(allSubjects);
+  };
+
   const renderTableBody = () => {
-    return Object.keys(subjects).map((subject, index) => {
+    return mergeSubjects().map((subject, index) => {
+      const subjectScore = subjects[subject] || 0;
+      // const tutorialScore = tutiral[subject] || 0;
+      const halfYearlyScore = halfYearly[subject] || 0;
+      // const firstTutorialScore = firstTutiral[subject] || 0;
+
       let rowData = {};
 
       if (examName === "Model Test" || examName === "Test") {
-        rowData = calculateRow(subject, subjects[subject], 1);
+        rowData = calculateRow(subject, subjectScore, 1);
       } else if (
         examName === "First Tutorial" ||
         examName === "Second Tutorial"
       ) {
         const halfObtained = subjects[subject] * 0.5;
         rowData = calculateRow(subject, subjects[subject], 1);
+        // const halfObtained = tutorialScore * 0.5;
+        // rowData = calculateRow(subject, tutorialScore, 1);
         return (
           <tr key={index} className="even:bg-gray-50">
             <td className="border px-4 py-2">{subject}</td>
@@ -69,9 +85,12 @@ export default function ResultTable({ id }) {
           </tr>
         );
       } else if (examName === "Half Yearly Exam") {
-        const halfYearlyWeighted = subjects[subject] * 0.8;
-        const firstTutorialWeighted = (tutiral ? tutiral[subject] : 0) * 0.5;
-        rowData = calculateRow(subject, subjects[subject], 1);
+        // const halfYearlyWeighted = subjects[subject] || 0 * 0.8;
+        const halfYearlyWeighted = subjectScore * 0.8;
+        const tutorialWeighted = (tutiral ? tutiral[subject] || 0 : 0) * 0.5;
+        rowData = calculateRow(subject, subjects[subject] || 0, 1);
+        // const tutorialWeighted = tutorialScore * 0.5;
+        // rowData = calculateRow(subject, halfYearlyScore, 1);
         return (
           <tr key={index} className="even:bg-gray-50">
             <td className="border px-4 py-2">{subject}</td>
@@ -81,29 +100,42 @@ export default function ResultTable({ id }) {
               {halfYearlyWeighted.toFixed(0)}
             </td>
             <td className="border px-4 py-2">
-              {(firstTutorialWeighted + halfYearlyWeighted).toFixed(0)}
+              {(tutorialWeighted + halfYearlyWeighted).toFixed(0)}
             </td>
             <td className="border px-4 py-2">{rowData.grade}</td>
           </tr>
         );
       } else if (examName === "Final Exam") {
-        const finalWeighted = subjects[subject] * 0.8;
-        const secondTutorialWeighted = (tutiral ? tutiral[subject] : 0) * 0.5;
-        const halfYearlyWeighted = (halfYearly ? halfYearly[subject] : 0) * 0.8;
+        // const finalWeighted = subjects[subject] || 0 * 0.8;
+        const finalWeighted = subjectScore * 0.8;
+        const secondTutorialWeighted =
+          (tutiral ? tutiral[subject] || 0 : 0) * 0.5;
+        const halfYearlyWeighted =
+          (halfYearly ? halfYearly[subject] || 0 : 0) * 0.8;
         const firstTutorialWeighted =
-          (firstTutiral ? firstTutiral[subject] : 0) * 0.5;
+          (firstTutiral ? firstTutiral[subject] || 0 : 0) * 0.5;
         const totalWeighted =
           firstTutorialWeighted +
           halfYearlyWeighted +
           secondTutorialWeighted +
           finalWeighted;
 
-        rowData = calculateRow(subject, subjects[subject], 1);
+        rowData = calculateRow(subject, subjects[subject] || 0, 1);
+        // const secondTutorialWeighted = tutorialScore * 0.5;
+        // const halfYearlyWeighted = halfYearlyScore * 0.8;
+        // const firstTutorialWeighted = firstTutorialScore * 0.5;
+        // const totalWeighted =
+        //   firstTutorialWeighted +
+        //   halfYearlyWeighted +
+        //   secondTutorialWeighted +
+        //   finalWeighted;
+
+        // rowData = calculateRow(subject, subjectScore, 1);
         return (
           <tr key={index} className="even:bg-gray-50">
             <td className="border px-4 py-2">{subject}</td>
-            <td className="border px-4 py-2">{rowData.obtained}</td>
             <td className="border px-4 py-2">{rowData.total}</td>
+            <td className="border px-4 py-2">{rowData.obtained}</td>
             <td className="border px-4 py-2">{finalWeighted.toFixed(2)}</td>
             <td className="border px-4 py-2">
               {(secondTutorialWeighted + finalWeighted).toFixed(2)}
@@ -116,8 +148,8 @@ export default function ResultTable({ id }) {
       return (
         <tr key={index} className="even:bg-gray-50">
           <td className="border px-4 py-2">{subject}</td>
-          <td className="border px-4 py-2">{rowData.obtained}</td>
           <td className="border px-4 py-2">{rowData.total}</td>
+          <td className="border px-4 py-2">{rowData.obtained}</td>
           <td className="border px-4 py-2">{rowData.grade}</td>
         </tr>
       );
