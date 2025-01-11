@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaUser,
-  FaPhoneAlt,
   FaBriefcase,
   FaMapMarkerAlt,
   FaEnvelope,
@@ -17,19 +16,42 @@ import {
 import Image from "next/image";
 import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import axios from "axios";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import toast, { Toaster } from "react-hot-toast";
+import { ImSpinner2 } from "react-icons/im";
 
-export default function GairdeanInfo() {
+export default function GairdeanInfo({ id }) {
   const [image, setImage] = useState(null);
+  const [isload, setIsload] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    const newData = { ...data, gairdeanImage: image };
-    console.log("Gairdean Info Submitted:", newData);
-    alert("Gairdean's Information Saved Successfully!");
+  const onSubmit = async (data) => {
+    const restData = { studentId: id, gairdeanImage: image, ...data };
+    try {
+      setIsload(true);
+      const submittedData = await axios.post(
+        `${url}/gairdean/create-gairdean`,
+        restData
+      );
+
+      if (submittedData.status === true) {
+        toast.success(submittedData.message);
+        reset();
+      } else {
+        toast.error(submittedData.message);
+      }
+    } catch (error) {
+      toast.error("Error submitting form:");
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsload(false);
+    }
   };
 
   const handleImageUpload = (url) => {
@@ -41,6 +63,7 @@ export default function GairdeanInfo() {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full mx-auto bg-white p-6 rounded-md shadow-lg border"
     >
+      <Toaster />
       <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
         Gairdean`s Information
       </h2>
@@ -293,8 +316,9 @@ export default function GairdeanInfo() {
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+        className="w-full bg-blue-600 flex justify-center items-center gap-3  text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
       >
+        {isload ? <ImSpinner2 className="animate-spin" /> : null}
         Submit
       </button>
     </form>

@@ -33,51 +33,66 @@ export default function AddInfo({ student }) {
       </div>
 
       {/* Father's Information */}
-      <div className="w-full flex flex-col gap-3">
-        <div
-          onClick={() => toggleSection("father")}
-          className="w-full p-3 rounded-md border cursor-pointer flex gap-3 text-gray-700 justify-between items-center"
-        >
-          <div className="flex justify-start items-center gap-3">
-            <DiComposer className="text-[60px] font-bold" /> Father`s
-            Information
+
+      {student.father ? null : (
+        <div className="w-full flex flex-col gap-3">
+          <div
+            onClick={() => toggleSection("father")}
+            className="w-full p-3 rounded-md border cursor-pointer flex gap-3 text-gray-700 justify-between items-center"
+          >
+            <div className="flex justify-start items-center gap-3">
+              <DiComposer className="text-[60px] font-bold" /> Father`s
+              Information
+            </div>
+            {activeSection === "father" ? <IoIosArrowUp /> : <IoIosArrowDown />}
           </div>
-          {activeSection === "father" ? <IoIosArrowUp /> : <IoIosArrowDown />}
+          {activeSection === "father" && (
+            <FatherInfo id={student?.student._id} />
+          )}
         </div>
-        {activeSection === "father" && <FatherInfo id={student?.student._id} />}
-      </div>
+      )}
 
       {/* Mother's Information */}
-      <div className="w-full flex flex-col gap-3">
-        <div
-          onClick={() => toggleSection("mother")}
-          className="w-full p-3 rounded-md border cursor-pointer flex gap-3 text-gray-700 justify-between items-center"
-        >
-          <div className="flex justify-start items-center gap-3">
-            <DiComposer className="text-[60px] font-bold" /> Mother`s
-            Information
+      {student.mother ? null : (
+        <div className="w-full flex flex-col gap-3">
+          <div
+            onClick={() => toggleSection("mother")}
+            className="w-full p-3 rounded-md border cursor-pointer flex gap-3 text-gray-700 justify-between items-center"
+          >
+            <div className="flex justify-start items-center gap-3">
+              <DiComposer className="text-[60px] font-bold" /> Mother`s
+              Information
+            </div>
+            {activeSection === "mother" ? <IoIosArrowUp /> : <IoIosArrowDown />}
           </div>
-          {activeSection === "mother" ? <IoIosArrowUp /> : <IoIosArrowDown />}
+          {activeSection === "mother" && (
+            <MotherInfo id={student?.student._id} />
+          )}
         </div>
-        {activeSection === "mother" && <MotherInfo id={student?.student._id} />}
-      </div>
+      )}
 
       {/* Gairdean's Information */}
-      <div className="w-full flex flex-col gap-3">
-        <div
-          onClick={() => toggleSection("gairdean")}
-          className="w-full p-3 rounded-md border cursor-pointer flex gap-3 text-gray-700 justify-between items-center"
-        >
-          <div className="flex justify-start items-center gap-3">
-            <DiComposer className="text-[60px] font-bold" /> Gairdean`s
-            Information
+      {student.gairdean ? null : (
+        <div className="w-full flex flex-col gap-3">
+          <div
+            onClick={() => toggleSection("gairdean")}
+            className="w-full p-3 rounded-md border cursor-pointer flex gap-3 text-gray-700 justify-between items-center"
+          >
+            <div className="flex justify-start items-center gap-3">
+              <DiComposer className="text-[60px] font-bold" /> Gairdean`s
+              Information
+            </div>
+            {activeSection === "gairdean" ? (
+              <IoIosArrowUp />
+            ) : (
+              <IoIosArrowDown />
+            )}
           </div>
-          {activeSection === "gairdean" ? <IoIosArrowUp /> : <IoIosArrowDown />}
+          {activeSection === "gairdean" && (
+            <GairdeanInfo id={student?.student._id} />
+          )}
         </div>
-        {activeSection === "gairdean" && (
-          <GairdeanInfo id={student?.student._id} />
-        )}
-      </div>
+      )}
     </div>
   );
 }

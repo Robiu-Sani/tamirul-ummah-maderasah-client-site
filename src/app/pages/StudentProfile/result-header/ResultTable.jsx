@@ -2,6 +2,7 @@
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ImSpinner } from "react-icons/im";
 
 export default function ResultTable({ id }) {
   const [data, setData] = useState(null);
@@ -183,7 +184,9 @@ export default function ResultTable({ id }) {
           <tbody>{renderTableBody()}</tbody>
         </table>
       ) : (
-        <p>Loading...</p>
+        <div className="h-[200px] flex justify-center items-center">
+          <ImSpinner className="animate-spin" />
+        </div>
       )}
     </div>
   );

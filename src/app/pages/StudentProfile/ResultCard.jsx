@@ -30,7 +30,7 @@ const ResultCard = ({ result, image }) => {
     } catch (err) {
       console.log(err);
     } finally {
-      setIsImage(true);
+      setIsImage(false);
     }
   };
 
@@ -74,7 +74,7 @@ const ResultCard = ({ result, image }) => {
     } catch (err) {
       console.log(err);
     } finally {
-      setIsPdf(true);
+      setIsPdf(false);
     }
   };
 
