@@ -43,7 +43,7 @@ export default function StudentPage() {
   }, [axiosSource, router]);
 
   return (
-    <div className="w-full bg-gray-100 py-4">
+    <div className="w-full bg-green-50 py-4">
       {studentInfo ? (
         <StudentProfile student={studentInfo} />
       ) : (

@@ -6,8 +6,9 @@ import { FaShareAlt } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 
 export default function ArticleCard({ post }) {
+  console.log(`${window.location.origin}/${window.location.origin}/${id}`);
   const handleShare = async (post, id) => {
-    const postUrl = `${window.location.origin}/posts/${id}`;
+    const postUrl = `${window.location.origin}/${window.location.origin}/${id}`;
     const shareData = {
       title: `${post?.studentID?.studentNameEnglish}'s post on Tamirul Ummah Madrasah website`,
       text:

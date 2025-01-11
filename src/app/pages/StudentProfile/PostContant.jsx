@@ -10,8 +10,8 @@ export default function PostContant({ posts }) {
     );
   }
   return (
-    <div className="bg-green-50">
-      <div className="container bg-green-50 mx-auto py-10 px-3">
+    <div className="">
+      <div className="container mx-auto py-10 px-3">
         {/* Content Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Sidebar */}

@@ -17,7 +17,7 @@ import Tabs from "./Tabs";
 
 const StudentProfile = ({ student }) => {
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto py-8">
       {/* Cover Section */}
       <div
         className="relative h-60 w-full bg-cover bg-center rounded-lg shadow-lg"

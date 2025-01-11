@@ -8,7 +8,7 @@ export default function StaffCard({ staff }) {
   }
 
   return (
-    <div className="w-full border rounded-md bg-white shadow-md border-green-100 p-2">
+    <div className="w-full flex flex-col justify-between items-center border rounded-md bg-white shadow-md border-green-100 p-2">
       {/* Render teacher image */}
       <Image
         src={staffImage}
