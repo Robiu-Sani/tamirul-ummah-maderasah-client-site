@@ -10,7 +10,7 @@ export default function PostContant({ posts }) {
     );
   }
   return (
-    <div className="">
+    <div className="w-full">
       <div className="container mx-auto py-10 px-3">
         {/* Content Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
