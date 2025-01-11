@@ -3,7 +3,10 @@ import PostCard from "./PostCard";
 export default function PostContant({ posts }) {
   if (!posts) {
     return (
-      <div className="text-gray-500 text-center flex justify-center items-center py-20"></div>
+      <div className="text-gray-500 text-center flex justify-center items-center py-20">
+        {" "}
+        there is no posts
+      </div>
     );
   }
   return (
