@@ -8,7 +8,7 @@ import { DiComposer } from "react-icons/di";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import OverView from "./OverView";
 
-export default function AddInfo() {
+export default function AddInfo({ student }) {
   const [activeSection, setActiveSection] = useState(null);
 
   const toggleSection = (section) => {
@@ -44,7 +44,7 @@ export default function AddInfo() {
           </div>
           {activeSection === "father" ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
-        {activeSection === "father" && <FatherInfo />}
+        {activeSection === "father" && <FatherInfo id={student?.student._id} />}
       </div>
 
       {/* Mother's Information */}
@@ -59,7 +59,7 @@ export default function AddInfo() {
           </div>
           {activeSection === "mother" ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
-        {activeSection === "mother" && <MotherInfo />}
+        {activeSection === "mother" && <MotherInfo id={student?.student._id} />}
       </div>
 
       {/* Gairdean's Information */}
@@ -74,7 +74,9 @@ export default function AddInfo() {
           </div>
           {activeSection === "gairdean" ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
-        {activeSection === "gairdean" && <GairdeanInfo />}
+        {activeSection === "gairdean" && (
+          <GairdeanInfo id={student?.student._id} />
+        )}
       </div>
     </div>
   );
