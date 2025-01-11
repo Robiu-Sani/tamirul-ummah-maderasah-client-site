@@ -1,10 +1,49 @@
+"use client"; // This makes the component a Client Component
+
 import Image from "next/image";
+import toast from "react-hot-toast";
 import { FaShareAlt } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 
 export default function ArticleCard({ post }) {
+  const handleShare = async (post, id) => {
+    const postUrl = `${window.location.origin}/posts/${id}`;
+    const shareData = {
+      title: `${post?.studentID?.studentNameEnglish}'s post on Tamirul Ummah Madrasah website`,
+      text:
+        post.postDescription.length > 100
+          ? post.postDescription.substring(0, 97) + "..."
+          : post.postDescription,
+      url: postUrl,
+    };
+
+    const fallbackShare = (url) => {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          toast.success("Post link copied to clipboard!");
+        })
+        .catch((error) => {
+          console.error("Failed to copy link to clipboard:", error);
+          toast.error("Failed to copy link. Please try again!");
+        });
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        toast.success("Post shared successfully!");
+      } catch (error) {
+        console.error("Error sharing via Web Share API:", error);
+        fallbackShare(postUrl);
+      }
+    } else {
+      fallbackShare(postUrl);
+    }
+  };
+
   return (
-    <div className="w-full border   bg-white rounded-lg shadow-lg">
+    <div className="w-full border bg-white rounded-lg shadow-lg">
       {/* Header Section */}
       <div className="flex items-center p-3 justify-between space-x-4 mb-4">
         <div className="flex items-center gap-4">
@@ -47,11 +86,12 @@ export default function ArticleCard({ post }) {
             height={200}
             src={post.postImage}
             alt="Post"
-            className="w-full "
+            className="w-full"
           />
         ) : null}
       </div>
 
+      {/* Footer Section */}
       <div className="grid grid-cols-2 cursor-pointer">
         <div className="flex justify-center items-center p-3">
           {post.isSelected ? (
@@ -60,12 +100,14 @@ export default function ArticleCard({ post }) {
             </p>
           ) : (
             <p className="flex justify-center items-center gap-2">
-              <SiTicktick className="text-yellow-600" />
-              Not Yet
+              <SiTicktick className="text-yellow-600" /> Not Yet
             </p>
           )}
         </div>
-        <div className="flex justify-center items-center p-2">
+        <div
+          onClick={() => handleShare(post, post._id)}
+          className="flex justify-center items-center p-2 hover:text-blue-600"
+        >
           <FaShareAlt />
         </div>
       </div>
