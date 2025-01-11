@@ -29,7 +29,7 @@ export default function AddInfo({ student }) {
           </div>
           {activeSection === "overview" ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
-        {activeSection === "overview" && <OverView />}
+        {activeSection === "overview" && <OverView student={student} />}
       </div>
 
       {/* Father's Information */}
