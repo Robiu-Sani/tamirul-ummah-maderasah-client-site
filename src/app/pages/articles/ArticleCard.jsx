@@ -4,9 +4,9 @@ import { SiTicktick } from "react-icons/si";
 
 export default function ArticleCard({ post }) {
   return (
-    <div className="w-full border  p-2 bg-white rounded-lg shadow-lg">
+    <div className="w-full border   bg-white rounded-lg shadow-lg">
       {/* Header Section */}
-      <div className="flex items-center justify-between space-x-4 mb-4">
+      <div className="flex items-center p-3 justify-between space-x-4 mb-4">
         <div className="flex items-center gap-4">
           <Image
             width={100}
@@ -32,12 +32,12 @@ export default function ArticleCard({ post }) {
       </div>
 
       {/* Post Title */}
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">
+      <h2 className="text-2xl p-2 font-bold mb-4 text-gray-800">
         {post?.postTitle}
       </h2>
 
       {/* Post Description */}
-      <p className="text-gray-600 mb-4">{post?.postDescription}</p>
+      <p className="text-gray-600 p-2 mb-4">{post?.postDescription}</p>
 
       {/* Post Image */}
       <div className="border-b overflow-hidden p-2">
@@ -51,8 +51,9 @@ export default function ArticleCard({ post }) {
           />
         ) : null}
       </div>
-      <div className="grid grid-cols-2">
-        <div className="flex justify-center items-center p-2">
+
+      <div className="grid grid-cols-2 cursor-pointer">
+        <div className="flex justify-center items-center p-3">
           {post.isSelected ? (
             <p className="flex justify-center items-center gap-2">
               <SiTicktick className="text-green-600" /> Selected
