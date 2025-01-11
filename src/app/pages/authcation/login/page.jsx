@@ -47,7 +47,8 @@ export default function Login() {
         toast.success(response.data.message || "Submit successful");
         localStorage.setItem("student", JSON.stringify(response.data.data));
         localStorage.setItem("id", response.data.data._id);
-        router.push("/");
+        router.push("/pages/StudentProfile");
+        // location.reload();
       } else {
         setIsWorng(true);
         setErrMessage(response.data.error || "Invalid login credentials");

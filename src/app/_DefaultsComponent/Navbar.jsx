@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import useAxiousSource from "./useAxiousSource";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Navbar() {
@@ -17,6 +17,7 @@ export default function Navbar() {
   const [islogout, setIslogput] = useState(false);
   const [info, setInfo] = useState();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Fetch data on mount
@@ -36,7 +37,7 @@ export default function Navbar() {
     } catch (error) {
       console.error("Error reading student data from localStorage:", error);
     }
-  }, [router.pathname]);
+  }, [pathname]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
