@@ -30,6 +30,7 @@ export default function ContactForm() {
       if (response?.data?.status) {
         reset();
         toast.success(response.data.message || "Submit successful");
+        addNotifections(newData);
       } else {
         toast.error("Unexpected API response");
       }
@@ -39,6 +40,20 @@ export default function ContactForm() {
     } finally {
       setIsSubmiting(false);
     }
+  };
+
+  const addNotifections = (data) => {
+    const submitedData = {
+      name: "Contact message",
+      messages: `${data.name} want to discuss with us.`,
+      info: {},
+      path: "/notifections/messages",
+      isClick: true,
+    };
+    axios
+      .post(`${url}/notifection/create-notifection`, submitedData)
+      .then(() => console.log("success"))
+      .catch((err) => console.log(err));
   };
 
   return (

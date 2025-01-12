@@ -41,7 +41,7 @@ export default function ConsultingForm() {
     const submitedData = {
       name: "Consulting Notice",
       messages: `${data.name} want to discuss with us.`,
-      info: data,
+      info: {},
       path: "/notifictions/consulting",
       isClick: true,
     };
