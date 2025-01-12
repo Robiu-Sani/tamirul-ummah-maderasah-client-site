@@ -26,6 +26,7 @@ export default function ConsultingForm() {
       );
       if (response?.data?.status === true) {
         reset();
+        addNotifections(newData);
         toast.success(response.data.data.message || "Submit successful");
       }
     } catch (err) {
@@ -34,6 +35,20 @@ export default function ConsultingForm() {
     } finally {
       setIsSubmiting(false);
     }
+  };
+
+  const addNotifections = (data) => {
+    const submitedData = {
+      name: "Consulting Notice",
+      messages: `${data.name} want to discuss with us.`,
+      info: data,
+      path: "/notifictions/admition-Student",
+      isClick: false,
+    };
+    axios
+      .post(`${url}/notifection/create-notifection`, submitedData)
+      .then(() => console.log("success"))
+      .catch((err) => console.log(err));
   };
 
   return (
