@@ -8,7 +8,7 @@ export default function IslamicStadies() {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800">ইসলামিক শিক্ষা</h2>
           <p className="text-gray-700 mt-4 text-lg max-w-2xl mx-auto">
-            তামিরুল উম্মাহ মাদরাসা - আধুনিক ও ধর্মীয় শিক্ষার সমন্বয়ে এক অনন্য
+            তা’মীরুল উম্মাহ মাদরাসা - আধুনিক ও ধর্মীয় শিক্ষার সমন্বয়ে এক অনন্য
             শিক্ষা প্রতিষ্ঠান।
           </p>
         </div>
@@ -23,7 +23,7 @@ export default function IslamicStadies() {
                 ইসলামভিত্তিক শিক্ষা
               </h3>
               <p className="text-gray-600 text-center">
-                তামিরুল উম্মাহ মাদরাসার শিক্ষাব্যবস্থা ইসলামভিত্তিক, যেখানে
+                তা’মীরুল উম্মাহ মাদরাসার শিক্ষাব্যবস্থা ইসলামভিত্তিক, যেখানে
                 ধর্মীয় মূল্যবোধ এবং প্রাতিষ্ঠানিক শিক্ষার সমন্বয় ঘটে।
               </p>
             </div>
@@ -51,7 +51,7 @@ export default function IslamicStadies() {
                 সামাজিক দায়িত্ববোধ
               </h3>
               <p className="text-gray-600 text-center">
-                তামিরুল উম্মাহ মাদরাসার শিক্ষার্থীদের নৈতিক এবং সামাজিক
+                তা’মীরুল উম্মাহ মাদরাসার শিক্ষার্থীদের নৈতিক এবং সামাজিক
                 দায়িত্ববোধে শিক্ষিত করে তোলা হয়।
               </p>
             </div>

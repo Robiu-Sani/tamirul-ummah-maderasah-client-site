@@ -3,7 +3,7 @@ const ArticleComponent = () => {
     <div className="container mx-auto p-6 mt-10 ">
       <div className="text-gray-800 text-base leading-relaxed space-y-4">
         <div className="flex flex-col justify-center items-center gap-2">
-          <h3 className="text-2xl mx-auto font-bold">প্রতিষ্টার ইতিহাস</h3>
+          <h3 className="text-2xl mx-auto font-bold">প্রতিষ্ঠার ইতিহাস</h3>
           <h4>অধ্যাপক এ.কে.এম এমদাদুল হক মামুন</h4>
           <small>সেক্রেটারী, তা’মীরুল উম্মাহ মাদ্রাসা পরিচালনা ট্রাষ্ট</small>
         </div>

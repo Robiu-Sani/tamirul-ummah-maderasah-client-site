@@ -10,7 +10,7 @@ export default function QualifiedTeachers() {
             যোগ্য শিক্ষকবৃন্দ
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
-            তামিরুল উম্মাহ মাদরাসার যোগ্য শিক্ষকবৃন্দ প্রতিটি শিক্ষার্থীকে সেরা
+            তা’মীরুল উম্মাহ মাদরাসার যোগ্য শিক্ষকবৃন্দ প্রতিটি শিক্ষার্থীকে সেরা
             শিক্ষা প্রদানের জন্য প্রতিশ্রুতিবদ্ধ।
           </p>
         </div>

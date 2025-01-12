@@ -8,7 +8,7 @@ export default function ScienceEducation() {
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-800">বিজ্ঞান শিক্ষা</h2>
           <p className="mt-3 text-lg text-gray-600">
-            তামিরুল উম্মাহ মাদরাসায় বিজ্ঞান শিক্ষা একটি অত্যন্ত গুরুত্বপূর্ণ
+            তা’মীরুল উম্মাহ মাদরাসায় বিজ্ঞান শিক্ষা একটি অত্যন্ত গুরুত্বপূর্ণ
             ক্ষেত্র যা শিক্ষার্থীদের আধুনিক বিশ্বে জ্ঞানচর্চার সুযোগ দেয়।
           </p>
         </div>

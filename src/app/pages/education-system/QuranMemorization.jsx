@@ -8,8 +8,8 @@ export default function QuranMemorization() {
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-800">কুরআন মুখস্থকরণ</h2>
           <p className="mt-3 text-lg text-gray-600">
-            তামিরুল উম্মাহ মাদরাসায় কুরআন মুখস্থকরণ প্রক্রিয়াটি অত্যন্ত যত্নের
-            সাথে পরিচালিত হয়।
+            তা’মীরুল উম্মাহ মাদরাসায় কুরআন মুখস্থকরণ প্রক্রিয়াটি অত্যন্ত
+            যত্নের সাথে পরিচালিত হয়।
           </p>
         </div>
 
