@@ -42,7 +42,7 @@ export default function ConsultingForm() {
       name: "Consulting Notice",
       messages: `${data.name} want to discuss with us.`,
       info: data,
-      path: "/notifictions/admition-Student",
+      path: "/notifictions/consulting",
       isClick: false,
     };
     axios
