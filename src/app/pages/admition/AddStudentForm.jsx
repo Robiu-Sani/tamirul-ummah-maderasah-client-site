@@ -39,7 +39,7 @@ export default function AddStudentForm() {
       messages: `${data.studentNameEnglish} want a admition on class ${data.class}`,
       info: newData,
       path: "/notifictions/admition-Student",
-      isClick: false,
+      isClick: true,
     };
     try {
       setIsSubmiting(true);

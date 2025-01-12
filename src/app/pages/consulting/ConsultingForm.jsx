@@ -43,7 +43,7 @@ export default function ConsultingForm() {
       messages: `${data.name} want to discuss with us.`,
       info: data,
       path: "/notifictions/consulting",
-      isClick: false,
+      isClick: true,
     };
     axios
       .post(`${url}/notifection/create-notifection`, submitedData)
