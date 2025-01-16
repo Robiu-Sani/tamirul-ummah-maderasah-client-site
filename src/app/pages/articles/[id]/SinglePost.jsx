@@ -24,7 +24,11 @@ export default function SinglePost() {
   }
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-20 flex justify-center items-center">
+        Loading...
+      </div>
+    );
   }
 
   return (

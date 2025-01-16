@@ -58,7 +58,7 @@ export default function CreatePosts({ student }) {
         <div>
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-green-700"
+            className="block text-sm font-medium text-gray-700"
           >
             Post Title
           </label>
@@ -66,7 +66,7 @@ export default function CreatePosts({ student }) {
             id="title"
             type="text"
             {...register("postTitle", { required: "Title is required" })}
-            className="mt-1 block w-full p-2 border border-green-300 rounded-md focus:ring-green-500 focus:border-green-500"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-gray-500 focus:border-gray-500"
           />
           {errors.postTitle && (
             <p className="text-red-500 text-sm">{errors.postTitle.message}</p>
@@ -77,7 +77,7 @@ export default function CreatePosts({ student }) {
         <div>
           <label
             htmlFor="postDescription"
-            className="block text-sm font-medium text-green-700"
+            className="block text-sm font-medium text-gray-700"
           >
             Post Description
           </label>
@@ -86,7 +86,7 @@ export default function CreatePosts({ student }) {
             {...register("postDescription", {
               required: "Description is required",
             })}
-            className="mt-1 block w-full h-40 p-2 border border-green-300 rounded-md focus:ring-green-500 focus:border-green-500"
+            className="mt-1 block w-full h-40 p-2 border border-gray-300 rounded-md focus:ring-gray-500 focus:border-gray-500"
           />
           {errors.postDescription && (
             <p className="text-red-500 text-sm">
@@ -98,7 +98,7 @@ export default function CreatePosts({ student }) {
         {/* image  */}
         <div className="my-4 max-w-sm">
           <div className="w-full flex flex-col gap-3">
-            <label className="block text-sm text-green-600 mb-2">
+            <label className="block text-sm text-gray-600 mb-2">
               Upload Image
             </label>
             <div className="w-full relative flex-col cursor-pointer h-auto min-h-[150px] rounded-md overflow-hidden border flex justify-center items-center">
@@ -124,7 +124,7 @@ export default function CreatePosts({ student }) {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full flex justify-center items-center gap-3 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300"
+          className="w-full flex justify-center items-center gap-3 bg-gray-600 text-white py-2 px-4 rounded-lg shadow hover:bg-gray-700 transition duration-300"
         >
           {isSubmiting ? <GiOilySpiral className="animate-spin" /> : null}
           Create Post

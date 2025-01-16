@@ -1,11 +1,15 @@
 "use client"; // This makes the component a Client Component
 
 import Image from "next/image";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { BsThreeDots } from "react-icons/bs";
 import { FaShareAlt } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
+import PopupBox from "./PopupBox";
 
 export default function ArticleCard({ post }) {
+  const [callBox, setCallBox] = useState(false);
   const handleShare = async (post, id) => {
     const postUrl = `${window.location.origin}/pages/articles/${id}`;
     const shareData = {
@@ -65,8 +69,15 @@ export default function ArticleCard({ post }) {
             <p className="text-sm text-gray-500">{post?.studentID?.class}</p>
           </div>
         </div>
-        <span className="ml-auto text-sm text-gray-400">
+        <span className="ml-auto text-sm flex justify-center items-center gap-3 text-gray-400">
           {post?.studentID?.section}
+          <div
+            onClick={() => setCallBox(!callBox)}
+            className="relative text-xl text-black cursor-pointer"
+          >
+            <BsThreeDots />
+            {callBox ? <PopupBox post={post} /> : null}
+          </div>
         </span>
       </div>
 
