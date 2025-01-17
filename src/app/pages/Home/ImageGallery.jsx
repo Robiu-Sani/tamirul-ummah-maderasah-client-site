@@ -1,50 +1,20 @@
 "use client";
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearchPlus, FaTimes, FaDownload } from "react-icons/fa";
-
-const images = [
-  {
-    id: 1,
-    src: "https://elearningindustry.com/wp-content/uploads/2022/01/shutterstock_1060195475.jpg",
-    title: "ইসলামী ইভেন্ট ১",
-    description: "ইসলামী ইভেন্ট ১ এর বিবরণ।",
-  },
-  {
-    id: 2,
-    src: "https://www.beesmart.city/hubfs/05-sponsored-content/viewsonic/smart-education-bee-smart-city-viewsonic-classroom-social.jpg",
-    title: "ইসলামী ইভেন্ট ২",
-    description: "ইসলামী ইভেন্ট ২ এর বিবরণ।",
-  },
-  {
-    id: 3,
-    src: "https://www.tetonscience.org/wp-content/uploads/2019/09/TSS_SummerCamp_BoyleHill_07-31-19-17-min-scaled.jpg",
-    title: "ইসলামী ইভেন্ট ৩",
-    description: "ইসলামী ইভেন্ট ৩ এর বিবরণ।",
-  },
-  {
-    id: 4,
-    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhjmOPekQuvCQDiyFt9q7NmMIQygYz7D3rpiRE_4HTUCdRJR2SblQVHM1mEty7tYu1Yos&usqp=CAU",
-    title: "ইসলামী ইভেন্ট ৪",
-    description: "ইসলামী ইভেন্ট ৪ এর বিবরণ।",
-  },
-  {
-    id: 5,
-    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT363UwfUvPaGlAoZkiCTR8R9AyHIRk0wQbZAP2pOPzinCyXfwCGI6quW9Rrw4X7pGWFOE&usqp=CAU",
-    title: "ইসলামী ইভেন্ট ৫",
-    description: "ইসলামী ইভেন্ট ৫ এর বিবরণ।",
-  },
-  {
-    id: 6,
-    src: "https://www.gettingsmart.com/wp-content/uploads/2016/11/5-Levels-of-Place-Based-Learning-Implementation-Feature-Image.png",
-    title: "ইসলামী ইভেন্ট ৬",
-    description: "ইসলামী ইভেন্ট ৬ এর বিবরণ।",
-  },
-];
 
 export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${url}/image`)
+      .then((res) => setImages(res.data.data.data))
+      .then((err) => console.log(err));
+  }, []);
 
   // Function to download an image
   const downloadImage = async (url, fileName) => {
@@ -90,7 +60,7 @@ export default function ImageGallery() {
               <Image
                 width={200}
                 height={200}
-                src={image.src}
+                src={image.image}
                 alt={image.title}
                 className="w-full object-cover"
               />
@@ -103,7 +73,9 @@ export default function ImageGallery() {
                 </button>
                 <button
                   className="text-white text-2xl p-4 bg-green-500 rounded-full hover:bg-green-600"
-                  onClick={() => downloadImage(image.src, `${image.title}.jpg`)}
+                  onClick={() =>
+                    downloadImage(image.image, `${image.title}.jpg`)
+                  }
                 >
                   <FaDownload />
                 </button>
@@ -123,12 +95,12 @@ export default function ImageGallery() {
         {/* ইমেজ প্রিভিউর জন্য মডাল */}
         {selectedImage && (
           <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg overflow-hidden max-w-3xl w-full shadow-lg">
+            <div className="bg-white rounded-lg overflow-y-auto max-w-3xl w-full shadow-lg">
               <div className="relative">
                 <Image
                   width={700}
                   height={500}
-                  src={selectedImage.src}
+                  src={selectedImage.image}
                   alt={selectedImage.title}
                   className="w-full h-96 object-cover"
                 />

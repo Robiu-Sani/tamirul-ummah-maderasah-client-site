@@ -31,8 +31,6 @@ export default function AllImages() {
       .then((err) => console.log(err));
   }, []);
 
-  console.log(images);
-
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
