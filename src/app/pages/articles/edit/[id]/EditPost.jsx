@@ -17,6 +17,37 @@ export default function EditPost() {
   const [post, setPost] = useState(null); // Initialize as null
   const { id } = useParams();
   const navigate = useRouter();
+
+  useEffect(() => {
+    const fetchStudentInfo = async () => {
+      try {
+        const id = localStorage.getItem("id");
+
+        if (!id) {
+          // Redirect if ID is missing
+          localStorage.removeItem("student");
+          navigate.push("/");
+          return;
+        }
+
+        const response = await axios.get(`${url}/student/single-student/${id}`);
+        const { data } = response.data;
+
+        if (data?.student?.type !== "student") {
+          // If the type isn't valid, redirect and clean up local storage
+          localStorage.removeItem("student");
+          localStorage.removeItem("id");
+          navigate.push("/");
+        }
+      } catch (error) {
+        console.error("Error fetching student information:", error);
+        navigate.push("/"); // Redirect on error
+      }
+    };
+
+    fetchStudentInfo();
+  }, [navigate]);
+
   const {
     register,
     handleSubmit,

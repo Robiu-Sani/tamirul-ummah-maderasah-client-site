@@ -73,7 +73,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="w-full bg-primary relative px-2 pt-5 pb-10">
+    <div className="w-full bg-green-700 relative px-2 pt-5 pb-10">
       <Toaster />
       <div className="max-w-6xl mx-auto px-3">
         <div className="w-full flex flex-col md:flex-row justify-center items-end gap-7">

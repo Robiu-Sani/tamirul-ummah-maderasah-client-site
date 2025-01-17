@@ -17,8 +17,6 @@ export default function ImageGallery() {
       .then((err) => console.log(err));
   }, []);
 
-  console.log(images);
-
   // Function to download an image
   const downloadImage = async (url, fileName) => {
     try {
