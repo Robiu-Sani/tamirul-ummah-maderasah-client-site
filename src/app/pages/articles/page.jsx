@@ -1,10 +1,28 @@
+"use client";
 import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { useEffect, useState } from "react";
 
-export default async function Articles() {
-  const posts = await axios.get(`${url}/post`);
+export default function Articles() {
+  const [posts, setPost] = useState([]);
+
+  useEffect(() => {
+    fatchPost();
+  }, []);
+  // const posts = await axios.get(`${url}/post`);
+
+  const HandleReFatch = () => {
+    fatchPost();
+  };
+
+  const fatchPost = () => {
+    axios
+      .get(`${url}/post`)
+      .then((data) => setPost(data))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="bg-green-50">
@@ -40,7 +58,11 @@ export default async function Articles() {
           {/* Main Posts Section */}
           <div className="lg:col-span-6 flex flex-col gap-4">
             {posts?.data?.data.map((post, idx) => (
-              <ArticleCard post={post} key={idx} />
+              <ArticleCard
+                post={post}
+                HandleReFatch={HandleReFatch}
+                key={idx}
+              />
             ))}
           </div>
 

@@ -8,7 +8,7 @@ import { FaShareAlt } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 import PopupBox from "./PopupBox";
 
-export default function ArticleCard({ post }) {
+export default function ArticleCard({ post, HandleReFatch }) {
   const [callBox, setCallBox] = useState(false);
   const handleShare = async (post, id) => {
     const postUrl = `${window.location.origin}/pages/articles/${id}`;
@@ -76,7 +76,9 @@ export default function ArticleCard({ post }) {
             className="relative text-xl text-black cursor-pointer"
           >
             <BsThreeDots />
-            {callBox ? <PopupBox post={post} /> : null}
+            {callBox ? (
+              <PopupBox post={post} HandleReFatch={HandleReFatch} />
+            ) : null}
           </div>
         </span>
       </div>

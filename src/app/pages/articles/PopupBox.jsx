@@ -7,7 +7,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa6";
 
-export default function PopupBox({ post }) {
+export default function PopupBox({ post, HandleReFatch }) {
   const id = localStorage.getItem("id");
   const [isSubmiting, setIsSubmiting] = useState(false);
 
@@ -21,7 +21,7 @@ export default function PopupBox({ post }) {
 
       if (response?.data?.status) {
         toast.success(response.data.message || "Delete successful");
-        toast.info("it will delete after 10 munite");
+        HandleReFatch();
       } else {
         toast.error("Unexpected API response");
       }
