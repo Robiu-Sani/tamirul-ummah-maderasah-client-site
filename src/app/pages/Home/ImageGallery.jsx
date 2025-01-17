@@ -1,5 +1,6 @@
 "use client";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -11,10 +12,12 @@ export default function ImageGallery() {
 
   useEffect(() => {
     axios
-      .get(`${url}/image`)
-      .then((res) => setImages(res.data.data.data))
+      .get(`${url}/image/client`)
+      .then((res) => setImages(res.data.data))
       .then((err) => console.log(err));
   }, []);
+
+  console.log(images);
 
   // Function to download an image
   const downloadImage = async (url, fileName) => {
