@@ -4,7 +4,7 @@ import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
 import axios from "axios";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
@@ -16,6 +16,7 @@ export default function EditPost() {
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [post, setPost] = useState(null); // Initialize as null
   const { id } = useParams();
+  const navigate = useRouter();
   const {
     register,
     handleSubmit,
@@ -65,6 +66,7 @@ export default function EditPost() {
       if (response?.data?.status) {
         reset();
         toast.success(response.data.message || "Submit successful");
+        navigate.push("/");
       } else {
         toast.error("Unexpected API response");
       }
