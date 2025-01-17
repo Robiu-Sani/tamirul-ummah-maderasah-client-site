@@ -57,7 +57,13 @@ export default function PopupBox({ post, HandleReFatch }) {
   }
   return (
     <div className="p-3 bg-white rounded-md border shadow-md absolute top-4 right-0">
-      PopupBox <Toaster />
+      <Toaster />
+      <Link
+        href={`/pages/articles/report/${post._id}`}
+        className=" p-1 flex justify-center items-center gap-2 rounded-md bg-gray-50 border text-center w-[134px] text-sm text-gray-500"
+      >
+        Report Post
+      </Link>
     </div>
   );
 }

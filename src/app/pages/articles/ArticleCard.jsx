@@ -11,7 +11,7 @@ import PopupBox from "./PopupBox";
 export default function ArticleCard({ post, HandleReFatch }) {
   const [callBox, setCallBox] = useState(false);
   const handleShare = async (post, id) => {
-    const postUrl = `${window.location.origin}/pages/articles/${id}`;
+    const postUrl = `${window.location.origin}/pages/articles/details/${id}`;
     const shareData = {
       title: `${post?.studentID?.studentNameEnglish}'s post on Tamirul Ummah Madrasah website`,
       text:
