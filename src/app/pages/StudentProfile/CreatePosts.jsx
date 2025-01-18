@@ -12,6 +12,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 export default function CreatePosts({ student }) {
   const [image, setImage] = useState(null);
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const [submittedPost, setSubmittedPost] = useState(null); // For preview
   const {
     register,
     handleSubmit,
@@ -26,19 +27,20 @@ export default function CreatePosts({ student }) {
       isSelected: false,
       postImage: image,
     };
+
     try {
       setIsSubmiting(true);
-
       const response = await axios.post(`${url}/post/create-post`, postData);
 
       if (response?.data?.status) {
+        setSubmittedPost(postData); // Save for preview
         reset();
-        toast.success(response.data.message || "Submit successful");
+        toast.success(response.data.message || "Post created successfully");
       } else {
         toast.error("Unexpected API response");
       }
     } catch (err) {
-      console.error("Error submitting contact form:", err);
+      console.error("Error submitting the post:", err);
       toast.error("Something went wrong!");
     } finally {
       setIsSubmiting(false);
@@ -95,7 +97,7 @@ export default function CreatePosts({ student }) {
           )}
         </div>
 
-        {/* image  */}
+        {/* Image Upload */}
         <div className="my-4 max-w-sm">
           <div className="w-full flex flex-col gap-3">
             <label className="block text-sm text-gray-600 mb-2">
@@ -130,6 +132,28 @@ export default function CreatePosts({ student }) {
           Create Post
         </button>
       </form>
+
+      {/* Preview of Submitted Post */}
+      {submittedPost && (
+        <div className="mt-6 bg-gray-100 p-4 rounded-md shadow-md">
+          <h2 className="text-xl font-bold mb-2">Preview of Your Post</h2>
+          <p className="mb-2">
+            <strong>Title:</strong> {submittedPost.postTitle}
+          </p>
+          <p className="mb-2 whitespace-pre-wrap">
+            <strong>Description:</strong> {submittedPost.postDescription}
+          </p>
+          {submittedPost.postImage && (
+            <Image
+              width={200}
+              height={200}
+              src={submittedPost.postImage}
+              alt="Post Image"
+              className="rounded-md border"
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }

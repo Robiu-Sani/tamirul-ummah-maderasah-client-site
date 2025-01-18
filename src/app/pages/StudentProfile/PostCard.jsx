@@ -35,7 +35,12 @@ const PostCard = ({ post }) => {
       </h2>
 
       {/* Post Description */}
-      <p className="text-gray-600 mb-4">{post?.postDescription}</p>
+      <div
+        className="text-gray-600 mb-4 whitespace-pre-line"
+        dangerouslySetInnerHTML={{
+          __html: post?.postDescription?.replace(/\n/g, "<br/>"),
+        }}
+      />
 
       {/* Post Image */}
       <div className="rounded-lg overflow-hidden p-2">

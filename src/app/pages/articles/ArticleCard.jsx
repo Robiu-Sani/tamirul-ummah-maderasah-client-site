@@ -10,6 +10,8 @@ import PopupBox from "./PopupBox";
 
 export default function ArticleCard({ post, HandleReFatch }) {
   const [callBox, setCallBox] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
   const handleShare = async (post, id) => {
     const postUrl = `${window.location.origin}/pages/articles/details/${id}`;
     const shareData = {
@@ -44,6 +46,14 @@ export default function ArticleCard({ post, HandleReFatch }) {
     } else {
       fallbackShare(postUrl);
     }
+  };
+
+  const truncateDescription = (description) => {
+    const words = description.split(" ");
+    if (words.length > 15) {
+      return words.slice(0, 15).join(" ") + " ...";
+    }
+    return description;
   };
 
   return (
@@ -89,7 +99,31 @@ export default function ArticleCard({ post, HandleReFatch }) {
       </h2>
 
       {/* Post Description */}
-      <p className="text-gray-600 p-2 mb-4">{post?.postDescription}</p>
+      <div className="text-gray-600 mb-4 p-3 whitespace-pre-line">
+        {showFullDescription ? (
+          <>
+            {post?.postDescription}
+            <button
+              className="text-blue-600 ml-2"
+              onClick={() => setShowFullDescription(false)}
+            >
+              Show Less
+            </button>
+          </>
+        ) : (
+          <>
+            {truncateDescription(post?.postDescription)}
+            {post?.postDescription.split(" ").length > 15 && (
+              <button
+                className="text-blue-600 ml-2"
+                onClick={() => setShowFullDescription(true)}
+              >
+                See More
+              </button>
+            )}
+          </>
+        )}
+      </div>
 
       {/* Post Image */}
       <div className="border-b overflow-hidden p-2">
