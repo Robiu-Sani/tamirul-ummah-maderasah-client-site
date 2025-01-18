@@ -3,7 +3,7 @@ import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 
 export default function Articles() {
   const [posts, setPost] = useState([]);
@@ -24,16 +24,7 @@ export default function Articles() {
       .catch((err) => console.log(err));
   };
 
-  const scrollar = useRef(null);
-  useEffect(() => {
-  if (posts?.length > 0) {
-    scrollar.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-      inline: "nearest",
-    });
-  }
-}, [posts]);
+
 
   return (
     <div className="bg-green-50">
@@ -67,7 +58,7 @@ export default function Articles() {
           </div>
 
           {/* Main Posts Section */}
-          <div ref={scrollar} className="lg:col-span-6 flex flex-col gap-4">
+          <div  className="lg:col-span-6 flex flex-col gap-4">
             {posts?.data?.data.map((post, idx) => (
               <ArticleCard
                 post={post}
