@@ -9,13 +9,7 @@ export default function Articles() {
   const [posts, setPosts] = useState([]); // Store the posts
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error state
-  const [isFirstRender, setIsFirstRender] = useState(true); // Track first render
   const scrollar = useRef(null); // Ref for scroll behavior
-
-  // Fetch posts when the component loads
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   // Function to fetch posts
   const fetchPosts = async () => {
@@ -28,20 +22,30 @@ export default function Articles() {
       setError("Failed to fetch articles. Please try again later."); // Handle error
     } finally {
       setLoading(false); // End loading
-      setIsFirstRender(false); // Mark first render as completed
     }
   };
 
-  // Scroll into view when posts are updated (not on first render)
+  // Fetch posts when the component loads
   useEffect(() => {
-    if (!isFirstRender && posts.length > 0) {
+    // Check if it's the first visit or reload
+    const isFirstVisit = localStorage.getItem("firstVisit") === null;
+
+    // If it's the first visit or reload, set the flag
+    if (isFirstVisit) {
+      localStorage.setItem("firstVisit", "false");
+    }
+
+    fetchPosts();
+
+    // Scroll only if it's not the first visit or reload
+    if (!isFirstVisit && posts.length > 0) {
       scrollar.current?.scrollIntoView({
         behavior: "smooth",
         block: "end",
         inline: "nearest",
       });
     }
-  }, [posts, isFirstRender]);
+  }, [posts]);
 
   return (
     <div className="bg-green-50">
@@ -94,7 +98,10 @@ export default function Articles() {
             {!loading &&
               !error &&
               posts.map((post, idx) => (
-                <ArticleCard post={post} handleReFetch={fetchPosts} key={idx} />
+                <ArticleCard
+                  post={post}
+                  key={idx}
+                />
               ))}
           </div>
 
