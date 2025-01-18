@@ -3,28 +3,33 @@ import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Articles() {
   const [posts, setPost] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fatchPost();
+    fetchPost();
   }, []);
-  // const posts = await axios.get(${url}/post);
 
   const HandleReFatch = () => {
-    fatchPost();
+    fetchPost();
   };
 
-  const fatchPost = () => {
+  const fetchPost = () => {
+    setLoading(true);
     axios
-      .get(${url}/post)
-      .then((data) => setPost(data))
-      .catch((err) => console.log(err));
+      .get(`${url}/post`)
+      .then((response) => {
+        setPost(response.data.data); // Adjust this based on API response
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   };
-
-
 
   return (
     <div className="bg-green-50">
@@ -41,7 +46,7 @@ export default function Articles() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Sidebar */}
           <div className="lg:col-span-3 hidden lg:block">
-            <div className=" p-5 border bg-green-200 rounded-lg shadow-lg">
+            <div className="p-5 border bg-green-200 rounded-lg shadow-lg">
               <h3 className="text-lg font-bold text-blue-600 mb-2">
                 শিক্ষার্থী প্রতিভা !
               </h3>
@@ -58,14 +63,14 @@ export default function Articles() {
           </div>
 
           {/* Main Posts Section */}
-          <div  className="lg:col-span-6 flex flex-col gap-4">
-            {posts?.data?.data.map((post, idx) => (
-              <ArticleCard
-                post={post}
-                HandleReFatch={HandleReFatch}
-                key={idx}
-              />
-            ))}
+          <div className="lg:col-span-6 flex flex-col gap-4">
+            {loading ? (
+              <p>লোডিং হচ্ছে...</p>
+            ) : (
+              posts?.map((post, idx) => (
+                <ArticleCard post={post} HandleReFatch={HandleReFatch} key={idx} />
+              ))
+            )}
           </div>
 
           {/* Right Sidebar */}
@@ -89,4 +94,4 @@ export default function Articles() {
       </div>
     </div>
   );
-} 
+}
