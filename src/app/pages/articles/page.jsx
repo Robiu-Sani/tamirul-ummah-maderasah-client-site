@@ -3,13 +3,12 @@ import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 
 export default function Articles() {
   const [posts, setPosts] = useState([]); // Store the posts
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error state
-  const scrollar = useRef(null); // Ref for scroll behavior
   const isFirstRender = useRef(true); // Track the first render
 
   // Function to fetch posts
@@ -31,20 +30,7 @@ export default function Articles() {
     fetchPosts();
   }, []);
 
-  // Scroll logic
-  useEffect(() => {
-    if (isFirstRender.current) {
-      // Skip scrolling on the first render
-      isFirstRender.current = false;
-    } else if (posts.length > 0) {
-      // Scroll only after the first render
-      scrollar.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest",
-      });
-    }
-  }, [posts]);
+  
 
   return (
     <div className="bg-green-50">
@@ -78,7 +64,7 @@ export default function Articles() {
           </div>
 
           {/* Main Posts Section */}
-          <div ref={scrollar} className="lg:col-span-6 flex flex-col gap-4">
+          <div  className="lg:col-span-6 flex flex-col gap-4">
             {loading && (
               <div className="text-center text-blue-600">
                 <p>লোড হচ্ছে...</p>
