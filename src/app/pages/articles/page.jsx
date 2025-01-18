@@ -3,34 +3,37 @@ import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
-import { useEffect,  useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Articles() {
-  const [posts, setPosts] = useState([]); // Store the posts
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error state
-  const isFirstRender = useRef(true); // Track the first render
+  const [posts, setPost] = useState([]);
 
-  // Function to fetch posts
-  const fetchPosts = async () => {
-    setLoading(true); // Start loading
-    setError(""); // Reset error
-    try {
-      const response = await axios.get(`${url}/post`);
-      setPosts(response.data?.data || []); // Update posts
-    } catch (err) {
-      setError("Failed to fetch articles. Please try again later."); // Handle error
-    } finally {
-      setLoading(false); // End loading
-    }
+  useEffect(() => {
+    fatchPost();
+  }, []);
+  // const posts = await axios.get(${url}/post);
+
+  const HandleReFatch = () => {
+    fatchPost();
   };
 
-  // Fetch posts and manage scrolling
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  const fatchPost = () => {
+    axios
+      .get(${url}/post)
+      .then((data) => setPost(data))
+      .catch((err) => console.log(err));
+  };
 
-  
+  const scrollar = useRef(null);
+  useEffect(() => {
+  if (posts?.length > 0) {
+    scrollar.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  }
+}, [posts]);
 
   return (
     <div className="bg-green-50">
@@ -47,7 +50,7 @@ export default function Articles() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Sidebar */}
           <div className="lg:col-span-3 hidden lg:block">
-            <div className="p-5 border bg-green-200 rounded-lg shadow-lg">
+            <div className=" p-5 border bg-green-200 rounded-lg shadow-lg">
               <h3 className="text-lg font-bold text-blue-600 mb-2">
                 শিক্ষার্থী প্রতিভা !
               </h3>
@@ -64,34 +67,18 @@ export default function Articles() {
           </div>
 
           {/* Main Posts Section */}
-          <div  className="lg:col-span-6 flex flex-col gap-4">
-            {loading && (
-              <div className="text-center text-blue-600">
-                <p>লোড হচ্ছে...</p>
-              </div>
-            )}
-            {error && (
-              <div className="text-center text-red-600">
-                <p>{error}</p>
-              </div>
-            )}
-            {!loading && !error && posts.length === 0 && (
-              <div className="text-center text-gray-600">
-                <p>কোনো আর্টিকেল পাওয়া যায়নি।</p>
-              </div>
-            )}
-            {!loading &&
-              !error &&
-              posts.map((post, idx) => (
-                <ArticleCard
-                  post={post}
-                  key={idx}
-                />
-              ))}
+          <div ref={scrollar} className="lg:col-span-6 flex flex-col gap-4">
+            {posts?.data?.data.map((post, idx) => (
+              <ArticleCard
+                post={post}
+                HandleReFatch={HandleReFatch}
+                key={idx}
+              />
+            ))}
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-3 hidden lg:block">
+          <div className="lg:col-span-3 hidden lg:block ">
             <div className="bg-green-200 p-5 border rounded-lg shadow-lg">
               <h3 className="text-lg font-bold text-blue-600 mb-2">
                 ম্যাগাজিন মেসেজ!
@@ -111,4 +98,4 @@ export default function Articles() {
       </div>
     </div>
   );
-}
+} 
