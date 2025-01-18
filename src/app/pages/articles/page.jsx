@@ -10,6 +10,7 @@ export default function Articles() {
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error state
   const scrollar = useRef(null); // Ref for scroll behavior
+  const isFirstRender = useRef(true); // Track the first render
 
   // Function to fetch posts
   const fetchPosts = async () => {
@@ -25,20 +26,18 @@ export default function Articles() {
     }
   };
 
-  // Fetch posts when the component loads
+  // Fetch posts and manage scrolling
   useEffect(() => {
-    // Check if it's the first visit or reload
-    const isFirstVisit = localStorage.getItem("firstVisit") === null;
-
-    // If it's the first visit or reload, set the flag
-    if (isFirstVisit) {
-      localStorage.setItem("firstVisit", "false");
-    }
-
     fetchPosts();
+  }, []);
 
-    // Scroll only if it's not the first visit or reload
-    if (!isFirstVisit && posts.length > 0) {
+  // Scroll logic
+  useEffect(() => {
+    if (isFirstRender.current) {
+      // Skip scrolling on the first render
+      isFirstRender.current = false;
+    } else if (posts.length > 0) {
+      // Scroll only after the first render
       scrollar.current?.scrollIntoView({
         behavior: "smooth",
         block: "end",
