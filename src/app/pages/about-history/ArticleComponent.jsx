@@ -1,48 +1,48 @@
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
+// <Helmet>
+// {/* Primary Meta Tags */}
+// <title>তা’মীরুল উম্মাহ মাদ্রাসা | প্রতিষ্ঠার ইতিহাস </title>
+// <meta
+//   name="description"
+//   content="তা’মীরুল উম্মাহ মাদ্রাসার প্রতিষ্ঠার ইতিহাস ও তার শিক্ষাগত কার্যক্রম নিয়ে বিস্তারিত বিবরণ।"
+// />
+// <meta
+//   name="keywords"
+//   content="তা’মীরুল উম্মাহ মাদ্রাসা, ইসলামিক শিক্ষা, প্রতিষ্ঠার ইতিহাস, আল-কুরআন, শিক্ষামূলক গ্রন্থ"
+// />
+// <meta name="author" content="অধ্যাপক এ.কে.এম এমদাদুল হক মামুন" />
+// <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+// {/* Open Graph / Facebook */}
+// <meta property="og:type" content="article" />
+// <meta
+//   property="og:title"
+//   content="প্রতিষ্ঠার ইতিহাস | তা’মীরুল উম্মাহ মাদ্রাসা"
+// />
+// <meta
+//   property="og:description"
+//   content="তা’মীরুল উম্মাহ মাদ্রাসার প্রতিষ্ঠার ইতিহাস ও তার শিক্ষাগত কার্যক্রম নিয়ে বিস্তারিত বিবরণ।"
+// />
+// <meta property="og:image" content="https://example.com/image.jpg" />
+// <meta property="og:url" content="https://example.com/article" />
+// <meta property="og:site_name" content="তা’মীরুল উম্মাহ মাদ্রাসা" />
+
+// {/* Twitter */}
+// <meta name="twitter:card" content="summary_large_image" />
+// <meta
+//   name="twitter:title"
+//   content="প্রতিষ্ঠার ইতিহাস | তা’মীরুল উম্মাহ মাদ্রাসা"
+// />
+// <meta
+//   name="twitter:description"
+//   content="তা’মীরুল উম্মাহ মাদ্রাসার প্রতিষ্ঠার ইতিহাস ও তার শিক্ষাগত কার্যক্রম নিয়ে বিস্তারিত বিবরণ।"
+// />
+// <meta name="twitter:image" content="https://example.com/image.jpg" />
+// </Helmet>
 
 const ArticleComponent = () => {
   return (
     <div className="container mx-auto p-6 mt-10 ">
-      <Helmet>
-        {/* Primary Meta Tags */}
-        <title>তা’মীরুল উম্মাহ মাদ্রাসা | প্রতিষ্ঠার ইতিহাস </title>
-        <meta
-          name="description"
-          content="তা’মীরুল উম্মাহ মাদ্রাসার প্রতিষ্ঠার ইতিহাস ও তার শিক্ষাগত কার্যক্রম নিয়ে বিস্তারিত বিবরণ।"
-        />
-        <meta
-          name="keywords"
-          content="তা’মীরুল উম্মাহ মাদ্রাসা, ইসলামিক শিক্ষা, প্রতিষ্ঠার ইতিহাস, আল-কুরআন, শিক্ষামূলক গ্রন্থ"
-        />
-        <meta name="author" content="অধ্যাপক এ.কে.এম এমদাদুল হক মামুন" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:title"
-          content="প্রতিষ্ঠার ইতিহাস | তা’মীরুল উম্মাহ মাদ্রাসা"
-        />
-        <meta
-          property="og:description"
-          content="তা’মীরুল উম্মাহ মাদ্রাসার প্রতিষ্ঠার ইতিহাস ও তার শিক্ষাগত কার্যক্রম নিয়ে বিস্তারিত বিবরণ।"
-        />
-        <meta property="og:image" content="https://example.com/image.jpg" />
-        <meta property="og:url" content="https://example.com/article" />
-        <meta property="og:site_name" content="তা’মীরুল উম্মাহ মাদ্রাসা" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="প্রতিষ্ঠার ইতিহাস | তা’মীরুল উম্মাহ মাদ্রাসা"
-        />
-        <meta
-          name="twitter:description"
-          content="তা’মীরুল উম্মাহ মাদ্রাসার প্রতিষ্ঠার ইতিহাস ও তার শিক্ষাগত কার্যক্রম নিয়ে বিস্তারিত বিবরণ।"
-        />
-        <meta name="twitter:image" content="https://example.com/image.jpg" />
-      </Helmet>
       <div className="text-gray-800 text-base leading-relaxed space-y-4">
         <div className="flex flex-col justify-center items-center gap-2">
           <h3 className="text-2xl mx-auto font-bold">প্রতিষ্ঠার ইতিহাস</h3>

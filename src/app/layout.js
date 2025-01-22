@@ -32,6 +32,10 @@ export default function RootLayout({ children }) {
       <head>
         {/* Primary Meta Tags */}
         <meta name="title" content={metadata.title} />
+        <meta
+          name="google-site-verification"
+          content="yE6LWh9OBDrFmKu5ThS3l56FdkDZcn6mQeLNgKiIMSg"
+        />
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta name="author" content={metadata.author} />
