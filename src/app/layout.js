@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+// import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./_DefaultsComponent/Navbar";
 import Footer from "./_DefaultsComponent/Footer";
@@ -16,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Tamirul Ummah Maderasah | তামিরুল উম্মাহ মাদ্রাসা | ",
+  title: "Tamirul Ummah Madrasah | তামিরুল উম্মাহ মাদ্রাসা ",
   description:
     "Discover Tamirul Ummah Maderasah - দোলাতপুর আদর্শ সদর, হালিমা নগর, কুমিল্লা। আধুনিক ও ইসলামী শিক্ষার সেরা প্রতিষ্ঠান।",
   keywords:
