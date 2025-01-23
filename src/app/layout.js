@@ -17,12 +17,12 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Tamirul Ummah Madrasah | তামিরুল উম্মাহ মাদ্রাসা ",
+  title: "Tamirul Ummah Madrasah | তা’মীরুল উম্মাহ মাদ্রাসা",
   description:
-    "Discover Tamirul Ummah Maderasah - দোলাতপুর আদর্শ সদর, হালিমা নগর, কুমিল্লা। আধুনিক ও ইসলামী শিক্ষার সেরা প্রতিষ্ঠান।",
+    "Tamirul Ummah Madrasah (তা’মীরুল উম্মাহ মাদ্রাসা) provides top-notch Islamic and modern education in Cumilla. Discover our renowned institution for excellence in education.",
   keywords:
-    "Tamirul Ummah Maderasah, Madrasah in Cumilla, Islamic Education, দোলাতপুর মাদ্রাসা, কুমিল্লা মাদ্রাসা, Halima Nagar Madrasah, comulla madrasah, ",
-  author: "Tamirul Ummah Maderasah",
+    "Tamirul Ummah Madrasah, Madrasah, তামীরুল উম্মাহ মাদ্রাসা , তা’মীরুল উম্মাহ মাদ্রাসা,তামিরুল উম্মাহ মাদ্রাসা, মাদ্রাসা, education, Islamic education, tamirul, ummah, modern education, Cumilla madrasah",
+  author: "Tamirul Ummah Madrasah",
   viewport: "width=device-width, initial-scale=1.0",
 };
 
@@ -30,6 +30,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         {/* Primary Meta Tags */}
         <meta name="title" content={metadata.title} />
         <meta
@@ -64,7 +67,7 @@ export default function RootLayout({ children }) {
         <meta property="twitter:description" content={metadata.description} />
         <meta
           property="twitter:image"
-          content="https://www.tamirulummahmadrasah.com/twitter-image.jpg"
+          content="https://lh3.googleusercontent.com/p/AF1QipPPykIiwgQjtIX_6M5wt8Mt3HAtMrTEjFmvEfJy=s680-w680-h510"
         />
 
         {/* Facebook (Open Graph Protocol) */}
@@ -77,7 +80,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content={metadata.description} />
         <meta
           property="og:image"
-          content="https://www.tamirulummahmadrasah.com/facebook-image.jpg"
+          content="https://lh3.googleusercontent.com/p/AF1QipPPykIiwgQjtIX_6M5wt8Mt3HAtMrTEjFmvEfJy=s680-w680-h510"
         />
         <meta
           property="og:image:alt"
@@ -95,7 +98,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content={metadata.description} />
         <meta
           property="og:image"
-          content="https://www.tamirulummahmadrasah.com/instagram-image.jpg"
+          content="https://lh3.googleusercontent.com/p/AF1QipPPykIiwgQjtIX_6M5wt8Mt3HAtMrTEjFmvEfJy=s680-w680-h510"
         />
 
         {/* YouTube */}
@@ -109,7 +112,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content={metadata.description} />
         <meta
           property="og:image"
-          content="https://www.tamirulummahmadrasah.com/youtube-thumbnail.jpg"
+          content="https://lh3.googleusercontent.com/p/AF1QipPPykIiwgQjtIX_6M5wt8Mt3HAtMrTEjFmvEfJy=s680-w680-h510"
         />
 
         {/* TikTok */}
@@ -133,7 +136,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content={metadata.description} />
         <meta
           property="og:image"
-          content="https://www.tamirulummahmadrasah.com/linkedin-image.jpg"
+          content="https://lh3.googleusercontent.com/p/AF1QipPPykIiwgQjtIX_6M5wt8Mt3HAtMrTEjFmvEfJy=s680-w680-h510"
         />
         <meta
           property="og:image:alt"
@@ -150,7 +153,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content={metadata.description} />
         <meta
           property="og:image"
-          content="https://www.tamirulummahmadrasah.com/pinterest-image.jpg"
+          content="https://lh3.googleusercontent.com/p/AF1QipPPykIiwgQjtIX_6M5wt8Mt3HAtMrTEjFmvEfJy=s680-w680-h510"
         />
 
         {/* General SEO */}
@@ -158,7 +161,11 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <meta
           name="keywords"
-          content="Tamirul Ummah Madrasah, Islamic education, modern education, madrasa in Cumilla"
+          content="Tamirul Ummah Madrasah,tamirul ummah madrasah Islamic education, modern education, madrasa in Cumilla"
+        />
+        <meta
+          name="keywords"
+          content="মাদ্রাসা, Islamic school, তামীরুল উম্মাহ মাদ্রাসা,তা’মীরুল উম্মাহ মাদ্রাসা,তামিরুল উম্মাহ মাদ্রাসা, education nash, madrasah nash, school nash"
         />
         <meta name="author" content="Tamirul Ummah Madrasah" />
         <meta name="robots" content="index, follow" />
