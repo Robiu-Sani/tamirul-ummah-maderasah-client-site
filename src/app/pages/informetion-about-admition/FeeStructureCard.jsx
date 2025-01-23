@@ -20,6 +20,9 @@ const FeeStructureCard = ({ data }) => {
       {/* Subheader */}
       <div className="bg-gray-100 py-2 px-4 text-center">
         <p className="text-sm font-semibold">
+          <span len="bg" className="text-green-600">
+            ত্রৈমাসিক পরীক্ষার ফি -
+          </span>
           নাসারী-দ্বিতীয় শ্রেণি পর্যন্ত -{" "}
           <span len="bg" className="text-green-600">
             {convertToBanglaNumbers(data.nasaariToSecondGrade)} টাকা
