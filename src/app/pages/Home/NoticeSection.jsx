@@ -23,11 +23,11 @@ export default function NoticeSection() {
   return (
     <div className="w-full mx-auto py-10 container bg-green-50 px-3 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       <div className="w-full col-span-1 md:col-span-2 flex justify-end relative">
-        <div className="w-[90%] md:w-[60%] p-3 mt-7 rounded-md border border-primary bg-white z-20">
+        <div className="w-[90%] md:w-[60%] p-3 mt-7 rounded-md border border-primary bg-[#ffffff83] md:bg-white z-20">
           <h2 className="font-semibold text-xl mb-3">
             তা’মীরুল উম্মাহ মাদরাসা
           </h2>
-          <p className="text-gray-600">
+          <p className="text-black md:text-gray-600">
             তা’মীরুল উম্মাহ মাদরাসা একটি স্বতন্ত্র শিক্ষাপ্রতিষ্ঠান, যেখানে
             ইসলামি জ্ঞানের গভীরতা এবং আধুনিক শিক্ষার যুগোপযোগীতা একসঙ্গে
             শিক্ষার্থীদের কাছে পৌঁছে দেওয়া হয়। এখানে শিক্ষার্থীদের কুরআন ও

@@ -63,16 +63,18 @@ export default function ServicesSection() {
         <p className="text-center mb-10 text-lg">
           আমাদের মাদরাসার বিভিন্ন শিক্ষা সেবা সম্পর্কে জানুন।
         </p>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3">
           {services.map((service, index) => (
             <div
               onClick={() => router.push(`/pages/services`)}
               key={index}
-              className="p-4 border cursor-pointer rounded-md border-primary shadow-md flex flex-col items-center text-center bg-white hover:bg-gray-100 transition duration-300"
+              className="p-2 sm:p-4 border cursor-pointer rounded-md border-primary shadow-md flex flex-col items-center text-center bg-white hover:bg-gray-100 transition duration-300"
             >
-              <service.icon className="text-5xl text-primary mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">{service.name}</h3>
-              <p className="text-lg text-gray-600">{service.title}</p>
+              <service.icon className="text-2xl sm:text-5xl text-primary mb-4" />
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2">
+                {service.name}
+              </h3>
+              <p className=" sm:text-lg text-gray-600">{service.title}</p>
             </div>
           ))}
         </div>

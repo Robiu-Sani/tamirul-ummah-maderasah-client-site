@@ -118,6 +118,9 @@ export default function Navbar() {
             </p>
           </div>
         </div>
+        <div className="flex text-green-50 justify-center items-center p-2 text-center">
+          আল্লাহ ভীরু, সৎ, যোগ্য ও দেশপ্রেমিক নাগরিক তৈরীর অঙ্গীকার
+        </div>
       </div>
 
       {/* Navigation */}

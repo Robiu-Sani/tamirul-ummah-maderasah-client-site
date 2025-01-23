@@ -69,13 +69,13 @@ const CarouselBanner = () => {
       {/* Embla Carousel Container */}
       <div
         ref={emblaRef}
-        className="overflow-hidden h-[450px] flex justify-center items-center sm:h-[600px] bg-black"
+        className="overflow-hidden  h-[450px] flex justify-center items-center sm:h-[600px] bg-black"
       >
         <div className="flex h-full">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className="relative flex-[0_0_100%] flex flex-col justify-center items-center bg-cover bg-center text-white h-full"
+              className="relative flex-[0_0_100%] p-5 flex flex-col justify-center items-center bg-cover bg-center text-white h-full"
               style={{
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.6)),url(${slide.bg})`,
               }}
