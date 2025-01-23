@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Tamirul Ummah Madrasah | তা’মীরুল উম্মাহ মাদ্রাসা",
+  title: "Tamirul Ummah Madrasah | তা’মীরুল উম্মাহ মাদ্রাসা , cumilla",
   description:
     "Tamirul Ummah Madrasah (তা’মীরুল উম্মাহ মাদ্রাসা) provides top-notch Islamic and modern education in Cumilla. Discover our renowned institution for excellence in education.",
   keywords:
