@@ -22,7 +22,7 @@ export default function Footer() {
       : "২০২৫"; // Default fallback year
 
   return (
-    <footer className="bg-green-700 text-white py-12">
+    <footer className="bg-green-700 text-white pt-48 py-12">
       <div className="container mx-auto px-4">
         {/* ফুটার সেকশন গ্রিড */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -169,6 +169,8 @@ export default function Footer() {
                 >
                   কুকি পলিসি
                 </Link>
+              </li>
+              <li>
                 <Link
                   href="https://robiussani.netlify.app/"
                   className="hover:text-gray-300 mb-5 transition duration-200"

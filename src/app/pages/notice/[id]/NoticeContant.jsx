@@ -129,8 +129,8 @@ export default function NoticeContant() {
 
         {/* Notice Details */}
         <div className="mt-8 p-5 bg-white rounded-md shadow-md">
-          <h2 className="text-xl font-bold text-gray-800">{notice?.title}</h2>
-          <p className="text-gray-600 mt-2">{notice?.description}</p>
+          <h2 className="text-2xl font-bold text-black">{notice?.title}</h2>
+          <p className="text-gray-800 text-xl mt-2">{notice?.description}</p>
           {notice?.place && (
             <p className="text-gray-600 mt-2">
               <strong>Place:</strong> {notice?.place}
