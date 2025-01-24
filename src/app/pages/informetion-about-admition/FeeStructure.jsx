@@ -12,7 +12,7 @@ const FeeStructure = ({ data }) => {
       <div className="container mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Header */}
         <div className="bg-green-600 text-white text-center py-5 font-bold text-2xl md:text-3xl">
-          ভর্তি বেতন ও অন্যান্য ফি
+          হিফজ শাখার ভর্তি বেতন ও অন্যান্য ফি
         </div>
 
         {/* Fee Details */}
