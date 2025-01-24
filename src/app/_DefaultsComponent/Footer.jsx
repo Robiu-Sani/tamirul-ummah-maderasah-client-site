@@ -169,6 +169,12 @@ export default function Footer() {
                 >
                   কুকি পলিসি
                 </Link>
+                <Link
+                  href="https://robiussani.netlify.app/"
+                  className="hover:text-gray-300 mb-5 transition duration-200"
+                >
+                  developed by code-biruni
+                </Link>
               </li>
             </ul>
             <div className="flex mt-4 space-x-4">
