@@ -16,7 +16,10 @@ export default function StudentDetails({ image, result }) {
         </p>
       </div>
       <Image
-        src={image}
+        src={
+          image ||
+          "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
+        }
         alt="Student"
         width={120}
         height={150}

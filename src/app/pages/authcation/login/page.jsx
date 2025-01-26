@@ -27,7 +27,7 @@ export default function Login() {
     try {
       const student = JSON.parse(localStorage.getItem("student"));
       if (student?.type === "student") {
-        router.push("/StudentProfile");
+        router.push("/pages/StudentProfile");
       } else {
         localStorage.removeItem("student");
         localStorage.removeItem("id");

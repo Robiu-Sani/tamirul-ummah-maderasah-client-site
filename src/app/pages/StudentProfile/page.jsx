@@ -6,45 +6,51 @@ import { useRouter } from "next/navigation";
 import { ImSpinner5 } from "react-icons/im";
 
 export default function StudentPage() {
-  const [studentInfo, setStudentInfo] = useState(null);
+  const [studentInfo, setStudentInfo] = useState({});
+  const [error, setError] = useState(false);
   const axiosSource = useAxiousSource();
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchStudentInfo = async () => {
-      try {
-        const id = localStorage.getItem("id");
+  const fetchStudentInfo = async () => {
+    try {
+      const id = localStorage.getItem("id");
 
-        if (!id) {
-          // Redirect if ID is missing
-          localStorage.removeItem("student");
-          router.push("/");
-          return;
-        }
-
-        const response = await axiosSource.get(`/student/single-student/${id}`);
-        const { data } = response.data;
-
-        if (data?.student?.type !== "student") {
-          // If the type isn't valid, redirect and clean up local storage
-          localStorage.removeItem("student");
-          localStorage.removeItem("id");
-          router.push("/");
-        } else {
-          setStudentInfo(data);
-        }
-      } catch (error) {
-        console.error("Error fetching student information:", error);
-        router.push("/"); // Redirect on error
+      if (!id || id.trim() === "") {
+        localStorage.removeItem("student");
+        router.push("/");
+        return;
       }
-    };
 
+      const response = await axiosSource.get(`/student/single-student/${id}`);
+      const { data } = response.data;
+
+      if (data?.student?.type !== "student") {
+        localStorage.removeItem("student");
+        localStorage.removeItem("id");
+        router.push("/");
+      } else {
+        setStudentInfo(data);
+      }
+    } catch (error) {
+      console.error("Error fetching student information:", error);
+      setError(true);
+      setTimeout(() => router.push("/"), 3000);
+    }
+  };
+
+  useEffect(() => {
     fetchStudentInfo();
   }, [axiosSource, router]);
 
   return (
     <div className="w-full bg-green-50 py-4">
-      {studentInfo ? (
+      {error ? (
+        <div className="h-[200px] flex justify-center items-center">
+          <p className="text-red-500">
+            Error loading student information. Redirecting...
+          </p>
+        </div>
+      ) : studentInfo?.student ? (
         <StudentProfile student={studentInfo} />
       ) : (
         <div className="h-[200px] flex justify-center items-center">

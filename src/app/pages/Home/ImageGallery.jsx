@@ -56,8 +56,8 @@ export default function ImageGallery() {
 
         {/* গ্যালারি গ্রিড */}
         <div className="" style={{ columns: "250px" }}>
-          {images.map((image) => (
-            <div key={image.id} className="relative m-1 group duration-300">
+          {images.map((image, idx) => (
+            <div key={idx} className="relative m-1 group duration-300">
               <Image
                 width={200}
                 height={200}

@@ -35,7 +35,10 @@ const StudentProfile = ({ student }) => {
           <Image
             width={100}
             height={100}
-            src={student?.student?.image}
+            src={
+              student?.student?.image ||
+              "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
+            }
             alt={`${student?.student?.studentNameEnglish} Profile`}
             className="w-40 h-40 rounded-full border-4 border-green-500 shadow-md"
           />

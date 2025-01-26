@@ -1,5 +1,4 @@
 "use client";
-import Head from "next/head";
 import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
@@ -35,40 +34,6 @@ export default function Articles() {
 
   return (
     <>
-      <Head>
-        <title>আমাদের আর্টিকেল পেইজ - Tamirul Ummah Madrasah</title>
-        <meta
-          name="description"
-          content="Tamirul Ummah Madrasah's article page, showcasing the creative talents of students and sharing inspiring stories."
-        />
-        <meta
-          name="keywords"
-          content="Tamirul Ummah Madrasah, Articles, Student Talents, Creativity, Education"
-        />
-        <meta name="author" content="Tamirul Ummah Madrasah" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          property="og:title"
-          content="আমাদের আর্টিকেল পেইজ - Tamirul Ummah Madrasah"
-        />
-        <meta
-          property="og:description"
-          content="Explore the article page of Tamirul Ummah Madrasah, where students express their creativity and talents."
-        />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content="https://www.tamirulummahmadrasah.com/articles"
-        />
-        <meta
-          property="og:image"
-          content="https://i.postimg.cc/66HFxrZQ/Whats-App-Image-2024-12-12-at-8-45-34-AM-removebg-preview.png"
-        />
-        <link
-          rel="icon"
-          href="https://i.postimg.cc/66HFxrZQ/Whats-App-Image-2024-12-12-at-8-45-34-AM-removebg-preview.png"
-        />
-      </Head>
       <div className="bg-green-50">
         <div className="container bg-green-50 mx-auto py-10 px-3">
           {/* Banner Section */}
