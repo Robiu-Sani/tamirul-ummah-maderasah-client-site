@@ -389,7 +389,10 @@ export default function Navbar() {
                 className=" text-sm  md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
               >
                 <Image
-                  src={studentInfo?.image}
+                  src={
+                    studentInfo?.image ||
+                    "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
+                  }
                   width={50}
                   height={50}
                   alt={studentInfo?.studentNameEnglish}
