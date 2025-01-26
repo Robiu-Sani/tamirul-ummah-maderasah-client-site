@@ -21,7 +21,7 @@ import AlertBox from "./AlertBox";
 
 export default function AddStudentForm() {
   const [isSubmiting, setIsSubmiting] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [alert, setAlert] = useState(false);
   const {
     register,
