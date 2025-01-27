@@ -23,7 +23,9 @@ export default function StudentPage() {
       const response = await axiosSource.get(`/student/single-student/${id}`);
       const { data } = response.data;
 
-      if (data?.student?.type !== "student") {
+      if (data?.student?.type == "blocked") {
+        localStorage.removeItem("student");
+        localStorage.removeItem("id");
         router.push("/");
       } else {
         setStudentInfo(data);
