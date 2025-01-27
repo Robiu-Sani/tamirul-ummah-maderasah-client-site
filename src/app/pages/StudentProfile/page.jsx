@@ -15,10 +15,9 @@ export default function StudentPage() {
     try {
       const id = localStorage.getItem("id");
 
-      if (!id || id.trim() === "") {
+      if (!id) {
         localStorage.removeItem("student");
         router.push("/");
-        return;
       }
 
       const response = await axiosSource.get(`/student/single-student/${id}`);
