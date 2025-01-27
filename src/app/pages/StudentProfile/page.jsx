@@ -18,19 +18,20 @@ export default function StudentPage() {
       if (!id) {
         localStorage.removeItem("student");
         router.push("/");
+        return;
       }
 
       const response = await axiosSource.get(`/student/single-student/${id}`);
       const { data } = response.data;
 
-      if (data?.student?.type == "blocked") {
+      if (data?.student?.type === "blocked") {
         localStorage.removeItem("student");
         localStorage.removeItem("id");
         router.push("/");
       } else {
         setStudentInfo(data);
-        localStorage.setItem("student", JSON.stringify(response.data.data));
-        localStorage.setItem("id", response.data.data._id);
+        localStorage.setItem("student", JSON.stringify(data));
+        localStorage.setItem("id", data._id);
       }
     } catch (error) {
       console.error("Error fetching student information:", error);
@@ -41,7 +42,7 @@ export default function StudentPage() {
 
   useEffect(() => {
     fetchStudentInfo();
-  }, [axiosSource, router]);
+  }, [router]); // Removed axiosSource as it may not change
 
   return (
     <div className="w-full bg-green-50 py-4">

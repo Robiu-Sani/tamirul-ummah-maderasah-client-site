@@ -48,6 +48,7 @@ export default function Login() {
         localStorage.setItem("student", JSON.stringify(response.data.data));
         localStorage.setItem("id", response.data.data._id);
         router.push("/pages/StudentProfile");
+        // console.log(response.data.data._id, response.data.data, response.data);
         // location.reload();
       } else {
         setIsWorng(true);
