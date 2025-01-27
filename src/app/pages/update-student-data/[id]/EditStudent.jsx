@@ -35,8 +35,8 @@ export default function EditStudent() {
     formState: { errors },
   } = useForm();
 
-  console.log(id);
-  console.log(url);
+  //   console.log(id);
+  //   console.log(url);
 
   useEffect(() => {
     console.log(`${url}/student/single-student/${id}`);
@@ -51,15 +51,6 @@ export default function EditStudent() {
         setLoading(false); // If an error occurs, set loading to false as well
       });
   }, [id]);
-
-  if (loading) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center">
-        <FaSpinner className="animate-spin text-4xl text-blue-500" />
-        <span className="ml-4 text-lg text-green-700">Loading...</span>
-      </div>
-    );
-  }
 
   const onSubmit = async (data) => {
     const newdata = {
@@ -123,7 +114,14 @@ export default function EditStudent() {
     setImage(url);
   };
 
-  console.log(`${url}/student/single-student/${id}`);
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <FaSpinner className="animate-spin text-4xl text-blue-500" />
+        <span className="ml-4 text-lg text-green-700">Loading...</span>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full mt-10">
