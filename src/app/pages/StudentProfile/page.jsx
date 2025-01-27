@@ -30,8 +30,8 @@ export default function StudentPage() {
         router.push("/");
       } else {
         setStudentInfo(data);
-        localStorage.setItem("student", JSON.stringify(data));
-        localStorage.setItem("id", data._id);
+        localStorage.setItem("student", JSON.stringify(data.student));
+        localStorage.setItem("id", data.student._id);
       }
     } catch (error) {
       console.error("Error fetching student information:", error);
