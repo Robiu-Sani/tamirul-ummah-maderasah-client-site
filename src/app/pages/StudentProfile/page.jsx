@@ -24,8 +24,6 @@ export default function StudentPage() {
       const { data } = response.data;
 
       if (data?.student?.type !== "student") {
-        localStorage.removeItem("student");
-        localStorage.removeItem("id");
         router.push("/");
       } else {
         setStudentInfo(data);
