@@ -304,6 +304,21 @@ export default function AddStudentForm() {
           )}
         </div>
 
+        <div className="w-full">
+          <label className="block font-medium text-green-700 mb-2">
+            classRoll
+          </label>
+          <input
+            type="number"
+            {...register("classRoll", { required: false })}
+            placeholder="Enter Class roll"
+            className="w-full p-1 px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+          {errors.classRoll && (
+            <span className="text-red-500 text-sm">This field is required</span>
+          )}
+        </div>
+
         {/* Gender */}
         <div className="w-full">
           <label className="block font-medium text-green-700 mb-2">
