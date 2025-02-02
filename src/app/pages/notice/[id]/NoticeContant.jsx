@@ -99,7 +99,7 @@ export default function NoticeContant() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-center items-end gap-7">
           {/* Left Content */}
           <div className="text-center w-full md:w-auto justify-center md:justify-end md:text-right flex flex-col gap-2 order-2 md:order-none">
-            <h1 className="text-3xl font-bold text-green-100">
+            <h1 className="text-2xl font-bold text-green-100">
               তা’মীরুল উম্মাহ আলিম মাদ্রাসা
             </h1>
             <p className="text-green-200">
@@ -118,7 +118,7 @@ export default function NoticeContant() {
 
           {/* Right Content */}
           <div className="text-center md:flex hidden md:text-left flex-col gap-2 order-3 md:order-none">
-            <h1 className="text-3xl font-bold text-green-100">
+            <h1 className="text-2xl font-bold text-green-100">
               তা’মীরুল উম্মাহ আলিম মাদ্রাসা
             </h1>
             <p className="text-green-200">
