@@ -63,7 +63,7 @@ export default function NoticeContant() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-14 px-2 rounded-md">
+    <div className="max-w-5xl mx-auto py-14 px-2 rounded-md">
       {/* Icons */}
       <Toaster />
       <div className="flex justify-end gap-6 p-4">
@@ -129,8 +129,12 @@ export default function NoticeContant() {
 
         {/* Notice Details */}
         <div className="mt-8 p-5 bg-white rounded-md shadow-md">
-          <h2 className="text-2xl font-bold text-black">{notice?.title}</h2>
-          <p className="text-gray-800 text-xl mt-2">{notice?.description}</p>
+          <h2 className="md:text-2xl text-xl font-bold text-black">
+            {notice?.title}
+          </h2>
+          <div className="text-gray-800 text-sm md:text-xl mt-2 whitespace-pre-wrap">
+            {notice?.description}
+          </div>
           {notice?.place && (
             <p className="text-gray-600 mt-2">
               <strong>Place:</strong> {notice?.place}
