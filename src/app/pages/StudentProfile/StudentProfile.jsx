@@ -32,7 +32,7 @@ const StudentProfile = ({ student }) => {
       <div className="relative -mt-28 bg-white rounded-lg shadow-lg p-6 md:p-10">
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Profile Image */}
-          <div className="w-40 h-40 overflow-hidded rounded-full border-2 border-primary cursor-pointer flex justify-center items-center">
+          <div className="w-40 h-40 overflow-hidden rounded-full border-2 border-primary cursor-pointer flex justify-center items-center">
             <Image
               width={100}
               height={100}
