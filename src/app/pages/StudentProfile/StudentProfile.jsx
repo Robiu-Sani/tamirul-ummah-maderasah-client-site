@@ -32,16 +32,18 @@ const StudentProfile = ({ student }) => {
       <div className="relative -mt-28 bg-white rounded-lg shadow-lg p-6 md:p-10">
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Profile Image */}
-          <Image
-            width={100}
-            height={100}
-            src={
-              student?.student?.image ||
-              "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
-            }
-            alt={`${student?.student?.studentNameEnglish} Profile`}
-            className="w-40 h-40 rounded-full border-4 border-green-500 shadow-md"
-          />
+          <div className="w-40 h-40 rounded-full border-2 border-primary cursor-pointer flex justify-center items-center">
+            <Image
+              width={100}
+              height={100}
+              src={
+                student?.student?.image ||
+                "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
+              }
+              alt={`${student?.student?.studentNameEnglish} Profile`}
+              className="w-full "
+            />
+          </div>
 
           {/* Personal Information */}
           <div className="text-center md:text-left">

@@ -1,9 +1,9 @@
-import EditPost from "@/app/pages/articles/edit/[id]/EditPost";
+import UpdateForm from "./UpdateForm";
 
 export default function page() {
   return (
-    <div>
-      <EditPost />
+    <div className="bg-green-50">
+      <UpdateForm />
     </div>
   );
 }

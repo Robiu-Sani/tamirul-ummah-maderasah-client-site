@@ -388,16 +388,18 @@ export default function Navbar() {
                 onClick={() => toggleDropdown("profile")}
                 className=" text-sm  md:w-auto hover:bg-gray-100 rounded-md  flex justify-between items-center"
               >
-                <Image
-                  src={
-                    studentInfo?.image ||
-                    "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
-                  }
-                  width={50}
-                  height={50}
-                  alt={studentInfo?.studentNameEnglish}
-                  className="w-[50px] h-[50px] rounded-full border border-primary cursor-pointer"
-                />
+                <div className="w-[50px] h-[50px] rounded-full overflow-hidden border border-primary cursor-pointer flex justify-center items-center">
+                  <Image
+                    src={
+                      studentInfo?.image ||
+                      "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
+                    }
+                    width={50}
+                    height={50}
+                    alt={studentInfo?.studentNameEnglish}
+                    className="w-full"
+                  />
+                </div>
               </button>
               <div
                 className={`dropdown z-[999] bg-white right-0 absolute w-[200px] p-2 rounded-md border shadow-md flex flex-col gap-3 ${
