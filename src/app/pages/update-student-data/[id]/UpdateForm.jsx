@@ -1,10 +1,13 @@
 "use client";
 
+import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import {
   FaCalendarAlt,
   FaHome,
@@ -19,20 +22,108 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 
 export default function UpdateForm() {
   const [image, setImage] = useState();
+  const [studentData, setStudentData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [isload, setIsload] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const { id } = useParams();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // Handle the update logic here
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`${url}/student/single-student/${id}`)
+      .then((response) => {
+        setStudentData(response.data.data.student);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  const onSubmit = async (data) => {
+    const newdata = {
+      address: data.address ? data.address : studentData.address,
+      birthCertificate: data.birthCertificate
+        ? data.birthCertificate
+        : studentData.birthCertificate,
+      bloodGroup: data.bloodGroup ? data.bloodGroup : studentData.bloodGroup,
+      class: data.class ? data.class : studentData.class,
+      classRoll: data.classRoll ? data.classRoll : studentData.classRoll,
+      dateOfBirth: data.dateOfBirth
+        ? data.dateOfBirth
+        : studentData.dateOfBirth,
+      fathersName: data.fathersName
+        ? data.fathersName
+        : studentData.fathersName,
+      gender: data.gender ? data.gender : studentData.gender,
+      height: data.height ? data.height : studentData.height,
+      identityMark: data.identityMark
+        ? data.identityMark
+        : studentData.identityMark,
+      mothersName: data.mothersName
+        ? data.mothersName
+        : studentData.mothersName,
+      password: data.password ? data.password : studentData.password,
+      residentialStatus: data.residentialStatus
+        ? data.residentialStatus
+        : studentData.residentialStatus,
+      section: data.section ? data.section : studentData.section,
+      monthlyFee: data.monthlyFee ? data.monthlyFee : studentData.monthlyFee,
+      studentNameBangla: data.studentNameBangla
+        ? data.studentNameBangla
+        : studentData.studentNameBangla,
+      studentNameEnglish: data.studentNameEnglish
+        ? data.studentNameEnglish
+        : studentData.studentNameEnglish,
+      weight: data.weight ? data.weight : studentData.weight,
+      image: image ? image : studentData.image,
+    };
+
+    try {
+      setIsload(true);
+      const submittedData = await axios.patch(
+        `${url}/student/update-single-student-by-patch/${studentData._id}`,
+        newdata
+      );
+
+      if (submittedData.data.status === true) {
+        toast.success(submittedData.message);
+        reset();
+        setImage("");
+
+        localStorage.setItem(
+          "student",
+          JSON.stringify(submittedData.data.data)
+        );
+      } else {
+        toast.error(submittedData.message);
+      }
+    } catch (error) {
+      toast.error("Error submitting form:");
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsload(false);
+    }
   };
 
   const handleImageUpload = (url) => {
     setImage(url);
   };
+
+  if (loading) {
+    return (
+      <div className="py-28 flex justify-center items-center">
+        <ImSpinner2 className="animate-spin text-3xl" />
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto py-14 px-5 flex justify-center items-center">
@@ -242,7 +333,7 @@ export default function UpdateForm() {
             </div>
 
             {/* Height */}
-            <div className="w-full">
+            {/* <div className="w-full">
               <label className="block font-medium text-green-700 mb-2">
                 password
               </label>
@@ -257,7 +348,7 @@ export default function UpdateForm() {
                   This field is required
                 </span>
               )}
-            </div>
+            </div> */}
 
             {/* Weight */}
             <div className="w-full">
@@ -464,7 +555,7 @@ export default function UpdateForm() {
             type="submit"
             className="w-full bg-green-600 mt-3 flex justify-center items-center gap-3 text-white p-2 rounded-md hover:bg-green-700 transition"
           >
-            {/* {isload ? <ImSpinner2 className="animate-spin" /> : null} */}
+            {isload ? <ImSpinner2 className="animate-spin" /> : null}
             Save Student Information
           </button>
         </form>
