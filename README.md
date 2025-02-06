@@ -1,6 +1,6 @@
 # Tamirul Ummah Madrasah Website
 
-Welcome to the official website of **Tamirul Ummah Madrasah**. This platform is designed to provide comprehensive information about the Madrasah and offers various features to make the experience seamless for students, parents, and administrators.
+Welcome to the official website of **Tamirul Ummah Madrasah**. This platform  is designed to provide comprehensive information about the Madrasah and offers various features to make the experience seamless for students, parents, and administrators.
 
 🌐 **Live Link**: [Tamirul Ummah Madrasah](https://www.tamirulummahmadrasah.com/)
 
