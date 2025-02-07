@@ -9,6 +9,8 @@ import axios from "axios";
 import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import toast, { Toaster } from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
+// import Audio from "./Audio";
+// import Speech from "react-text-to-speech";
 
 export default function NoticeContant() {
   const [notice, setNotice] = useState();
@@ -62,11 +64,17 @@ export default function NoticeContant() {
     }
   };
 
+  const asdf = "this is just for testing ";
+
   return (
     <div className="max-w-5xl mx-auto py-14 px-2 rounded-md">
       {/* Icons */}
       <Toaster />
+
       <div className="flex justify-end gap-6 p-4">
+        {/* <Audio audioText={asdf} /> */}
+        {/* <Audio audioText={notice?.description} /> */}
+        {/* <Speech text={notice?.description} /> */}
         <div className="group relative cursor-pointer" onClick={downloadAsPDF}>
           {isDownloadPdf ? (
             <ImSpinner9 className="animate-spin" />

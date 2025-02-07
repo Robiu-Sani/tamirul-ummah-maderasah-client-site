@@ -425,6 +425,13 @@ export default function Navbar() {
                 </Link>
                 <Link
                   onClick={closeMenu}
+                  href={`/pages/StudentProfile/ai-support`}
+                  className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+                >
+                  Ai Suports
+                </Link>
+                <Link
+                  onClick={closeMenu}
                   href={`/pages/change-password/${studentInfo._id}`}
                   className="text-sm p-1 text-center px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
                 >
