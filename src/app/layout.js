@@ -4,6 +4,7 @@ import Navbar from "./_DefaultsComponent/Navbar";
 import Footer from "./_DefaultsComponent/Footer";
 import NextTopLoader from "nextjs-toploader";
 import Map from "./_DefaultsComponent/Map";
+import WhatsApp from "./_DefaultsComponent/WhatsApp";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export const metadata = {
   author: "Tamirul Ummah Madrasah",
   keywords: [
     "Tamirul Ummah Madrasah",
+    "Tamirul Ummah",
     "Islamic education",
     "modern education",
     "Cumilla",
@@ -85,6 +87,7 @@ export default function RootLayout({ children }) {
         <NextTopLoader color="#FFD700" shadow="#FFF" height={4} />
         <Navbar />
         <main>{children}</main>
+        <WhatsApp />
         <Map />
         <Footer />
       </body>

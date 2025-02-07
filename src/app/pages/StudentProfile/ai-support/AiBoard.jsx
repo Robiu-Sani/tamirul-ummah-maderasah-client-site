@@ -1,11 +1,16 @@
 "use client";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AiBoard() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
@@ -69,7 +74,7 @@ export default function AiBoard() {
             }`}
           >
             <div
-              className={`max-w-[70%] p-3 rounded-lg whitespace-pre-wrap ${
+              className={`max-w-[85%] p-3 rounded-lg whitespace-pre-wrap ${
                 message.sender === "user"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
@@ -86,6 +91,7 @@ export default function AiBoard() {
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
       {/* Input box */}
       <div className="flex  gap-2 items-center p-3 border-t">
