@@ -1,6 +1,11 @@
 "use client";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { FaHome } from "react-icons/fa";
+import { RiFileUserFill } from "react-icons/ri";
+import { SiWikimediafoundation } from "react-icons/si";
 
 export default function AiBoard() {
   const [input, setInput] = useState("");
@@ -60,12 +65,35 @@ export default function AiBoard() {
   };
 
   return (
-    <div className="container max-h-screen  mx-auto bg-white rounded-md border p-3 min-h-[700px] flex justify-between flex-col">
-      <h1 className="text-xl font-bold text-center mb-4">
-        Solve your problem by AI
-      </h1>
+    <div className="container mx-auto bg-white rounded-md border pb-3 px-2 min-h-[100vh] max-h-[100vh] flex flex-col">
+      <div className="w-full flex justify-center items-center">
+        <div className="flex">
+          <Link href={"/"} className="p-2">
+            <FaHome className="text-green-500 text-2xl" />
+          </Link>
+          <Link href={"/pages/StudentProfile"} className="p-2">
+            <RiFileUserFill className="text-green-500 text-2xl" />
+          </Link>
+          <Link href={"/pages/articles"} className="p-2">
+            <SiWikimediafoundation className="text-green-500 text-2xl" />
+          </Link>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <marquee className="text-sm text-green-500">
+            In today`s fast-paced world, finding solutions quickly and
+            efficiently is essential. AI-powered assistance allows you to get
+            instant answers, solve complex problems, and receive intelligent
+            recommendations. Whether you need help with coding, troubleshooting
+            errors, generating content, or answering general questions, AI is
+            here to guide you. With advanced language processing, AI understands
+            your queries and provides accurate, relevant, and insightful
+            responses. Just type in your problem, and let AI do the rest!
+            Embrace the power of AI and make problem-solving easier than ever.{" "}
+          </marquee>
+        </div>
+      </div>
       {/* Chat content box */}
-      <div className="flex-1 max-h-[calc(100%-150px)]  overflow-y-auto p-3 space-y-3">
+      <div className="flex-1 overflow-y-auto p-3 space-y-3 border rounded-md">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -74,7 +102,7 @@ export default function AiBoard() {
             }`}
           >
             <div
-              className={`max-w-[85%] p-3 rounded-lg whitespace-pre-wrap ${
+              className={`max-w-[90%] p-3 rounded-lg whitespace-pre-wrap ${
                 message.sender === "user"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
@@ -86,22 +114,26 @@ export default function AiBoard() {
         ))}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-gray-200 text-gray-800 p-3 rounded-lg">
-              Thinking...
-            </div>
+            <Image
+              src="/ai.gif"
+              alt="ai"
+              className="h-[100px] w-[120px] rounded-lg border"
+              height={50}
+              width={500}
+            />
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
       {/* Input box */}
-      <div className="flex  gap-2 items-center p-3 border-t">
+      <div className="flex gap-2 items-center pt-3 border-t">
         <input
           type="text"
           placeholder="Write your problem"
           className="w-full p-2 px-4 border outline-0 rounded-md"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
         <button
           type="submit"

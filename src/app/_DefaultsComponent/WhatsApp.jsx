@@ -4,10 +4,10 @@ import Link from "next/link";
 export default function WhatsApp() {
   return (
     <Link
-      href="https://wa.me/01703033332"
+      href="https://wa.me/+8801703033332"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-3 right-3 z-[9999999]"
+      className="fixed bottom-3 right-3 z-[99]"
     >
       <Image
         src="/wp.png"

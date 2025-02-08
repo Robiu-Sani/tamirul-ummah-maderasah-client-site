@@ -2,7 +2,7 @@ import AiBoard from "./AiBoard";
 
 export default function page() {
   return (
-    <div className="w-full bg-green-50 py-14">
+    <div className="w-full bg-white fixed top-0 left-0 z-[99999] h-screen flex justify-center items-center py-14">
       <AiBoard />
     </div>
   );
