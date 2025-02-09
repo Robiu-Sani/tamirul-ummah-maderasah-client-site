@@ -76,19 +76,35 @@ export default function AiBoard() {
       {alert && <SimpleAlertForComingSoon handleAlert={handleAlert} />}
 
       <div className="p-3 bg-gray-100 flex justify-between items-center shadow-md">
-        <div className="flex space-x-4">
-          <Link href="/" className="text-green-500 text-2xl">
+        <div className="flex justify-start items-center">
+          <Link href="/" className="text-green-500 p-1 px-2 text-2xl">
             <FaHome />
           </Link>
           <Link
             href="/pages/StudentProfile"
-            className="text-green-500 text-2xl"
+            className="text-green-500 p-1 px-2 text-2xl"
           >
             <RiFileUserFill />
           </Link>
-          <Link href="/pages/articles" className="text-green-500 text-2xl">
+          <Link
+            href="/pages/articles"
+            className="text-green-500 p-1 px-2 text-2xl"
+          >
             <SiWikimediafoundation />
           </Link>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <marquee className="text-sm text-green-500">
+            In todays fast-paced world, finding solutions quickly and
+            efficiently is essential. AI-powered assistance allows you to get
+            instant answers, solve complex problems, and receive intelligent
+            recommendations. Whether you need help with coding, troubleshooting
+            errors, generating content, or answering general questions, AI is
+            here to guide you. With advanced language processing, AI understands
+            your queries and provides accurate, relevant, and insightful
+            responses. Just type in your problem, and let AI do the rest!
+            Embrace the power of AI and make problem-solving easier than ever.{" "}
+          </marquee>
         </div>
       </div>
 
