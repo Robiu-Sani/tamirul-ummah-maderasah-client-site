@@ -1,6 +1,6 @@
 "use client";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
@@ -19,25 +19,44 @@ export default function AiBoard() {
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
+
     setIsLoading(true);
     const userMessage = { text: input, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
 
     try {
-      const response = await fetch("https://api.example.com/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: input }),
-      });
+      const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCJJj3dylstQ9VfUTtOJxz-dcWxlprx_NM",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `${input} answer me by bangla`,
+                  },
+                ],
+              },
+            ],
+          }),
+        }
+      );
 
       const data = await response.json();
-      const aiMessage = { text: data.response, sender: "ai" };
+      const aiMessage = {
+        text: data.candidates[0].content.parts[0].text,
+        sender: "ai",
+      };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       console.error("Error fetching AI response:", error);
       setMessages((prev) => [
         ...prev,
-        { text: "AI unavailable.", sender: "ai" },
+        { text: "Failed to get response from AI.", sender: "ai" },
       ]);
     } finally {
       setIsLoading(false);
@@ -46,7 +65,7 @@ export default function AiBoard() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex w-full flex-col h-screen bg-white">
       {/* Navbar */}
       <div className="p-3 bg-gray-100 flex justify-between items-center shadow-md">
         <div className="flex space-x-4">
