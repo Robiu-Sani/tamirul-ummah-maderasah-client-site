@@ -3,14 +3,16 @@ import { BsFillSendArrowUpFill } from "react-icons/bs";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaRegPlusSquare } from "react-icons/fa";
 import { RiFileUserFill } from "react-icons/ri";
 import { SiWikimediafoundation } from "react-icons/si";
+import SimpleAlertForComingSoon from "@/app/_DefaultsComponent/SimpleAlertForComeingSoon";
 
 export default function AiBoard() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -64,9 +66,15 @@ export default function AiBoard() {
     }
   };
 
+  const handleAlert = (data) => {
+    setAlert(data);
+  };
+
   return (
     <div className="flex w-full flex-col h-screen bg-white">
       {/* Navbar */}
+      {alert && <SimpleAlertForComingSoon handleAlert={handleAlert} />}
+
       <div className="p-3 bg-gray-100 flex justify-between items-center shadow-md">
         <div className="flex space-x-4">
           <Link href="/" className="text-green-500 text-2xl">
@@ -117,10 +125,16 @@ export default function AiBoard() {
       </div>
 
       {/* Input Box */}
-      <div className="p-3 bg-white border-t flex items-center sticky bottom-0 w-full">
+      <div className="p-3 bg-white border-t  flex items-center sticky bottom-0 w-full">
+        <div
+          onClick={() => handleAlert(true)}
+          className="p-2 bg-white cursor-pointer absolute right-[57px]"
+        >
+          <FaRegPlusSquare className="text-xl text-gray-500" />
+        </div>
         <input
           type="text"
-          placeholder="Write your message..."
+          placeholder="Write your question"
           className="flex-1 p-2 border rounded-md outline-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
