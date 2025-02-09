@@ -1,6 +1,6 @@
 "use client";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
@@ -15,48 +15,29 @@ export default function AiBoard() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
+  }, [messages]);
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
-
     setIsLoading(true);
     const userMessage = { text: input, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
 
     try {
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCJJj3dylstQ9VfUTtOJxz-dcWxlprx_NM",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `${input} answer me by bangla`,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
+      const response = await fetch("https://api.example.com/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: input }),
+      });
 
       const data = await response.json();
-      const aiMessage = {
-        text: data.candidates[0].content.parts[0].text,
-        sender: "ai",
-      };
+      const aiMessage = { text: data.response, sender: "ai" };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       console.error("Error fetching AI response:", error);
       setMessages((prev) => [
         ...prev,
-        { text: "Failed to get response from AI.", sender: "ai" },
+        { text: "AI unavailable.", sender: "ai" },
       ]);
     } finally {
       setIsLoading(false);
@@ -65,35 +46,27 @@ export default function AiBoard() {
   };
 
   return (
-    <div className="container relative mx-auto bg-white rounded-md border am:border-0 pb-3 px-2 h-full flex flex-col">
-      <div className="w-full flex justify-center items-center">
-        <div className="flex">
-          <Link href={"/"} className="p-2">
-            <FaHome className="text-green-500 text-2xl" />
+    <div className="flex flex-col h-screen bg-white">
+      {/* Navbar */}
+      <div className="p-3 bg-gray-100 flex justify-between items-center shadow-md">
+        <div className="flex space-x-4">
+          <Link href="/" className="text-green-500 text-2xl">
+            <FaHome />
           </Link>
-          <Link href={"/pages/StudentProfile"} className="p-2">
-            <RiFileUserFill className="text-green-500 text-2xl" />
+          <Link
+            href="/pages/StudentProfile"
+            className="text-green-500 text-2xl"
+          >
+            <RiFileUserFill />
           </Link>
-          <Link href={"/pages/articles"} className="p-2">
-            <SiWikimediafoundation className="text-green-500 text-2xl" />
+          <Link href="/pages/articles" className="text-green-500 text-2xl">
+            <SiWikimediafoundation />
           </Link>
-        </div>
-        <div className="w-full flex justify-center items-center">
-          <marquee className="text-sm text-green-500">
-            In today`s fast-paced world, finding solutions quickly and
-            efficiently is essential. AI-powered assistance allows you to get
-            instant answers, solve complex problems, and receive intelligent
-            recommendations. Whether you need help with coding, troubleshooting
-            errors, generating content, or answering general questions, AI is
-            here to guide you. With advanced language processing, AI understands
-            your queries and provides accurate, relevant, and insightful
-            responses. Just type in your problem, and let AI do the rest!
-            Embrace the power of AI and make problem-solving easier than ever.{" "}
-          </marquee>
         </div>
       </div>
-      {/* Chat content box */}
-      <div className="flex-1 overflow-y-auto mb-11 p-3 space-y-3 border rounded-md">
+
+      {/* Chat Box */}
+      <div className="flex-1 overflow-y-auto p-3 space-y-3">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -102,7 +75,7 @@ export default function AiBoard() {
             }`}
           >
             <div
-              className={`max-w-[90%] p-3 rounded-lg whitespace-pre-wrap ${
+              className={`max-w-[80%] p-3 rounded-lg text-sm ${
                 message.sender === "user"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
@@ -113,31 +86,29 @@ export default function AiBoard() {
           </div>
         ))}
         {isLoading && (
-          <div className="flex justify-start">
-            <Image
-              src="/ai.gif"
-              alt="ai"
-              className="h-[100px] w-[120px] rounded-lg border"
-              height={50}
-              width={500}
-            />
-          </div>
+          <Image
+            src="/ai.gif"
+            alt="ai"
+            height={50}
+            width={50}
+            className="rounded-lg"
+          />
         )}
         <div ref={messagesEndRef} />
       </div>
-      {/* Input box */}
-      <div className="flex w-full absolute bottom-2 gap-2 items-center pt-3 ">
+
+      {/* Input Box */}
+      <div className="p-3 bg-white border-t flex items-center sticky bottom-0 w-full">
         <input
           type="text"
-          placeholder="Write your problem"
-          className="w-[calc(100%-60px)] p-2 px-4 border outline-0 rounded-md"
+          placeholder="Write your message..."
+          className="flex-1 p-2 border rounded-md outline-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
         <button
-          type="submit"
-          className="p-2 rounded-md border bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+          className="p-2 ml-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           onClick={handleSendMessage}
           disabled={isLoading}
         >
