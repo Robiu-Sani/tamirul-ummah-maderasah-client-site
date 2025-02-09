@@ -65,7 +65,7 @@ export default function AiBoard() {
   };
 
   return (
-    <div className="container mx-auto bg-white rounded-md border pb-3 px-2 min-h-[100vh] max-h-[100vh] flex flex-col">
+    <div className="container relative mx-auto bg-white rounded-md border am:border-0 pb-3 px-2 h-full flex flex-col">
       <div className="w-full flex justify-center items-center">
         <div className="flex">
           <Link href={"/"} className="p-2">
@@ -93,7 +93,7 @@ export default function AiBoard() {
         </div>
       </div>
       {/* Chat content box */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3 border rounded-md">
+      <div className="flex-1 overflow-y-auto mb-11 p-3 space-y-3 border rounded-md">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -126,11 +126,11 @@ export default function AiBoard() {
         <div ref={messagesEndRef} />
       </div>
       {/* Input box */}
-      <div className="flex gap-2 items-center pt-3 border-t">
+      <div className="flex w-full absolute bottom-2 gap-2 items-center pt-3 ">
         <input
           type="text"
           placeholder="Write your problem"
-          className="w-full p-2 px-4 border outline-0 rounded-md"
+          className="w-[calc(100%-60px)] p-2 px-4 border outline-0 rounded-md"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
