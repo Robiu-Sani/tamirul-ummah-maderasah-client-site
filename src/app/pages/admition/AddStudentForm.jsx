@@ -32,7 +32,9 @@ export default function AddStudentForm() {
 
   const onSubmit = async (data) => {
     const email =
-      data.studentNameEnglish.toLowerCase().replace(/\s+/g, "") + "@tum.com";
+      data.studentNameEnglish.toLowerCase().replace(/[^a-z0-9]/g, "") +
+      "@tum.com";
+
     const newData = { image, email, ...data };
     const submitedData = {
       name: "Admition Notice",
