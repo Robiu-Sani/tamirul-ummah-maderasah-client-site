@@ -11,7 +11,7 @@ export default async function AllTeachers() {
       <div className="w-full p-3 text-xl mb-4 bg-primary cursor-pointer text-white font-semibold rounded-md flex justify-center items-center">
         Our Teachers
       </div>
-      <div className="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-3">
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-3">
         {teachers.map((teacher, idx) => (
           <TeacherCard key={idx} teacher={teacher} />
         ))}

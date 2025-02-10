@@ -20,10 +20,10 @@ export default function TeacherCard({ teacher }) {
         alt={teacherName ? teacherName : "teacher of tamirul ummah maderasah"}
         width={250}
         height={300}
-        className="rounded-md"
+        className="rounded-md "
       />
       {/* Render teacher name */}
-      <div className="mt-2 text-center font-semibold">
+      <div className="mt-2 text-center text-base  font-semibold">
         {teacherName ? teacherName : null}
       </div>
       <div className="w-full flex flex-col justify-center items-center">
