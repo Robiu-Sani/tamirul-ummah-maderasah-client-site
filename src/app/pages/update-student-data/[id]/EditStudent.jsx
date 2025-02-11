@@ -436,6 +436,8 @@ export default function EditStudent() {
               <option value="" disabled selected>
                 Select a class
               </option>
+              <option value="nursery">Nursery</option>
+              <option value="kg">KG</option>
               <option value="one">One</option>
               <option value="two">Two</option>
               <option value="three">Three</option>
