@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaUser,
   FaMapMarkerAlt,
@@ -14,8 +14,14 @@ import {
   FaHome,
 } from "react-icons/fa";
 import Tabs from "./Tabs";
+import UpdateProfileImage from "./UpdateProfileImage";
 
 const StudentProfile = ({ student }) => {
+  const [studentImage, setStudentImage] = useState("");
+
+  const handleUploadImage = (url) => {
+    setStudentImage(url);
+  };
   return (
     <div className="container mx-auto py-8">
       {/* Cover Section */}
@@ -32,16 +38,24 @@ const StudentProfile = ({ student }) => {
       <div className="relative -mt-28 bg-white rounded-lg shadow-lg p-6 md:p-10">
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Profile Image */}
-          <div className="w-40 h-40 overflow-hidden rounded-full border-2 border-primary cursor-pointer flex justify-center items-center">
-            <Image
-              width={100}
-              height={100}
-              src={
-                student?.student?.image ||
-                "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
-              }
-              alt={`${student?.student?.studentNameEnglish} Profile`}
-              className="w-full "
+          <div className="relative cursor-pointer">
+            <div className="w-40 h-40  overflow-hidden rounded-full border-2 border-primary cursor-pointer flex justify-center items-center">
+              <Image
+                width={100}
+                height={100}
+                src={
+                  studentImage
+                    ? studentImage
+                    : student?.student?.image ||
+                      "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
+                }
+                alt={`${student?.student?.studentNameEnglish} Profile`}
+                className="w-full "
+              />
+            </div>
+            <UpdateProfileImage
+              handleUploadImage={handleUploadImage}
+              student={student.student}
             />
           </div>
 

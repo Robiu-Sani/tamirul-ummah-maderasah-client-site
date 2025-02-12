@@ -13,7 +13,7 @@ export default function TeacherCard({ teacher }) {
       {/* Render teacher image */}
       <Image
         src={
-          teacherImage
+          teacherImage !== null || ""
             ? teacherImage
             : "https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
         }

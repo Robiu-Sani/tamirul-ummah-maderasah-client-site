@@ -12,12 +12,12 @@ const FeeStructureCard = ({ data }) => {
     <div className="bg-white border my-10 rounded-lg shadow-lg p-4 container mx-auto">
       {/* Title Section */}
       <div className="bg-green-600 text-white py-3 px-4 rounded-t-lg">
-        <div className="bg-green-400 text-white text-center py-5 font-bold text-2xl ">
-          আলিয়া শাখার ভর্তি বেতন ও অন্যান্য ফি
-        </div>
         <h2 className="text-xl font-bold text-center">
           প্রত্যেক শাখার মাদ্রসা ফি{" "}
         </h2>
+        <div className="bg-green-400 text-white rounded-md text-center py-1 font-bold  ">
+          আলিয়া শাখার ভর্তি বেতন ও অন্যান্য ফি
+        </div>
       </div>
 
       {/* Subheader */}
