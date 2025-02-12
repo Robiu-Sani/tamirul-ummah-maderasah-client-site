@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 export default function ImageUpload({ onUpload }) {
   const [isUploading, setIsUploading] = useState(false);
@@ -42,7 +43,11 @@ export default function ImageUpload({ onUpload }) {
         disabled={isUploading}
         className="absolute top-0 left-0 cursor-pointer z-[99999] w-full h-full opacity-0"
       />
-      {isUploading && <p className="text-blue-500">Uploading...</p>}
+      {isUploading && (
+        <p className="text-blue-500">
+          <FaSpinner className="animate-spin" />
+        </p>
+      )}
     </div>
   );
 }
