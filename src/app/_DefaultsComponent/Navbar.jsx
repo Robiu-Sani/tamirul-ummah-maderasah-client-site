@@ -187,6 +187,13 @@ export default function Navbar() {
               </Link>
               <Link
                 onClick={closeMenu}
+                href="/pages/admition/old-student"
+                className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
+              >
+                পুরাতন ছাত্রদের ইনফরমেশন যুক্তকরো
+              </Link>
+              <Link
+                onClick={closeMenu}
                 href="/pages/SubmitedInfo"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
