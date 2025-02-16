@@ -190,7 +190,7 @@ export default function Navbar() {
                 href="/pages/admition/old-student"
                 className="text-sm p-1 px-3 w-full md:w-auto hover:bg-gray-100 rounded-md "
               >
-                পুরাতন ছাত্রদের ইনফরমেশন যুক্তকরো
+                সাবেক ছাত্রদের ইনফরমেশন যুক্তকরার ফরম
               </Link>
               <Link
                 onClick={closeMenu}
