@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import "tailwindcss/tailwind.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import useAxiousSource from "@/app/_DefaultsComponent/useAxiousSource";
-// import Link from "next/link";
+import useAxiousSource from "../../_DefaultsComponent/useAxiousSource";
 
 const CarouselBanner = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });

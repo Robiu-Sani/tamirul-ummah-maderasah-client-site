@@ -1,5 +1,4 @@
 "use client";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -7,6 +6,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GiOilySpiral } from "react-icons/gi";
+import { url } from "../../../_DefaultsComponent/DefaultsFunctions/Config";
 
 export default function Login() {
   const router = useRouter();
@@ -40,14 +40,15 @@ export default function Login() {
   const onSubmit = async (data) => {
     try {
       setIsSubmiting(true);
-      const response = await axios.post(`${url}/auth/student`, data);
+      const response = await axios.post(`${url}/auth/user`, data);
+      console.log(response.data);
       if (response.data.message === "Login Successful") {
         reset();
         setIsWorng(false);
         toast.success(response.data.message || "Submit successful");
-        localStorage.setItem("student", JSON.stringify(response.data.data));
-        localStorage.setItem("id", response.data.data._id);
-        router.push("/pages/StudentProfile");
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+        localStorage.setItem("id", response.data.data.member._id);
+        response.data.data.user.role === 'student' ? router.push("/pages/profile/student") : router.push("/pages/profile/teacher");
         // console.log(response.data.data._id, response.data.data, response.data);
         // location.reload();
       } else {
@@ -84,22 +85,22 @@ export default function Login() {
         {/* Email Input */}
         <div className="mb-4">
           <label
-            htmlFor="email"
+            htmlFor="id"
             className="block text-sm font-medium text-gray-700"
           >
-            Email
+            Id
           </label>
           <input
-            type="email"
-            id="email"
-            {...register("email", { required: "Email is required" })}
-            placeholder="Enter your email"
+            type="text"
+            id="id"
+            {...register("id", { required: "id is required" })}
+            placeholder="Enter your id"
             className={`mt-1 block w-full px-4 py-2 border ${
-              errors.email ? "border-red-500" : "border-gray-300"
+              errors.id ? "border-red-500" : "border-gray-300"
             } rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
           />
-          {errors.email && (
-            <span className="text-red-500 text-sm">{errors.email.message}</span>
+          {errors.id && (
+            <span className="text-red-500 text-sm">{errors.id.message}</span>
           )}
         </div>
 
