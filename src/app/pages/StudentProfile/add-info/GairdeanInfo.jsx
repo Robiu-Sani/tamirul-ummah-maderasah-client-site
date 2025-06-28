@@ -14,10 +14,10 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import Image from "next/image";
-import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import ImageUpload from "../../../_DefaultsComponent/ImageUpload";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import axios from "axios";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../../_DefaultsComponent/DefaultsFunctions/Config";
 import toast, { Toaster } from "react-hot-toast";
 import { ImSpinner2 } from "react-icons/im";
 

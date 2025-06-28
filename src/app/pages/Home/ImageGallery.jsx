@@ -1,5 +1,5 @@
 "use client";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";

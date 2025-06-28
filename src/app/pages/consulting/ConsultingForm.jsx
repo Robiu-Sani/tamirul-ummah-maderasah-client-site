@@ -1,5 +1,5 @@
 "use client";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

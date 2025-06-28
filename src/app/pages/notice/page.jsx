@@ -1,7 +1,7 @@
 import { FaBell } from "react-icons/fa";
 import NoticeCard from "./NoticeCard";
 import axios from "axios";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 
 export default async function Page() {
   const response = await axios.get(`${url}/notice`);

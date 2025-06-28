@@ -1,6 +1,6 @@
 import axios from "axios";
 import OurAchievementCard from "./OurAchievementCard";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 
 // export const metadata = {
 //   title: "Our Achievements | Tamirul Ummah Madrasah",

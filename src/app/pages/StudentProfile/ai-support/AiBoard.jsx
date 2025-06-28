@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FaHome, FaRegPlusSquare } from "react-icons/fa";
 import { RiFileUserFill } from "react-icons/ri";
 import { SiWikimediafoundation } from "react-icons/si";
-import SimpleAlertForComingSoon from "@/app/_DefaultsComponent/SimpleAlertForComeingSoon";
+import SimpleAlertForComingSoon from "../../../_DefaultsComponent/SimpleAlertForComeingSoon";
 
 export default function AiBoard() {
   const [input, setInput] = useState("");

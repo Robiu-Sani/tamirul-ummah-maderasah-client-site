@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../../_DefaultsComponent/DefaultsFunctions/Config";
 
 export default function PasswordForm() {
   const { id } = useParams();

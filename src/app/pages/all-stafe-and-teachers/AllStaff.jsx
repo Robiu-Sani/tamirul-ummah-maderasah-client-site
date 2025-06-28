@@ -1,4 +1,4 @@
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import StaffCard from "./StaffCard";
 import axios from "axios";
 

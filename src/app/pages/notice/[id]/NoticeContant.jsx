@@ -6,7 +6,7 @@ import jsPDF from "jspdf";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../../_DefaultsComponent/DefaultsFunctions/Config";
 import toast, { Toaster } from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 // import Audio from "./Audio";

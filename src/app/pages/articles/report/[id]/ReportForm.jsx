@@ -1,5 +1,5 @@
 "use client";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../../../_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";

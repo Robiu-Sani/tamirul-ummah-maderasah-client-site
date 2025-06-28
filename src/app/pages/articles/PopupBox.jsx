@@ -1,6 +1,6 @@
 "use client";
 
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";

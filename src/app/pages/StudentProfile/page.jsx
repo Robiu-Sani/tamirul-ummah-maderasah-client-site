@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import StudentProfile from "./StudentProfile";
-import useAxiousSource from "@/app/_DefaultsComponent/useAxiousSource";
+import useAxiousSource from "../../_DefaultsComponent/useAxiousSource";
 import { useRouter } from "next/navigation";
 import { ImSpinner5 } from "react-icons/im";
 

@@ -1,4 +1,4 @@
-import ComingSoon from "@/app/_DefaultsComponent/ComingSoon";
+import ComingSoon from "../../_DefaultsComponent/ComingSoon";
 import React from "react";
 
 export default function page() {

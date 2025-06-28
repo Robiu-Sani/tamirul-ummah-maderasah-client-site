@@ -12,9 +12,9 @@ import {
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { useState } from "react";
 import Image from "next/image";
-import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import ImageUpload from "../../_DefaultsComponent/ImageUpload";
 import axios from "axios";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import toast, { Toaster } from "react-hot-toast";
 import { GiOilySpiral } from "react-icons/gi";
 import AlertBox from "./AlertBox";

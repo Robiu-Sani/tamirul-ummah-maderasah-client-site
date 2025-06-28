@@ -6,7 +6,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { PiSpinnerBallFill } from "react-icons/pi";
 import axios from "axios";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import PropTypes from "prop-types";
 import ResultHeader from "./result-header/ResultHeader";
 import StudentDetails from "./result-header/StudentDetails";

@@ -1,6 +1,6 @@
 "use client";
 
-import useAxiousSource from "@/app/_DefaultsComponent/useAxiousSource";
+import useAxiousSource from "../../../../_DefaultsComponent/useAxiousSource";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
-import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
+import ImageUpload from "../../_DefaultsComponent/ImageUpload";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { FaCameraRetro } from "react-icons/fa";

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { GiOilySpiral } from "react-icons/gi";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 
 export default function ContactForm() {
   const [isSubmiting, setIsSubmiting] = useState(false);

@@ -1,7 +1,7 @@
 "use client";
 
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
-import ImageUpload from "@/app/_DefaultsComponent/ImageUpload";
+import { url } from "../../../_DefaultsComponent/DefaultsFunctions/Config";
+import ImageUpload from "../../../_DefaultsComponent/ImageUpload";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";

@@ -1,5 +1,5 @@
 "use client";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../../_DefaultsComponent/DefaultsFunctions/Config";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ImSpinner } from "react-icons/im";

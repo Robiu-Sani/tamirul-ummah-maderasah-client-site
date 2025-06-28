@@ -2,7 +2,7 @@
 import { SiProteus } from "react-icons/si";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
-import { url } from "@/app/_DefaultsComponent/DefaultsFunctions/Config";
+import { url } from "../../_DefaultsComponent/DefaultsFunctions/Config";
 import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa6";
 
