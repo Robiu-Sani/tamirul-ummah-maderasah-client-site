@@ -7,11 +7,13 @@ import AdmissionsSection from "./pages/Home/AdmissionsSection";
 import ImageGallery from "./pages/Home/ImageGallery";
 import VideoGallery from "./pages/Home/VideoGallery";
 import MadrasahCampuses from "./pages/Home/MadrasahCampuses";
+import LatestNews from "./pages/Home/LatestNews";
 
 export default function Home() {
   return (
     <div className="bg-green-50">
       <CarouselBanner />
+      <LatestNews />
       <NoticeSection />
       <MadrasahCampuses />
       <ServicesSection />
